@@ -25,7 +25,7 @@ public class LazyCollection extends LazyEntity {
 
     public LazyCollectionElementByIndex get(int index) {
         assertThat(minimumSizeOf(index+1));
-        return new LazyCollectionElementByIndex((LazyCollection) getWrappedEntity(), index);
+        return new LazyCollectionElementByIndex(new LazyCollection(lazyEntity), index);
     }
 
     public LazyCollection should(CustomConditions... conditions) {

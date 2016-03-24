@@ -24,7 +24,7 @@ public class LazyElement extends LazyEntity {
 
     public LazyFoundElement find(String innerLocator) {
         assertThat(elementVisible);
-        return new LazyFoundElement((LazyElement) getWrappedEntity(), innerLocator);
+        return new LazyFoundElement(new LazyElement(lazyEntity), innerLocator);
     }
 
     public LazyElement click() {
