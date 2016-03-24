@@ -1,21 +1,30 @@
 package collection;
 
 import conditions.CustomConditions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import static conditions.CustomConditions.elementVisible;
+import static core.ConciseAPI.byCSS;
 import static core.ConciseAPI.getDriver;
 
 public class LazyElement extends LazyEntity {
 
-    public LazyElement(By locator) {
-        super(locator);
+    public LazyElement(LazyEntity lazyEntity) {
+        super(lazyEntity);
+    }
+
+    public String getLocatorDescription() {
+        return lazyEntity.toString();
     }
 
     public WebElement getWrappedEntity() {
-        return getDriver().findElement(locator);
+        return getDriver().findElement(byCSS(getLocatorDescription()));
+    }
+
+    public LazyFoundElement find(String innerLocator) {
+        assertThat(elementVisible);
+        return new LazyFoundElement((LazyElement) getWrappedEntity(), innerLocator);
     }
 
     public LazyElement click() {
@@ -77,6 +86,5 @@ public class LazyElement extends LazyEntity {
     public LazyElement shouldHave(CustomConditions... conditions) {
         return should(conditions);
     }
-
 
 }

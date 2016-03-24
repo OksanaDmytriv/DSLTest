@@ -1,7 +1,6 @@
 package conditions;
 
-import core.ConciseAPI;
-import org.openqa.selenium.By;
+import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -11,6 +10,7 @@ public class MinimumSizeOf extends CustomConditions<List<WebElement>> {
     private static int listSize;
     private static List<WebElement> results;
     protected final int minimumSize;
+    private LazyEntity lazyEntity;
 
     public MinimumSizeOf(int minimumSize) {
         if (minimumSize == 0) {
@@ -25,8 +25,10 @@ public class MinimumSizeOf extends CustomConditions<List<WebElement>> {
     }
 
     @Override
-    protected List<WebElement> check(By locator) {
-        results = ConciseAPI.getDriver().findElements(locator);
+    protected List<WebElement> check(LazyEntity lazyEntity) {
+        this.lazyEntity = lazyEntity;
+        results = (List<WebElement>) lazyEntity.getWrappedEntity();
+        //results = ConciseAPI.getDriver().findElements(locator);
         listSize = results.size();
         return (listSize >= minimumSize) ? results : null;
     }

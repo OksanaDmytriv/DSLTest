@@ -2,6 +2,7 @@ package core;
 
 import collection.LazyElement;
 import collection.LazyCollection;
+import collection.LazyEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -20,16 +21,16 @@ public class ConciseAPI {
         drivers.put(Thread.currentThread(), driver);
     }
 
-    public static LazyElement $(By locator) {
-        return new LazyElement(locator);
+    public static LazyElement $(LazyEntity lazyEntity) {
+        return new LazyElement(lazyEntity);
     }
 
     public static LazyElement $(String cssSelector) {
         return $(byCSS(cssSelector));
     }
 
-    public static LazyCollection $$(By locator) {
-        return new LazyCollection(locator);
+    public static LazyCollection $$(LazyEntity lazyEntity) {
+        return new LazyCollection(lazyEntity);
     }
 
     public static LazyCollection $$(String cssSelector) {

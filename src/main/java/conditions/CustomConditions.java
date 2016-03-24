@@ -1,6 +1,7 @@
 package conditions;
 
 
+import collection.LazyEntity;
 import org.openqa.selenium.*;
 
 import java.util.List;
@@ -13,11 +14,11 @@ public abstract class CustomConditions<V> {
 
     public abstract String toString();
 
-    protected abstract <V> V check(By locator);
+    protected abstract <V> V check(LazyEntity lazyEntity);
 
-    public <V> V apply(By locator) {
+    public <V> V apply(LazyEntity lazyEntity) {
         try {
-            return check(locator);
+            return check(lazyEntity);
         } catch (StaleElementReferenceException e) {
             return null;
         } catch (ElementNotVisibleException e) {
@@ -50,8 +51,8 @@ public abstract class CustomConditions<V> {
 
     public static CustomConditions<List<WebElement>> listVisible = new ListVisible();
 
-//public static CustomConditions<WebElement> exactTextOf(final String text){
-    //  return new ExactTextOf(text);
-//}
+    public static CustomConditions<WebElement> exactTextOf(final String text) {
+        return new ExactTextOf(text);
+    }
 
 }
