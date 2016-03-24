@@ -20,7 +20,7 @@ public class ListNthElementHasText extends CustomConditions<WebElement> {
 
     @Override
     public String toString() {
-        return String.format("\nFor element actual text is: %s\n while expected text contains: %s\n", currentText, text);
+        return String.format("\nFor element located by %s\n actual text is: %s\n while expected text contains: %s\n", lazyEntity.getLocatorDescription(), currentText, text);
     }
 
     @Override

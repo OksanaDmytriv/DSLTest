@@ -1,7 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
-
 import static core.ConciseAPI.$;
 
 public class Menu {
@@ -11,7 +9,7 @@ public class Menu {
     }
 
     public static void openSent() {
-        $(By.linkText("Sent Mail")).click();
+        //$(By.linkText("Sent Mail")).click();
     }
 
     public static void openInbox() {
@@ -19,6 +17,6 @@ public class Menu {
     }
 
     public static void search(String subject) {
-        $(By.name("q")).setValue("subject:" + subject).pressEnter();
+        //$(By.name("q")).setValue("subject:" + subject).pressEnter();
     }
 }

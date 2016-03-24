@@ -35,10 +35,6 @@ public abstract class LazyEntity<TypeOfWrappedEntity> {
 
     public abstract String getLocatorDescription();
 
-    //public WebElement getWrappedElement() {
-      //  return getDriver().findElement(locator);
-   // }
-
     public Actions getActions() {
         return new Actions(getDriver());
     }

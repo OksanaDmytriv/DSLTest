@@ -23,7 +23,7 @@ public class TextsOf extends CustomConditions<List<WebElement>> {
 
     @Override
     public String toString() {
-        return String.format("\n For elements actual texts is: %s\n while expected texts contains: %s\n", Arrays.toString(currentTexts.toArray()), Arrays.toString(texts));
+        return String.format("\n For elements located by %s\n actual texts is: %s\n while expected texts contains: %s\n", lazyEntity.getLocatorDescription(), Arrays.toString(currentTexts.toArray()), Arrays.toString(texts));
     }
 
     @Override

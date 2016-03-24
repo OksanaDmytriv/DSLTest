@@ -1,7 +1,7 @@
 package core;
 
-import collection.LazyElement;
 import collection.LazyCollection;
+import collection.LazyElement;
 import collection.LazyEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +26,8 @@ public class ConciseAPI {
     }
 
     public static LazyElement $(String cssSelector) {
-        return $(byCSS(cssSelector));
+        //return new LazyElement(cssSelector);
+        return $(String.valueOf(byCSS(cssSelector)));
     }
 
     public static LazyCollection $$(LazyEntity lazyEntity) {
@@ -34,7 +35,19 @@ public class ConciseAPI {
     }
 
     public static LazyCollection $$(String cssSelector) {
-        return $$(byCSS(cssSelector));
+        return $$(String.valueOf(byCSS(cssSelector)));
+    }
+
+    public static By byText(String text) {
+        return By.xpath("//*[text()[contains(.,'" + text + "')]]");
+    }
+
+    public static By byCSS(String cssSelector) {
+        return By.cssSelector(cssSelector);
+    }
+
+    public static void open(String URL) {
+        getDriver().get(URL);
     }
 
     /*
@@ -74,16 +87,4 @@ public class ConciseAPI {
     public static List<WebElement> $$(String cssSelector) {
         return $$(byCSS(cssSelector));
     }*/
-
-    public static By byText(String text) {
-        return By.xpath("//*[text()[contains(.,'" + text + "')]]");
-    }
-
-    public static By byCSS(String cssSelector) {
-        return By.cssSelector(cssSelector);
-    }
-
-    public static void open(String URL) {
-        getDriver().get(URL);
-    }
 }

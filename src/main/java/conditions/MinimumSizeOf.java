@@ -21,7 +21,7 @@ public class MinimumSizeOf extends CustomConditions<List<WebElement>> {
 
     @Override
     public String toString() {
-        return String.format("\n For elements %s\n actual size is: %s\n while expected minimum size contains: %s\n", results, listSize, minimumSize);
+        return String.format("\n For elements located by %s\n actual size is: %s\n while expected minimum size contains: %s\n", lazyEntity.getLocatorDescription(), listSize, minimumSize);
     }
 
     @Override

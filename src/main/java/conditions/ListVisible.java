@@ -1,7 +1,6 @@
 package conditions;
 
 import collection.LazyEntity;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.Iterator;
@@ -9,13 +8,12 @@ import java.util.List;
 
 public class ListVisible extends CustomConditions<List<WebElement>> {
 
-    private static By locator;
     private LazyEntity lazyEntity;
     private List elements;
 
     @Override
     public String toString() {
-        return String.format("Elements located by %s\n should be visible", locator);
+        return String.format("Elements located by %s\n should be visible", lazyEntity.getLocatorDescription());
     }
 
     @Override

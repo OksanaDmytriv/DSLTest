@@ -17,7 +17,7 @@ public class ExactTextOf extends CustomConditions<WebElement> {
     }
 
     public String toString() {
-        return String.format("\nFor elements %s\n actual text is: %s\n while expected text contains: %s\n", elements, currentText, text);
+        return String.format("\nFor elements located by %s\n actual text is: %s\n while expected text contains: %s\n", lazyEntity.getLocatorDescription(), currentText, text);
     }
 
     protected WebElement check(LazyEntity lazyEntity) {
