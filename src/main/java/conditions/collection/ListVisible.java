@@ -1,4 +1,4 @@
-package conditions;
+package conditions.collection;
 
 import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import java.util.Iterator;
 import java.util.List;
 
-public class ListVisible extends CustomConditions<List<WebElement>> {
+public class ListVisible extends CustomConditionsCollection {
 
     private LazyEntity lazyEntity;
     private List elements;

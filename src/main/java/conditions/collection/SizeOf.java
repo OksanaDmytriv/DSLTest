@@ -1,11 +1,11 @@
-package conditions;
+package conditions.collection;
 
 import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class SizeOf extends CustomConditions<List<WebElement>> {
+public class SizeOf extends CustomConditionsCollection {
 
     private static int listSize;
     private static List<WebElement> results;

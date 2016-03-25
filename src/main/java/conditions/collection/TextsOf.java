@@ -1,4 +1,4 @@
-package conditions;
+package conditions.collection;
 
 import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TextsOf extends CustomConditions<List<WebElement>> {
+public class TextsOf extends CustomConditionsCollection {
 
     private static List<String> currentTexts;
     private static List<WebElement> elements;

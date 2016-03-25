@@ -1,4 +1,4 @@
-package conditions;
+package conditions.collection;
 
 import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExactTextOf extends CustomConditions<WebElement> {
+public class ExactTextOf extends CustomConditionsCollection {
 
     private static List<String> currentTexts;
     private static String currentText;

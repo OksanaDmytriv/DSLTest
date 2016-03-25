@@ -3,8 +3,8 @@ package pages;
 import collection.LazyCollection;
 import org.openqa.selenium.By;
 
-import static conditions.CustomConditions.listNthElementHasText;
-import static conditions.CustomConditions.textsOf;
+import static conditions.collection.CustomConditionsCollection.listNthElementHasText;
+import static conditions.collection.CustomConditionsCollection.textsOf;
 import static core.ConciseAPI.*;
 
 public class Mails {
@@ -25,6 +25,4 @@ public class Mails {
     public static void assertMail(int index, String subject) {
         emails.shouldHave(listNthElementHasText(index, subject));
     }
-
-
 }

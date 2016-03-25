@@ -1,34 +1,29 @@
-package conditions;
+package conditions.element;
 
 import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
-public class ListNthElementHasText extends CustomConditions<WebElement> {
+public class ExactTextOf extends CustomConditionsElement {
 
     private static String currentText;
-    private static List<WebElement> elements;
     protected final String text;
-    protected final int index;
     private LazyEntity lazyEntity;
 
-    public ListNthElementHasText(int index, String text) {
-        this.index = index;
+    public ExactTextOf(String text) {
         this.text = text;
     }
 
-    @Override
     public String toString() {
         return String.format("\nFor element located by %s\n actual text is: %s\n while expected text contains: %s\n", lazyEntity.getLocatorDescription(), currentText, text);
     }
 
-    @Override
     protected WebElement check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
-        elements = (List<WebElement>) lazyEntity.getWrappedEntity();
-        WebElement element = elements.get(index);
+        WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         currentText = element.getText();
-        return (currentText.contains(text)) ? element : null;
+        if (!currentText.contains(text)) {
+            return null;
+        }
+        return element;
     }
 }

@@ -1,12 +1,12 @@
 package collection;
 
-import conditions.CustomConditions;
+import conditions.collection.CustomConditionsCollection;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static conditions.CustomConditions.minimumSizeOf;
+import static conditions.collection.CustomConditionsCollection.minimumSizeOf;
 import static core.ConciseAPI.getDriver;
 
 public class LazyCollection extends LazyEntity {
@@ -28,16 +28,16 @@ public class LazyCollection extends LazyEntity {
         return new LazyCollectionElementByIndex(this, index);
     }
 
-    public LazyCollection should(CustomConditions... conditions) {
+    public LazyCollection should(CustomConditionsCollection... conditions) {
         assertThat(conditions);
         return this;
     }
 
-    public LazyCollection shouldBe(CustomConditions... conditions) {
+    public LazyCollection shouldBe(CustomConditionsCollection... conditions) {
         return should(conditions);
     }
 
-    public LazyCollection shouldHave(CustomConditions... conditions) {
+    public LazyCollection shouldHave(CustomConditionsCollection... conditions) {
         return should(conditions);
     }
 }

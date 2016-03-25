@@ -1,9 +1,9 @@
-package conditions;
+package conditions.collection;
 
 import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
 
-public class ElementVisible extends CustomConditions<WebElement> {
+public class ElementVisible extends CustomConditionsCollection {
 
     private LazyEntity lazyEntity;
 

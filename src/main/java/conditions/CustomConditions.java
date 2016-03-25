@@ -2,9 +2,9 @@ package conditions;
 
 
 import collection.LazyEntity;
-import org.openqa.selenium.*;
-
-import java.util.List;
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public abstract class CustomConditions<V> {
 
@@ -29,30 +29,4 @@ public abstract class CustomConditions<V> {
             return null;
         }
     }
-
-    public static CustomConditions<List<WebElement>> textsOf(final String... texts) {
-        return new TextsOf(texts);
-    }
-
-    public static CustomConditions<WebElement> listNthElementHasText(
-            final int index, final String text) {
-        return new ListNthElementHasText(index, text);
-    }
-
-    public static CustomConditions<List<WebElement>> sizeOf(final int expectedSize) {
-        return new SizeOf(expectedSize);
-    }
-
-    public static CustomConditions<List<WebElement>> minimumSizeOf(final int minimumSize) {
-        return new MinimumSizeOf(minimumSize);
-    }
-
-    public static CustomConditions<WebElement> elementVisible = new ElementVisible();
-
-    public static CustomConditions<List<WebElement>> listVisible = new ListVisible();
-
-    public static CustomConditions<WebElement> exactTextOf(final String text) {
-        return new ExactTextOf(text);
-    }
-
 }
