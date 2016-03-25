@@ -29,6 +29,5 @@ public class GmailTest extends BaseTest {
         Menu.search(subject);
         Mails.assertMails(subject);
     }
-
 }
 

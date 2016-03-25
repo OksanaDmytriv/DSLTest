@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static conditions.CustomConditions.minimumSizeOf;
 import static core.ConciseAPI.getDriver;
 
 public class LazyCollection extends LazyEntity {
@@ -23,8 +24,8 @@ public class LazyCollection extends LazyEntity {
     }
 
     public LazyCollectionElementByIndex get(int index) {
-        //assertThat(minimumSizeOf(index + 1));
-        return new LazyCollectionElementByIndex(new LazyCollection(locator), index);
+        assertThat(minimumSizeOf(index + 1));
+        return new LazyCollectionElementByIndex(this, index);
     }
 
     public LazyCollection should(CustomConditions... conditions) {

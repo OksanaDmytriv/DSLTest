@@ -1,15 +1,14 @@
 package collection;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import static core.ConciseAPI.byCSS;
 
 public class LazyFoundElement extends LazyElement {
 
-    private String innerLocator;
+    private By innerLocator;
     private LazyElement parentElement;
 
-    public LazyFoundElement(LazyElement parentElement, String innerLocator) {
+    public LazyFoundElement(LazyElement parentElement, By innerLocator) {
         super(null);
         this.parentElement=parentElement;
         this.innerLocator=innerLocator;
@@ -20,7 +19,7 @@ public class LazyFoundElement extends LazyElement {
     }
 
     public WebElement getWrappedEntity() {
-        return parentElement.getWrappedEntity().findElement(byCSS(innerLocator));
+        return parentElement.getWrappedEntity().findElement(innerLocator);
     }
 
 }

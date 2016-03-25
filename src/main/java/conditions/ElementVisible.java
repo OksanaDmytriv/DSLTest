@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 
 public class ElementVisible extends CustomConditions<WebElement> {
 
-    private static WebElement element;
     private LazyEntity lazyEntity;
 
     @Override
@@ -16,7 +15,7 @@ public class ElementVisible extends CustomConditions<WebElement> {
     @Override
     protected WebElement check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
-        element = (WebElement) lazyEntity.getWrappedEntity();
+        WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         return element.isDisplayed() ? element : null;
     }
 }

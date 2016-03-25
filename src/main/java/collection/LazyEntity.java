@@ -10,8 +10,7 @@ import static core.Configuration.pollingIntervalInMillis;
 
 public abstract class LazyEntity<TypeOfWrappedEntity> {
 
-    public By locator;
-    public LazyEntity lazyEntity;
+    protected By locator;
 
     public LazyEntity(By locator){
         this.locator=locator;
@@ -37,7 +36,7 @@ public abstract class LazyEntity<TypeOfWrappedEntity> {
 
     public abstract String getLocatorDescription();
 
-    public Actions getActions() {
+    public Actions actions() {
         return new Actions(getDriver());
     }
 

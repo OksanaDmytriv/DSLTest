@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import static conditions.CustomConditions.elementVisible;
+import static core.ConciseAPI.byCSS;
 import static core.ConciseAPI.getDriver;
 
 public class LazyElement extends LazyEntity {
@@ -22,9 +23,13 @@ public class LazyElement extends LazyEntity {
         return getDriver().findElement(locator);
     }
 
-    public LazyFoundElement find(String innerLocator) {
+    public LazyFoundElement find(By innerLocator) {
         assertThat(elementVisible);
-        return new LazyFoundElement(new LazyElement(locator), innerLocator);
+        return new LazyFoundElement(this, innerLocator);
+    }
+
+    public LazyFoundElement find(String cssSelector) {
+        return find(byCSS(cssSelector));
     }
 
     public LazyElement click() {
@@ -65,12 +70,14 @@ public class LazyElement extends LazyEntity {
     }
 
     public LazyElement hover() {
-        getActions().moveToElement(getWrappedEntity()).perform();
+        assertThat(elementVisible);
+        actions().moveToElement(getWrappedEntity()).perform();
         return this;
     }
 
     public LazyElement doubleClick() {
-        getActions().doubleClick(getWrappedEntity()).perform();
+        assertThat(elementVisible);
+        actions().doubleClick(getWrappedEntity()).perform();
         return this;
     }
 
