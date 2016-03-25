@@ -1,31 +1,30 @@
 package collection;
 
 import conditions.CustomConditions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static conditions.CustomConditions.minimumSizeOf;
-import static core.ConciseAPI.byCSS;
 import static core.ConciseAPI.getDriver;
 
 public class LazyCollection extends LazyEntity {
 
-    public LazyCollection(LazyEntity lazyEntity) {
-        super(lazyEntity);
+    public LazyCollection(By locator) {
+        super(locator);
     }
 
     public String getLocatorDescription() {
-        return lazyEntity.toString();
+        return locator.toString();
     }
 
     public List<WebElement> getWrappedEntity() {
-        return getDriver().findElements(byCSS(getLocatorDescription()));
+        return getDriver().findElements(locator);
     }
 
     public LazyCollectionElementByIndex get(int index) {
-        assertThat(minimumSizeOf(index+1));
-        return new LazyCollectionElementByIndex(new LazyCollection(lazyEntity), index);
+        //assertThat(minimumSizeOf(index + 1));
+        return new LazyCollectionElementByIndex(new LazyCollection(locator), index);
     }
 
     public LazyCollection should(CustomConditions... conditions) {

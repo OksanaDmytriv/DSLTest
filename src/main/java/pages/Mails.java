@@ -1,20 +1,21 @@
 package pages;
 
 import collection.LazyCollection;
+import org.openqa.selenium.By;
 
 import static conditions.CustomConditions.listNthElementHasText;
 import static conditions.CustomConditions.textsOf;
-import static core.ConciseAPI.$$;
+import static core.ConciseAPI.*;
 
 public class Mails {
 
     public static LazyCollection emails = $$("[role='main'] .zA");
 
     public static void send(String email, String subject) {
-        //$(byText("COMPOSE")).click();
-        //$(By.name("to")).sendKeys(email);
-        //$(By.name("subjectbox")).sendKeys(subject);
-        //$(byText("Send")).click();
+        $(byText("COMPOSE")).click();
+        $(By.name("to")).sendKeys(email);
+        $(By.name("subjectbox")).sendKeys(subject);
+        $(byText("Send")).click();
     }
 
     public static void assertMails(String... subjects) {

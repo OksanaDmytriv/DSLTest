@@ -2,6 +2,7 @@ package collection;
 
 import conditions.CustomConditions;
 import core.Configuration;
+import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
 import static core.ConciseAPI.getDriver;
@@ -9,10 +10,11 @@ import static core.Configuration.pollingIntervalInMillis;
 
 public abstract class LazyEntity<TypeOfWrappedEntity> {
 
+    public By locator;
     public LazyEntity lazyEntity;
 
-    public LazyEntity(LazyEntity lazyEntity) {
-        this.lazyEntity = lazyEntity;
+    public LazyEntity(By locator){
+        this.locator=locator;
     }
 
     protected <V> V assertThat(CustomConditions<V> condition, int timeout) {
@@ -51,7 +53,7 @@ public abstract class LazyEntity<TypeOfWrappedEntity> {
     private <V> V waitUntil(CustomConditions<V> condition, int timeoutMs) {
         final long startTime = System.currentTimeMillis();
         do {
-            V results = condition.apply(lazyEntity);
+            V results = condition.apply(this);
             if (results == null) {
                 sleep(pollingIntervalInMillis);
                 continue;

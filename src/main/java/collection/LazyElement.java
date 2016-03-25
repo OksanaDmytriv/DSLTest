@@ -1,30 +1,30 @@
 package collection;
 
 import conditions.CustomConditions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import static conditions.CustomConditions.elementVisible;
-import static core.ConciseAPI.byCSS;
 import static core.ConciseAPI.getDriver;
 
 public class LazyElement extends LazyEntity {
 
-    public LazyElement(LazyEntity lazyEntity) {
-        super(lazyEntity);
+    public LazyElement(By locator) {
+        super(locator);
     }
 
     public String getLocatorDescription() {
-        return lazyEntity.toString();
+        return locator.toString();
     }
 
     public WebElement getWrappedEntity() {
-        return getDriver().findElement(byCSS(getLocatorDescription()));
+        return getDriver().findElement(locator);
     }
 
     public LazyFoundElement find(String innerLocator) {
         assertThat(elementVisible);
-        return new LazyFoundElement(new LazyElement(lazyEntity), innerLocator);
+        return new LazyFoundElement(new LazyElement(locator), innerLocator);
     }
 
     public LazyElement click() {

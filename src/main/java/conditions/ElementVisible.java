@@ -17,7 +17,6 @@ public class ElementVisible extends CustomConditions<WebElement> {
     protected WebElement check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         element = (WebElement) lazyEntity.getWrappedEntity();
-        //WebElement element = ConciseAPI.getDriver().findElement(lazyEntity);
         return element.isDisplayed() ? element : null;
     }
 }

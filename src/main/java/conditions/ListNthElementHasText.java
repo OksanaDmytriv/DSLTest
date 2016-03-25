@@ -27,7 +27,6 @@ public class ListNthElementHasText extends CustomConditions<WebElement> {
     protected WebElement check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         elements = (List<WebElement>) lazyEntity.getWrappedEntity();
-        //elements = ConciseAPI.getDriver().findElements(locator);
         WebElement element = elements.get(index);
         currentText = element.getText();
         return (currentText.contains(text)) ? element : null;

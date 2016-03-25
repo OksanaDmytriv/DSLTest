@@ -20,7 +20,6 @@ public class ListVisible extends CustomConditions<List<WebElement>> {
     protected List<WebElement> check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         elements = (List<WebElement>) lazyEntity.getWrappedEntity();
-        //List elements = ConciseAPI.getDriver().findElements(locator);
         Iterator iterator = elements.iterator();
         WebElement element;
 

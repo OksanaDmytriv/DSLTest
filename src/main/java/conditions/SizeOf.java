@@ -25,7 +25,6 @@ public class SizeOf extends CustomConditions<List<WebElement>> {
     protected List<WebElement> check(LazyEntity lazyEntity) {
         this.lazyEntity=lazyEntity;
         results = (List<WebElement>) lazyEntity.getWrappedEntity();
-        //results = ConciseAPI.getDriver().findElements(locator);
         listSize = results.size();
         return (listSize == expectedSize) ? results : null;
     }

@@ -9,12 +9,12 @@ public class LazyCollectionElementByIndex extends LazyElement {
 
     public LazyCollectionElementByIndex(LazyCollection parentCollection, int index) {
         super(null);
-        this.parentCollection=parentCollection;
+        this.parentCollection = parentCollection;
         this.index = index;
     }
 
     public String getLocatorDescription() {
-       return parentCollection.getLocatorDescription().concat(":nth-child("+index+")");
+        return parentCollection.getLocatorDescription().concat(":nth-child(" + index + ")");
     }
 
     public WebElement getWrappedEntity() {

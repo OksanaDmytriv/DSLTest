@@ -24,7 +24,6 @@ public class ExactTextOf extends CustomConditions<WebElement> {
         int i;
         this.lazyEntity = lazyEntity;
         elements = (List<WebElement>) lazyEntity.getWrappedEntity();
-        //elements = ConciseAPI.getDriver().findElements(locator);
         for (i = 0; i < elements.size(); ++i) {
             currentText = elements.get(i).getText();
             if (!currentText.contains(text)) {
