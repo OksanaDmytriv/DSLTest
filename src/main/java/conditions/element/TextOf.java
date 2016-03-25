@@ -3,13 +3,13 @@ package conditions.element;
 import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
 
-public class ExactTextOf extends CustomConditionsElement {
+public class TextOf extends CustomConditionsElement {
 
     private static String currentText;
     protected final String text;
     private LazyEntity lazyEntity;
 
-    public ExactTextOf(String text) {
+    public TextOf(String text) {
         this.text = text;
     }
 

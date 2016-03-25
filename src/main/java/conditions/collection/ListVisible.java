@@ -13,7 +13,7 @@ public class ListVisible extends CustomConditionsCollection {
 
     @Override
     public String toString() {
-        return String.format("Elements located by %s\n should be visible", lazyEntity.getLocatorDescription());
+        return String.format("For elements located by %s\n should be visible", lazyEntity.getLocatorDescription());
     }
 
     @Override
