@@ -1,16 +1,15 @@
 package conditions.collection;
 
-import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
+import wrappers.LazyEntity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TextsOf extends CustomConditionsCollection {
+public class TextsOf extends CustomCollectionConditions {
 
-    private static List<String> currentTexts;
-    private static List<WebElement> elements;
+    private List<String> currentTexts;
     protected final String[] texts;
     private LazyEntity lazyEntity;
 
@@ -28,8 +27,8 @@ public class TextsOf extends CustomConditionsCollection {
 
     @Override
     protected List<WebElement> check(LazyEntity lazyEntity) {
-        this.lazyEntity=lazyEntity;
-        elements = (List<WebElement>) lazyEntity.getWrappedEntity();
+        this.lazyEntity = lazyEntity;
+        List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = new ArrayList<String>();
         for (int i = 0; i < elements.size(); ++i) {
             currentTexts.add(i, elements.get(i).getText());

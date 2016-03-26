@@ -1,4 +1,4 @@
-package collection;
+package wrappers;
 
 import org.openqa.selenium.WebElement;
 

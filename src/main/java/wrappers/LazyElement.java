@@ -1,11 +1,11 @@
-package collection;
+package wrappers;
 
-import conditions.element.CustomConditionsElement;
+import conditions.element.CustomElementCondition;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import static conditions.collection.CustomConditionsCollection.elementVisible;
+import static conditions.element.CustomElementCondition.elementVisible;
 import static core.ConciseAPI.byCSS;
 import static core.ConciseAPI.getDriver;
 
@@ -81,16 +81,16 @@ public class LazyElement extends LazyEntity {
         return this;
     }
 
-    public LazyElement should(CustomConditionsElement... conditions) {
+    public LazyElement should(CustomElementCondition... conditions) {
         assertThat(conditions);
         return this;
     }
 
-    public LazyElement shouldBe(CustomConditionsElement... conditions) {
+    public LazyElement shouldBe(CustomElementCondition... conditions) {
         return should(conditions);
     }
 
-    public LazyElement shouldHave(CustomConditionsElement conditions) {
+    public LazyElement shouldHave(CustomElementCondition conditions) {
         return should(conditions);
     }
 

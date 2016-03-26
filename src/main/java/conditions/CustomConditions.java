@@ -1,7 +1,7 @@
 package conditions;
 
 
-import collection.LazyEntity;
+import wrappers.LazyEntity;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;

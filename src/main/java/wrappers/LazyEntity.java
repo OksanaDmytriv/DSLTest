@@ -1,4 +1,4 @@
-package collection;
+package wrappers;
 
 import conditions.CustomConditions;
 import core.Configuration;

@@ -1,14 +1,13 @@
 package conditions.collection;
 
-import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
+import wrappers.LazyEntity;
 
 import java.util.List;
 
-public class MinimumSizeOf extends CustomConditionsCollection {
+public class MinimumSizeOf extends CustomCollectionConditions {
 
-    private static int listSize;
-    private static List<WebElement> results;
+    private int listSize;
     protected final int minimumSize;
     private LazyEntity lazyEntity;
 
@@ -27,7 +26,7 @@ public class MinimumSizeOf extends CustomConditionsCollection {
     @Override
     protected List<WebElement> check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
-        results = (List<WebElement>) lazyEntity.getWrappedEntity();
+        List<WebElement> results = (List<WebElement>) lazyEntity.getWrappedEntity();
         listSize = results.size();
         return (listSize >= minimumSize) ? results : null;
     }

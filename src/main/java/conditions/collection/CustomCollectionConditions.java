@@ -1,0 +1,28 @@
+package conditions.collection;
+
+import conditions.CustomConditions;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+public abstract class CustomCollectionConditions extends CustomConditions<List<WebElement>> {
+
+    public static CustomCollectionConditions textsOf(final String... texts) {
+        return new TextsOf(texts);
+    }
+
+    public static CustomCollectionConditions sizeOf(final int expectedSize) {
+        return new SizeOf(expectedSize);
+    }
+
+    public static CustomCollectionConditions minimumSizeOf(final int minimumSize) {
+        return new MinimumSizeOf(minimumSize);
+    }
+
+    public static CustomCollectionConditions listVisible = new ListVisible();
+
+    public static CustomCollectionConditions listNthElementHasText(
+            final int index, final String text) {
+        return new ListNthElementHasText(index, text);
+    }
+}

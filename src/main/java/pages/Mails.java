@@ -1,10 +1,10 @@
 package pages;
 
-import collection.LazyCollection;
+import wrappers.LazyCollection;
 import org.openqa.selenium.By;
 
-import static conditions.collection.CustomConditionsCollection.listNthElementHasText;
-import static conditions.collection.CustomConditionsCollection.textsOf;
+import static conditions.collection.CustomCollectionConditions.listNthElementHasText;
+import static conditions.collection.CustomCollectionConditions.textsOf;
 import static core.ConciseAPI.*;
 
 public class Mails {

@@ -1,15 +1,14 @@
 package conditions.collection;
 
-import collection.LazyEntity;
 import org.openqa.selenium.WebElement;
+import wrappers.LazyEntity;
 
 import java.util.Iterator;
 import java.util.List;
 
-public class ListVisible extends CustomConditionsCollection {
+public class ListVisible extends CustomCollectionConditions {
 
     private LazyEntity lazyEntity;
-    private List elements;
 
     @Override
     public String toString() {
@@ -19,7 +18,7 @@ public class ListVisible extends CustomConditionsCollection {
     @Override
     protected List<WebElement> check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
-        elements = (List<WebElement>) lazyEntity.getWrappedEntity();
+        List elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         Iterator iterator = elements.iterator();
         WebElement element;
 

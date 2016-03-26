@@ -1,7 +1,7 @@
 package core;
 
-import collection.LazyCollection;
-import collection.LazyElement;
+import wrappers.LazyCollection;
+import wrappers.LazyElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
