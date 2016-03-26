@@ -13,7 +13,7 @@ public class MinimumSizeOf extends CustomCollectionConditions {
 
     public MinimumSizeOf(int minimumSize) {
         if (minimumSize == 0) {
-            throw new IllegalArgumentException("Minimum size of element's list is 0.");
+            throw new IllegalArgumentException("Minimum size of forElement's list is 0.");
         }
         this.minimumSize = minimumSize;
     }

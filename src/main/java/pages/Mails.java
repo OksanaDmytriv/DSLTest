@@ -1,6 +1,6 @@
 package pages;
 
-import wrappers.LazyCollection;
+import wrappers.forCollection.LazyCollection;
 import org.openqa.selenium.By;
 
 import static conditions.collection.CustomCollectionConditions.listNthElementHasText;

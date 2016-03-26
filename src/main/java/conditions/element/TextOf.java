@@ -14,7 +14,7 @@ public class TextOf extends CustomElementCondition {
     }
 
     public String toString() {
-        return String.format("\nFor element located by %s\n actual text is: %s\n while expected text contains: %s\n", lazyEntity.getLocatorDescription(), currentText, text);
+        return String.format("\nFor forElement located by %s\n actual text is: %s\n while expected text contains: %s\n", lazyEntity.getLocatorDescription(), currentText, text);
     }
 
     protected WebElement check(LazyEntity lazyEntity) {

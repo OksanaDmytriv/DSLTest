@@ -1,7 +1,7 @@
 package core;
 
-import wrappers.LazyCollection;
-import wrappers.LazyElement;
+import wrappers.forCollection.LazyCollection;
+import wrappers.forElement.LazyElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -66,12 +66,12 @@ public class ConciseAPI {
     }
 
     public static WebElement $(By parentElementLocator, String... cssSelectorsOfInnerElements) {
-        WebElement element;
-        //WebElement element = $(parentElementLocator);
+        WebElement forElement;
+        //WebElement forElement = $(parentElementLocator);
         for (String selector : cssSelectorsOfInnerElements) {
-            element = $(parentElementLocator, byCSS(selector));
+            forElement = $(parentElementLocator, byCSS(selector));
         }
-        return element;
+        return forElement;
     }
 
     public static List<WebElement> $$(By lazyEntity, CustomConditions<List<WebElement>> conditionToWaitForListFilteredElements) {

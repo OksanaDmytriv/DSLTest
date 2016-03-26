@@ -1,4 +1,4 @@
-package wrappers;
+package wrappers.forElement;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

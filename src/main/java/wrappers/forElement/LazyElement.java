@@ -1,9 +1,10 @@
-package wrappers;
+package wrappers.forElement;
 
 import conditions.element.CustomElementCondition;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import wrappers.LazyEntity;
 
 import static conditions.element.CustomElementCondition.elementVisible;
 import static core.ConciseAPI.byCSS;

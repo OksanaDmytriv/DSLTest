@@ -1,6 +1,7 @@
-package wrappers;
+package wrappers.forElement;
 
 import org.openqa.selenium.WebElement;
+import wrappers.forCollection.LazyCollection;
 
 public class LazyCollectionElementByIndex extends LazyElement {
 
