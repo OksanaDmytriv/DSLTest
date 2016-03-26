@@ -26,5 +26,13 @@ public abstract class CustomCollectionConditions extends CustomConditions<List<W
         return new ListNthElementHasText(index, text);
     }
 
-    public static CustomCollectionConditions presenceOfAllElements = new PresenceOfAllElements();
+    public static CustomCollectionConditions presenceList = new PresenceList();
+
+    public static CustomCollectionConditions listOfVisibleElementsIsEmpty = new ListOfVisibleElementsIsEmpty();
+
+    public static CustomCollectionConditions visibleTextsOf(final String... texts) {
+        return new VisibleTextsOf(texts);
+    }
+
+    public static CustomCollectionConditions empty = new SizeOf(0);
 }

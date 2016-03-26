@@ -14,4 +14,8 @@ public abstract class CustomElementCondition extends CustomConditions<WebElement
     }
 
     public static CustomElementCondition elementVisible = new ElementVisible();
+
+    public static CustomElementCondition listElementWithCssClass(final String cssClass) {
+        return new ListElementWithCssClass(cssClass);
+    }
 }

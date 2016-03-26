@@ -1,9 +1,9 @@
 package core;
 
-import wrappers.forCollection.LazyCollection;
-import wrappers.forElement.LazyElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import wrappers.forCollection.LazyCollection;
+import wrappers.forElement.LazyElement;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,42 +47,4 @@ public class ConciseAPI {
     public static void open(String URL) {
         getDriver().get(URL);
     }
-
-    /*
-    public static WebElement $(String cssSelector) {
-        return $(byCSS(cssSelector));
-    }
-
-    public static WebElement $(By lazyEntity, CustomConditions<WebElement> conditionToWaitParentElement, By innerElementLocator) {
-        return $(lazyEntity, conditionToWaitParentElement).$(innerElementLocator);
-    }
-
-    public static WebElement $(By lazyEntity, CustomConditions<WebElement> conditionToWaitParentElement, String innerElementCssSelector) {
-        return $(lazyEntity, conditionToWaitParentElement, byCSS(innerElementCssSelector));
-    }
-
-    public static WebElement $(By parentElementLocator, By innerElementLocator) {
-        return $(parentElementLocator).$(innerElementLocator);
-    }
-
-    public static WebElement $(By parentElementLocator, String... cssSelectorsOfInnerElements) {
-        WebElement forElement;
-        //WebElement forElement = $(parentElementLocator);
-        for (String selector : cssSelectorsOfInnerElements) {
-            forElement = $(parentElementLocator, byCSS(selector));
-        }
-        return forElement;
-    }
-
-    public static List<WebElement> $$(By lazyEntity, CustomConditions<List<WebElement>> conditionToWaitForListFilteredElements) {
-        return assertThat(lazyEntity, conditionToWaitForListFilteredElements);
-    }
-
-    public static List<WebElement> $$(By lazyEntity) {
-        return $$(lazyEntity, listVisible);
-    }
-
-    public static List<WebElement> $$(String cssSelector) {
-        return $$(byCSS(cssSelector));
-    }*/
 }

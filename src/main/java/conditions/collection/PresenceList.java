@@ -5,7 +5,7 @@ import wrappers.LazyEntity;
 
 import java.util.List;
 
-public class PresenceOfAllElements extends CustomCollectionConditions {
+public class PresenceList extends CustomCollectionConditions {
 
     private LazyEntity lazyEntity;
 

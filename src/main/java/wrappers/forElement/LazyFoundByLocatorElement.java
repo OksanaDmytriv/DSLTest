@@ -3,12 +3,12 @@ package wrappers.forElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class LazyFoundElement extends LazyElement {
+public class LazyFoundByLocatorElement extends LazyElement {
 
     private By innerLocator;
     private LazyElement parentElement;
 
-    public LazyFoundElement(LazyElement parentElement, By innerLocator) {
+    public LazyFoundByLocatorElement(LazyElement parentElement, By innerLocator) {
         super(null);
         this.parentElement=parentElement;
         this.innerLocator=innerLocator;

@@ -2,9 +2,7 @@ package testconfigs;
 
 import core.ConciseAPI;
 import core.Configuration;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.junit.After;
 
 public class BaseTest {
 
@@ -12,13 +10,8 @@ public class BaseTest {
         Configuration.timeout = 20000;
     }
 
-    @BeforeClass
-    public static void setUp(){
-        ConciseAPI.setDriver(new FirefoxDriver());
-    }
-
-    @AfterClass
-    public static void teardown() {
+    @After
+    public void teardown() {
         ConciseAPI.getDriver().quit();
     }
 

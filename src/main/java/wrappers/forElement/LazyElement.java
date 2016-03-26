@@ -24,12 +24,12 @@ public class LazyElement extends LazyEntity {
         return getDriver().findElement(locator);
     }
 
-    public LazyFoundElement find(By innerLocator) {
+    public LazyFoundByLocatorElement find(By innerLocator) {
         assertThat(elementVisible);
-        return new LazyFoundElement(this, innerLocator);
+        return new LazyFoundByLocatorElement(this, innerLocator);
     }
 
-    public LazyFoundElement find(String cssSelector) {
+    public LazyFoundByLocatorElement find(String cssSelector) {
         return find(byCSS(cssSelector));
     }
 
