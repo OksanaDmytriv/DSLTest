@@ -1,7 +1,9 @@
 package core;
 
 import conditions.CustomCondition;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.interactions.Actions;
 import wrappers.LazyEntity;
 import wrappers.forCollection.LazyCollection;
@@ -11,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static core.Configuration.pollingIntervalInMillis;
-import static javafx.scene.input.KeyCode.V;
 
 public class ConciseAPI {
 
@@ -79,32 +80,40 @@ public class ConciseAPI {
     }
 
     public static <V> V waitFor(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
-        V results = null;
+        V results = waitForWrapper(lazyEntity, condition, timeoutMs);
+        if (results == null) {
+            throw new AssertionError(condition.toString());
+        } else
+            return results;
+    }
+
+    public static <V> V waitForWrapper(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
+        V result = null;
         final long startTime = System.currentTimeMillis();
         do {
-            results = condition.apply(lazyEntity);
-            if (results == null) {
+            result = conditionApplyWithExceptionsCatching(lazyEntity, condition);
+            if (result == null) {
                 sleep(pollingIntervalInMillis);
                 continue;
             }
-            return results;
+            return result;
         }
         while (System.currentTimeMillis() - startTime < timeoutMs);
-        if(results == null){
-        conditionFail();
-        throw new AssertionError(toString());}
-        return null;
+        if (result != null) {
+            return result;
+        }
+        if (result == null) {
+            return null;
+        }
+        return result;
     }
 
-    public static <V> void conditionFail(){
-    }
-
-    public static <V> V apply(LazyEntity lazyEntity) {
+    protected static <V> V conditionApplyWithExceptionsCatching(LazyEntity lazyEntity, CustomCondition<V> condition) {
         try {
-            return CustomCondition.apply(lazyEntity);
+            return condition.apply(lazyEntity);
         } catch (WebDriverException e) {
             return null;
-        }  catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             return null;
         }
     }

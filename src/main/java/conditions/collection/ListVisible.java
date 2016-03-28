@@ -16,7 +16,7 @@ public class ListVisible extends CustomCollectionCondition {
     }
 
     @Override
-    protected List<WebElement> apply(LazyEntity lazyEntity) {
+    public List<WebElement> apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         Iterator iterator = elements.iterator();

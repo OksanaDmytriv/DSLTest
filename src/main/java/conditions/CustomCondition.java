@@ -9,8 +9,6 @@ import java.util.List;
 
 public abstract class CustomCondition<V> {
 
-    //public abstract String toString();
-
     public abstract <V> V apply(LazyEntity lazyEntity);
 
     public static List<String> getTexts(List<WebElement> elements) {

@@ -21,7 +21,7 @@ public class SizeOf extends CustomCollectionCondition {
     }
 
     @Override
-    protected List<WebElement> apply(LazyEntity lazyEntity) {
+    public List<WebElement> apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List<WebElement> results = (List<WebElement>) lazyEntity.getWrappedEntity();
         listSize = results.size();

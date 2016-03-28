@@ -5,6 +5,8 @@ import conditions.element.CustomElementCondition;
 import org.openqa.selenium.WebElement;
 import wrappers.LazyEntity;
 
+import static core.ConciseAPI.waitForWrapper;
+
 public class LazyWrappedWebElement extends LazyElement{
 
     private LazyEntity parentElement;
@@ -26,7 +28,7 @@ public class LazyWrappedWebElement extends LazyElement{
     }
 
     public boolean isValid(CustomElementCondition condition){
-        if (condition.apply(this) != null){
+        if (waitForWrapper(this, condition, 0) != null){
             return true;
         }
         return false;
