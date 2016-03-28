@@ -1,6 +1,6 @@
 package wrappers.forCollection;
 
-import conditions.collection.CustomCollectionConditions;
+import conditions.collection.CustomCollectionCondition;
 import conditions.element.CustomElementCondition;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -10,14 +10,17 @@ import wrappers.forElement.LazyFoundByConditionElement;
 
 import java.util.List;
 
-import static conditions.collection.CustomCollectionConditions.minimumSizeOf;
-import static conditions.collection.CustomCollectionConditions.presenceList;
+import static conditions.collection.CustomCollectionCondition.minimumSizeOf;
+import static conditions.collection.CustomCollectionCondition.presenceList;
 import static core.ConciseAPI.getDriver;
+import static core.ConciseAPI.waitFor;
 
-public class LazyCollection extends LazyEntity {
+public class LazyCollection implements LazyEntity {
 
-    public LazyCollection(By locator) {
-        super(locator);
+    protected By locator;
+
+    public LazyCollection(By locator){
+        this.locator=locator;
     }
 
     public String getLocatorDescription() {
@@ -29,30 +32,30 @@ public class LazyCollection extends LazyEntity {
     }
 
     public LazyCollectionElementByIndex get(int index) {
-        assertThat(minimumSizeOf(index + 1));
+        waitFor(this, minimumSizeOf(index + 1));
         return new LazyCollectionElementByIndex(this, index);
     }
 
-    public LazyFilteredCollection filter(CustomCollectionConditions condition) {
-        assertThat(presenceList);
+    public LazyFilteredCollection filter(CustomCollectionCondition condition) {
+        waitFor(this, presenceList);
         return new LazyFilteredCollection(this, condition);
     }
 
     public LazyFoundByConditionElement find(CustomElementCondition condition) {
-        assertThat(presenceList);
+        waitFor(this, presenceList);
         return new LazyFoundByConditionElement(this, condition);
     }
 
-    public LazyCollection should(CustomCollectionConditions... conditions) {
-        assertThat(conditions);
+    public LazyCollection should(CustomCollectionCondition... conditions) {
+        waitFor(this, conditions);
         return this;
     }
 
-    public LazyCollection shouldBe(CustomCollectionConditions... conditions) {
+    public LazyCollection shouldBe(CustomCollectionCondition... conditions) {
         return should(conditions);
     }
 
-    public LazyCollection shouldHave(CustomCollectionConditions... conditions) {
+    public LazyCollection shouldHave(CustomCollectionCondition... conditions) {
         return should(conditions);
     }
 }

@@ -1,19 +1,20 @@
 package wrappers.forElement;
 
 import conditions.element.CustomElementCondition;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import wrappers.LazyEntity;
 
-import static conditions.element.CustomElementCondition.elementVisible;
-import static core.ConciseAPI.byCSS;
-import static core.ConciseAPI.getDriver;
+import java.util.List;
 
-public class LazyElement extends LazyEntity {
+import static conditions.element.CustomElementCondition.elementVisible;
+import static core.ConciseAPI.*;
+
+public class LazyElement implements LazyEntity, WebElement {
+
+    protected By locator;
 
     public LazyElement(By locator) {
-        super(locator);
+        this.locator = locator;
     }
 
     public String getLocatorDescription() {
@@ -25,7 +26,7 @@ public class LazyElement extends LazyEntity {
     }
 
     public LazyFoundByLocatorElement find(By innerLocator) {
-        assertThat(elementVisible);
+        waitFor(this, elementVisible);
         return new LazyFoundByLocatorElement(this, innerLocator);
     }
 
@@ -33,57 +34,111 @@ public class LazyElement extends LazyEntity {
         return find(byCSS(cssSelector));
     }
 
-    public LazyElement click() {
-        assertThat(elementVisible);
+    public void click() {
+        waitFor(this, elementVisible);
         getWrappedEntity().click();
-        return this;
+    }
+
+    public void submit() {
+        getWrappedEntity().submit();
+    }
+
+    public void sendKeys(CharSequence... charSequences) {
+        getWrappedEntity().sendKeys();
     }
 
     public LazyElement setValue(String text) {
-        assertThat(elementVisible);
+        waitFor(this, elementVisible);
         getWrappedEntity().clear();
         getWrappedEntity().sendKeys(text);
         return this;
     }
 
     public LazyElement sendKeys(String text) {
-        assertThat(elementVisible);
+        waitFor(this, elementVisible);
         getWrappedEntity().sendKeys(text);
         return this;
     }
 
-    public LazyElement clear() {
-        assertThat(elementVisible);
+    public void clear() {
+        waitFor(this, elementVisible);
         getWrappedEntity().clear();
-        return this;
+    }
+
+    public String getTagName() {
+        return getWrappedEntity().getTagName();
+    }
+
+    public String getAttribute(String s) {
+        return getWrappedEntity().getAttribute(s);
+    }
+
+    public boolean isSelected() {
+        return getWrappedEntity().isSelected();
+    }
+
+    public boolean isEnabled() {
+        return getWrappedEntity().isEnabled();
+    }
+
+    public String getText() {
+        return getWrappedEntity().getText();
+    }
+
+    public List<WebElement> findElements(By by) {
+        return getWrappedEntity().findElements(by);
+    }
+
+    public WebElement findElement(By by) {
+        return getWrappedEntity().findElement(by);
+    }
+
+    public boolean isDisplayed() {
+        return getWrappedEntity().isDisplayed();
+    }
+
+    public Point getLocation() {
+        return getWrappedEntity().getLocation();
+    }
+
+    public Dimension getSize() {
+        return getWrappedEntity().getSize();
+    }
+
+    public Rectangle getRect() {
+        return getWrappedEntity().getRect();
+    }
+
+    public String getCssValue(String s) {
+        return getWrappedEntity().getCssValue(s);
     }
 
     public LazyElement pressEnter() {
-        assertThat(elementVisible);
+        waitFor(this, elementVisible);
         getWrappedEntity().sendKeys(Keys.ENTER);
         return this;
     }
 
     public LazyElement pressEscape() {
-        assertThat(elementVisible);
+        waitFor(this, elementVisible);
         getWrappedEntity().sendKeys(Keys.ESCAPE);
         return this;
     }
 
     public LazyElement hover() {
-        assertThat(elementVisible);
+        waitFor(this, elementVisible);
         actions().moveToElement(getWrappedEntity()).perform();
         return this;
     }
 
     public LazyElement doubleClick() {
-        assertThat(elementVisible);
+        waitFor(this, elementVisible);
         actions().doubleClick(getWrappedEntity()).perform();
         return this;
     }
 
     public LazyElement should(CustomElementCondition... conditions) {
-        assertThat(conditions);
+        waitFor(this, conditions);
         return this;
     }
 
@@ -95,4 +150,7 @@ public class LazyElement extends LazyEntity {
         return should(conditions);
     }
 
+    public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
+        return null;
+    }
 }

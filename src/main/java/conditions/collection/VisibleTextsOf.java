@@ -7,7 +7,7 @@ import wrappers.LazyEntity;
 import java.util.Arrays;
 import java.util.List;
 
-public class VisibleTextsOf extends CustomCollectionConditions {
+public class VisibleTextsOf extends CustomCollectionCondition {
 
     private List<String> currentTexts;
     protected final String[] texts;

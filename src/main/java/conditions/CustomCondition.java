@@ -1,38 +1,17 @@
 package conditions;
 
 
-import org.openqa.selenium.ElementNotVisibleException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import wrappers.LazyEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CustomConditions<V> {
-
-    public void fail() {
-        throw new AssertionError(toString());
-    }
+public abstract class CustomCondition<V> {
 
     public abstract String toString();
 
-    protected abstract <V> V check(LazyEntity lazyEntity);
-
-    public <V> V apply(LazyEntity lazyEntity) {
-        try {
-            return check(lazyEntity);
-        } catch (StaleElementReferenceException e) {
-            return null;
-        } catch (ElementNotVisibleException e) {
-            return null;
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        } catch (NoSuchElementException e) {
-            return null;
-        }
-    }
+    public abstract <V> V check(LazyEntity lazyEntity);
 
     public static List<String> getTexts(List<WebElement> elements) {
         List<String> currentTexts = new ArrayList<String>();

@@ -5,7 +5,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import wrappers.forCollection.LazyCollection;
 import wrappers.forElement.LazyElement;
 
-import static conditions.collection.CustomCollectionConditions.*;
+import static conditions.collection.CustomCollectionCondition.*;
 import static conditions.element.CustomElementCondition.*;
 import static core.ConciseAPI.*;
 

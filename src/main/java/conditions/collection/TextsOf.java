@@ -6,7 +6,7 @@ import wrappers.LazyEntity;
 import java.util.Arrays;
 import java.util.List;
 
-public class TextsOf extends CustomCollectionConditions {
+public class TextsOf extends CustomCollectionCondition {
 
     private List<String> currentTexts;
     protected final String[] texts;

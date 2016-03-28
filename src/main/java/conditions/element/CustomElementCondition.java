@@ -1,9 +1,9 @@
 package conditions.element;
 
-import conditions.CustomConditions;
+import conditions.CustomCondition;
 import org.openqa.selenium.WebElement;
 
-public abstract class CustomElementCondition extends CustomConditions<WebElement> {
+public abstract class CustomElementCondition extends CustomCondition<WebElement> {
 
     public static CustomElementCondition textOf(final String text) {
         return new TextOf(text);

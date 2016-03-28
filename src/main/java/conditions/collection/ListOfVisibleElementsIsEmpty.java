@@ -6,7 +6,7 @@ import wrappers.LazyEntity;
 
 import java.util.List;
 
-public class ListOfVisibleElementsIsEmpty extends CustomCollectionConditions {
+public class ListOfVisibleElementsIsEmpty extends CustomCollectionCondition {
 
     private LazyEntity lazyEntity;
 

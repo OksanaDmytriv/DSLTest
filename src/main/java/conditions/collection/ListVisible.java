@@ -6,7 +6,7 @@ import wrappers.LazyEntity;
 import java.util.Iterator;
 import java.util.List;
 
-public class ListVisible extends CustomCollectionConditions {
+public class ListVisible extends CustomCollectionCondition {
 
     private LazyEntity lazyEntity;
 
