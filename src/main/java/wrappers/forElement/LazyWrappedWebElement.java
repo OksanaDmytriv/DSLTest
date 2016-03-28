@@ -7,7 +7,7 @@ import wrappers.LazyEntity;
 
 import static core.ConciseAPI.waitForWrapper;
 
-public class LazyWrappedWebElement extends LazyElement{
+public class LazyWrappedWebElement extends LazyElement {
 
     private LazyEntity parentElement;
     private WebElement element;
@@ -15,8 +15,8 @@ public class LazyWrappedWebElement extends LazyElement{
 
     public LazyWrappedWebElement(LazyEntity parentElement, WebElement element) {
         super(null);
-        this.parentElement=parentElement;
-        this.element=element;
+        this.parentElement = parentElement;
+        this.element = element;
     }
 
     public String getLocatorDescription() {
@@ -27,10 +27,7 @@ public class LazyWrappedWebElement extends LazyElement{
         return element;
     }
 
-    public boolean isValid(CustomElementCondition condition){
-        if (waitForWrapper(this, condition, 0) != null){
-            return true;
-        }
-        return false;
+    public boolean isValid(CustomElementCondition condition) {
+        return waitForWrapper(this, condition, 0) != null ? true : false;
     }
 }
