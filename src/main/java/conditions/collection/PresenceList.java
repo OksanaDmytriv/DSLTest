@@ -15,7 +15,7 @@ public class PresenceList extends CustomCollectionCondition {
     }
 
     @Override
-    protected List check(LazyEntity lazyEntity) {
+    public List apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List elements = (List) lazyEntity.getWrappedEntity();
         return elements.size() >= 0 ? elements : null;

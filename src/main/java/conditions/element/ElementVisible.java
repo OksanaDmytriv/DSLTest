@@ -13,7 +13,7 @@ public class ElementVisible extends CustomElementCondition {
     }
 
     @Override
-    protected WebElement check(LazyEntity lazyEntity) {
+    public WebElement apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         return element.isDisplayed() ? element : null;

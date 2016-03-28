@@ -15,7 +15,7 @@ public class ListOfVisibleElementsIsEmpty extends CustomCollectionCondition {
         return String.format("\n For visible elements located by %s\n list should be empty", lazyEntity.getLocatorDescription());
     }
     @Override
-    protected List<WebElement> check(LazyEntity lazyEntity) {
+    public List<WebElement> apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         List<WebElement> visibleElements = listOfVisibleElements(elements);

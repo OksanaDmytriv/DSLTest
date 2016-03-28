@@ -19,7 +19,7 @@ public class ListElementWithCssClass extends CustomElementCondition {
     }
 
     @Override
-    protected WebElement check(LazyEntity lazyEntity) {
+    public WebElement apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         String[] classes = element.getAttribute("class").split(" ");

@@ -25,7 +25,7 @@ public class TextsOf extends CustomCollectionCondition {
     }
 
     @Override
-    protected List<WebElement> check(LazyEntity lazyEntity) {
+    public List<WebElement> apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = getTexts(elements);

@@ -90,18 +90,18 @@ public class ConciseAPI {
             return results;
         }
         while (System.currentTimeMillis() - startTime < timeoutMs);
-        if(results==null)
+        if(results == null){
         conditionFail();
+        throw new AssertionError(toString());}
         return null;
     }
 
     public static <V> void conditionFail(){
-        throw new AssertionError(toString());
     }
 
     public static <V> V apply(LazyEntity lazyEntity) {
         try {
-            return check(lazyEntity);
+            return CustomCondition.apply(lazyEntity);
         } catch (WebDriverException e) {
             return null;
         }  catch (IndexOutOfBoundsException e) {
