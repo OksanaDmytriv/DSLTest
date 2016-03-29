@@ -6,6 +6,9 @@ import wrappers.LazyEntity;
 import java.util.Arrays;
 import java.util.List;
 
+import static conditions.Helpers.getTexts;
+import static conditions.Helpers.listHasTexts;
+
 public class TextsOf extends CustomCollectionCondition {
 
     private List<String> currentTexts;

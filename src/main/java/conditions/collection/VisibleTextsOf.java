@@ -7,6 +7,10 @@ import wrappers.LazyEntity;
 import java.util.Arrays;
 import java.util.List;
 
+import static conditions.Helpers.getTexts;
+import static conditions.Helpers.listHasTexts;
+import static conditions.Helpers.listOfVisibleElements;
+
 public class VisibleTextsOf extends CustomCollectionCondition {
 
     private List<String> currentTexts;

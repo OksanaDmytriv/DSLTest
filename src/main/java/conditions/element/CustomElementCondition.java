@@ -3,7 +3,7 @@ package conditions.element;
 import conditions.CustomCondition;
 import org.openqa.selenium.WebElement;
 
-public abstract class CustomElementCondition extends CustomCondition<WebElement> {
+public abstract class CustomElementCondition implements CustomCondition<WebElement> {
 
     public static CustomElementCondition textOf(final String text) {
         return new TextOf(text);

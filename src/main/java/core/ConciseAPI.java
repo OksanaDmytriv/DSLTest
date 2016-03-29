@@ -80,14 +80,14 @@ public class ConciseAPI {
     }
 
     public static <V> V waitFor(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
-        V results = waitForWrapper(lazyEntity, condition, timeoutMs);
+        V results = waitForWithoutException(lazyEntity, condition, timeoutMs);
         if (results == null) {
             throw new AssertionError(condition.toString());
-        } else
-            return results;
+        }
+        return results;
     }
 
-    public static <V> V waitForWrapper(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
+    public static <V> V waitForWithoutException(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
         V result = null;
         final long startTime = System.currentTimeMillis();
         do {
@@ -99,16 +99,10 @@ public class ConciseAPI {
             return result;
         }
         while (System.currentTimeMillis() - startTime < timeoutMs);
-        if (result != null) {
-            return result;
-        }
-        if (result == null) {
-            return null;
-        }
         return result;
     }
 
-    protected static <V> V conditionApplyWithExceptionsCatching(LazyEntity lazyEntity, CustomCondition<V> condition) {
+    private static <V> V conditionApplyWithExceptionsCatching(LazyEntity lazyEntity, CustomCondition<V> condition) {
         try {
             return condition.apply(lazyEntity);
         } catch (WebDriverException e) {
