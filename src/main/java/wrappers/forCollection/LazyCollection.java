@@ -5,13 +5,12 @@ import conditions.element.CustomElementCondition;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import wrappers.LazyEntity;
+import wrappers.forElement.LazyCollectionElementByCondition;
 import wrappers.forElement.LazyCollectionElementByIndex;
-import wrappers.forElement.LazyFoundByConditionElement;
 
 import java.util.List;
 
-import static conditions.collection.CustomCollectionCondition.minimumSizeOf;
-import static conditions.collection.CustomCollectionCondition.presenceList;
+import static conditions.collection.Helpers.minimumSizeOf;
 import static core.ConciseAPI.getDriver;
 import static core.ConciseAPI.waitFor;
 
@@ -23,7 +22,7 @@ public class LazyCollection implements LazyEntity {
         this.locator=locator;
     }
 
-    public String getLocatorDescription() {
+    public String toString() {
         return locator.toString();
     }
 
@@ -37,13 +36,11 @@ public class LazyCollection implements LazyEntity {
     }
 
     public LazyFilteredCollection filter(CustomCollectionCondition condition) {
-        waitFor(this, presenceList);
         return new LazyFilteredCollection(this, condition);
     }
 
-    public LazyFoundByConditionElement find(CustomElementCondition condition) {
-        waitFor(this, presenceList);
-        return new LazyFoundByConditionElement(this, condition);
+    public LazyCollectionElementByCondition find(CustomElementCondition condition) {
+        return new LazyCollectionElementByCondition(this, condition);
     }
 
     public LazyCollection should(CustomCollectionCondition... conditions) {

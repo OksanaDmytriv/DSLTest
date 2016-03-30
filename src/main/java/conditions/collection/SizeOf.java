@@ -17,7 +17,7 @@ public class SizeOf extends CustomCollectionCondition {
 
     @Override
     public String toString() {
-        return String.format("\n For elements located by %s\n actual size is: %s\n while expected size contains: %s\n", lazyEntity.getLocatorDescription(), listSize, expectedSize);
+        return String.format("expected size contains: %s", expectedSize);
     }
 
     @Override
@@ -26,5 +26,10 @@ public class SizeOf extends CustomCollectionCondition {
         List<WebElement> results = (List<WebElement>) lazyEntity.getWrappedEntity();
         listSize = results.size();
         return (listSize == expectedSize) ? results : null;
+    }
+
+    @Override
+    public String getActualValuesDescription() {
+        return "listSize";
     }
 }

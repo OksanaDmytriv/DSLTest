@@ -9,7 +9,7 @@ public class ElementVisible extends CustomElementCondition {
 
     @Override
     public String toString() {
-        return String.format("For forElement located by %s\n should be visible", lazyEntity.getLocatorDescription());
+        return String.format("element should be visible");
     }
 
     @Override
@@ -17,5 +17,10 @@ public class ElementVisible extends CustomElementCondition {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         return element.isDisplayed() ? element : null;
+    }
+
+    @Override
+    public String getActualValuesDescription() {
+        return "";
     }
 }

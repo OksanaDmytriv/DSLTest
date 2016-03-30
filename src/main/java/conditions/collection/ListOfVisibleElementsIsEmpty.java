@@ -14,7 +14,7 @@ public class ListOfVisibleElementsIsEmpty extends CustomCollectionCondition {
 
     @Override
     public String toString() {
-        return String.format("\n For visible elements located by %s\n list should be empty", lazyEntity.getLocatorDescription());
+        return String.format("list should be empty");
     }
     @Override
     public List<WebElement> apply(LazyEntity lazyEntity) {
@@ -23,5 +23,10 @@ public class ListOfVisibleElementsIsEmpty extends CustomCollectionCondition {
         List<WebElement> visibleElements = listOfVisibleElements(elements);
         int listSize = visibleElements.size();
         return (listSize == 0) ? visibleElements : null;
+    }
+
+    @Override
+    public String getActualValuesDescription() {
+        return "";
     }
 }

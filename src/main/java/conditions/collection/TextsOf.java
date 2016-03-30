@@ -24,7 +24,7 @@ public class TextsOf extends CustomCollectionCondition {
 
     @Override
     public String toString() {
-        return String.format("\n For elements located by %s\n actual texts is: %s\n while expected texts contains: %s\n", lazyEntity.getLocatorDescription(), Arrays.toString(currentTexts.toArray()), Arrays.toString(texts));
+        return String.format("texts contains: %s", Arrays.toString(texts));
     }
 
     @Override
@@ -33,5 +33,10 @@ public class TextsOf extends CustomCollectionCondition {
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = getTexts(elements);
         return listHasTexts(elements, texts);
+    }
+
+    @Override
+    public String getActualValuesDescription() {
+        return currentTexts.toString();
     }
 }

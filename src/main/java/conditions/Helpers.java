@@ -1,11 +1,13 @@
 package conditions;
 
+import conditions.collection.CustomCollectionCondition;
 import org.openqa.selenium.WebElement;
+import wrappers.LazyEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Helpers {
+public class Helpers{
 
     public static List<String> getTexts(List<WebElement> elements) {
         List<String> currentTexts = new ArrayList<String>();
@@ -38,5 +40,12 @@ public class Helpers {
             }
         }
         return visibleElements;
+    }
+
+    public static String getExceptionText(LazyEntity lazyEntity, CustomCondition condition){
+        return "\nFor " + ((condition instanceof CustomCollectionCondition) ? "elements" : "element") +
+                " located by " + lazyEntity.toString() + "\n" +
+                condition.toString() +
+                (condition.getActualValuesDescription() == "" ? "" : "\nwhile actual is: " + condition.getActualValuesDescription());
     }
 }

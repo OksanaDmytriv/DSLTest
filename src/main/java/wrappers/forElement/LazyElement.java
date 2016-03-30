@@ -6,7 +6,7 @@ import wrappers.LazyEntity;
 
 import java.util.List;
 
-import static conditions.element.CustomElementCondition.elementVisible;
+import static conditions.element.Helpers.elementVisible;
 import static core.ConciseAPI.*;
 
 public class LazyElement implements LazyEntity, WebElement {
@@ -17,7 +17,7 @@ public class LazyElement implements LazyEntity, WebElement {
         this.locator = locator;
     }
 
-    public String getLocatorDescription() {
+    public String toString() {
         return locator.toString();
     }
 
@@ -25,17 +25,17 @@ public class LazyElement implements LazyEntity, WebElement {
         return getDriver().findElement(locator);
     }
 
-    public LazyFoundByLocatorElement find(By innerLocator) {
-        waitFor(this, elementVisible);
-        return new LazyFoundByLocatorElement(this, innerLocator);
+    public LazyCollectionElementByInnerLocator find(By innerLocator) {
+        waitFor(this, elementVisible());
+        return new LazyCollectionElementByInnerLocator(this, innerLocator);
     }
 
-    public LazyFoundByLocatorElement find(String cssSelector) {
+    public LazyCollectionElementByInnerLocator find(String cssSelector) {
         return find(byCSS(cssSelector));
     }
 
     public void click() {
-        waitFor(this, elementVisible);
+        waitFor(this, elementVisible());
         getWrappedEntity().click();
     }
 
@@ -48,20 +48,20 @@ public class LazyElement implements LazyEntity, WebElement {
     }
 
     public LazyElement setValue(String text) {
-        waitFor(this, elementVisible);
+        waitFor(this, elementVisible());
         getWrappedEntity().clear();
         getWrappedEntity().sendKeys(text);
         return this;
     }
 
     public LazyElement sendKeys(String text) {
-        waitFor(this, elementVisible);
+        waitFor(this, elementVisible());
         getWrappedEntity().sendKeys(text);
         return this;
     }
 
     public void clear() {
-        waitFor(this, elementVisible);
+        waitFor(this, elementVisible());
         getWrappedEntity().clear();
     }
 
@@ -114,25 +114,25 @@ public class LazyElement implements LazyEntity, WebElement {
     }
 
     public LazyElement pressEnter() {
-        waitFor(this, elementVisible);
+        waitFor(this, elementVisible());
         getWrappedEntity().sendKeys(Keys.ENTER);
         return this;
     }
 
     public LazyElement pressEscape() {
-        waitFor(this, elementVisible);
+        waitFor(this, elementVisible());
         getWrappedEntity().sendKeys(Keys.ESCAPE);
         return this;
     }
 
     public LazyElement hover() {
-        waitFor(this, elementVisible);
+        waitFor(this, elementVisible());
         actions().moveToElement(getWrappedEntity()).perform();
         return this;
     }
 
     public LazyElement doubleClick() {
-        waitFor(this, elementVisible);
+        waitFor(this, elementVisible());
         actions().doubleClick(getWrappedEntity()).perform();
         return this;
     }

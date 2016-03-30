@@ -13,14 +13,14 @@ public class MinimumSizeOf extends CustomCollectionCondition {
 
     public MinimumSizeOf(int minimumSize) {
         if (minimumSize == 0) {
-            throw new IllegalArgumentException("Minimum size of forElement's list is 0.");
+            throw new IllegalArgumentException("Minimum size of for element's list is 0.");
         }
         this.minimumSize = minimumSize;
     }
 
     @Override
     public String toString() {
-        return String.format("\n For elements located by %s\n actual size is: %s\n while expected minimum size contains: %s\n", lazyEntity.getLocatorDescription(), listSize, minimumSize);
+        return String.format("minimum size contains: %s", minimumSize);
     }
 
     @Override
@@ -29,5 +29,10 @@ public class MinimumSizeOf extends CustomCollectionCondition {
         List<WebElement> results = (List<WebElement>) lazyEntity.getWrappedEntity();
         listSize = results.size();
         return (listSize >= minimumSize) ? results : null;
+    }
+
+    @Override
+    public String getActualValuesDescription() {
+        return "listSize";
     }
 }

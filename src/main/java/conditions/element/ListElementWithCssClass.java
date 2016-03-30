@@ -15,7 +15,7 @@ public class ListElementWithCssClass extends CustomElementCondition {
 
     @Override
     public String toString() {
-        return String.format("For elements located by %s\n should be cssClass", lazyEntity.getLocatorDescription(), cssClass);
+        return String.format("should be cssClass", cssClass);
     }
 
     @Override
@@ -29,5 +29,10 @@ public class ListElementWithCssClass extends CustomElementCondition {
             }
         }
         return null;
+    }
+
+    @Override
+    public String getActualValuesDescription() {
+        return "";
     }
 }

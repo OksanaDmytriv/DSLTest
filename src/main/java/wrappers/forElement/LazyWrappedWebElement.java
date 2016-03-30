@@ -5,8 +5,6 @@ import conditions.element.CustomElementCondition;
 import org.openqa.selenium.WebElement;
 import wrappers.LazyEntity;
 
-import static core.ConciseAPI.waitForWithoutException;
-
 public class LazyWrappedWebElement extends LazyElement {
 
     private LazyEntity parentElement;
@@ -19,15 +17,11 @@ public class LazyWrappedWebElement extends LazyElement {
         this.element = element;
     }
 
-    public String getLocatorDescription() {
-        return parentElement.getLocatorDescription();
+    public String toString() {
+        return parentElement.toString();
     }
 
     public WebElement getWrappedEntity() {
         return element;
-    }
-
-    public boolean isValid(CustomElementCondition condition) {
-        return waitForWithoutException(this, condition, 0) != null;
     }
 }

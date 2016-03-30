@@ -19,8 +19,8 @@ public class LazyFilteredCollection extends LazyCollection {
         this.condition = condition;
     }
 
-    public String getLocatorDescription() {
-        return parentCollection.filter(condition).getLocatorDescription().concat(".filter(" + condition + ')');
+    public String toString() {
+        return parentCollection.filter(condition).toString() + " filter(" + condition.toString() + ')';
     }
 
     public List<WebElement> getWrappedEntity() {

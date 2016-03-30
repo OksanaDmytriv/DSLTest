@@ -5,8 +5,8 @@ import ru.yandex.qatools.allure.annotations.Step;
 import wrappers.forCollection.LazyCollection;
 import wrappers.forElement.LazyElement;
 
-import static conditions.collection.CustomCollectionCondition.*;
-import static conditions.element.CustomElementCondition.*;
+import static conditions.collection.Helpers.*;
+import static conditions.element.Helpers.*;
 import static core.ConciseAPI.*;
 
 public class ToDoMVC {
@@ -75,7 +75,7 @@ public class ToDoMVC {
 
     @Step
     public static void assertTasksEmpty() {
-        tasks.shouldBe(empty);
+        tasks.shouldBe(empty());
     }
 
     @Step
@@ -85,6 +85,6 @@ public class ToDoMVC {
 
     @Step
     public static void assertEmptyVisibleTasks() {
-        tasks.shouldBe(listOfVisibleElementsIsEmpty);
+        tasks.shouldBe(listOfVisibleElementsIsEmpty());
     }
 }

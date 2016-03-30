@@ -26,7 +26,7 @@ public class VisibleTextsOf extends CustomCollectionCondition {
 
     @Override
     public String toString() {
-        return String.format("\n For elements located by %s\n actual visible texts is: %s\n while expected visible texts contains: %s\n", lazyEntity.getLocatorDescription(), Arrays.toString(currentTexts.toArray()), Arrays.toString(texts));
+        return String.format("visible texts contains: %s", Arrays.toString(texts));
     }
 
     @Override
@@ -36,5 +36,10 @@ public class VisibleTextsOf extends CustomCollectionCondition {
         List<WebElement> visibleElements = listOfVisibleElements(elements);
         currentTexts = getTexts(visibleElements);
         return listHasTexts(visibleElements, texts);
+    }
+
+    @Override
+    public String getActualValuesDescription() {
+        return currentTexts.toString();
     }
 }

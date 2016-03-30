@@ -14,8 +14,8 @@ public class LazyCollectionElementByIndex extends LazyElement {
         this.index = index;
     }
 
-    public String getLocatorDescription() {
-        return parentCollection.getLocatorDescription().concat(":nth-child(" + index + ")");
+    public String toString() {
+        return parentCollection.toString() + "[" + index + "]";
     }
 
     public WebElement getWrappedEntity() {

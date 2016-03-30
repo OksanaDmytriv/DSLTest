@@ -12,6 +12,7 @@ import wrappers.forElement.LazyElement;
 import java.util.HashMap;
 import java.util.Map;
 
+import static conditions.Helpers.getExceptionText;
 import static core.Configuration.pollingIntervalInMillis;
 
 public class ConciseAPI {
@@ -82,7 +83,7 @@ public class ConciseAPI {
     public static <V> V waitFor(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
         V results = waitForWithoutException(lazyEntity, condition, timeoutMs);
         if (results == null) {
-            throw new AssertionError(condition.toString());
+            throw new AssertionError(getExceptionText(lazyEntity, condition));
         }
         return results;
     }
@@ -102,7 +103,7 @@ public class ConciseAPI {
         return result;
     }
 
-    private static <V> V conditionApplyWithExceptionsCatching(LazyEntity lazyEntity, CustomCondition<V> condition) {
+    public static <V> V conditionApplyWithExceptionsCatching(LazyEntity lazyEntity, CustomCondition<V> condition) {
         try {
             return condition.apply(lazyEntity);
         } catch (WebDriverException e) {

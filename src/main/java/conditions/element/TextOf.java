@@ -14,16 +14,21 @@ public class TextOf extends CustomElementCondition {
     }
 
     public String toString() {
-        return String.format("\nFor forElement located by %s\n actual text is: %s\n while expected text contains: %s\n", lazyEntity.getLocatorDescription(), currentText, text);
+        return String.format("text contains: %s", text);
     }
 
     public WebElement apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
-        currentText = element.getText();
+        String currentText = element.getText();
         if (!currentText.contains(text)) {
             return null;
         }
         return element;
+    }
+
+    @Override
+    public String getActualValuesDescription() {
+        return currentText;
     }
 }

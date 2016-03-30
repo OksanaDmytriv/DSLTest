@@ -19,7 +19,7 @@ public class ListNthElementHasText extends CustomCollectionCondition {
 
     @Override
     public String toString() {
-        return String.format("\nFor forElement located by %s\n actual text is: %s\n while expected text contains: %s\n", lazyEntity.getLocatorDescription(), currentText, text);
+        return String.format("text contains: %s", text);
     }
 
     @Override
@@ -29,5 +29,10 @@ public class ListNthElementHasText extends CustomCollectionCondition {
         WebElement element = elements.get(index);
         currentText = element.getText();
         return (currentText.contains(text)) ? element : null;
+    }
+
+    @Override
+    public String getActualValuesDescription() {
+        return currentText;
     }
 }

@@ -3,24 +3,22 @@ package conditions.element;
 import org.openqa.selenium.WebElement;
 import wrappers.LazyEntity;
 
-public class ExactTextOf extends CustomElementCondition {
+public class ExactTextOf extends TextOf {
 
-    private String currentText;
-    protected final String text;
     private LazyEntity lazyEntity;
 
     public ExactTextOf(String text) {
-        this.text = text;
+        super(text);
     }
 
     public String toString() {
-        return String.format("\nFor element located by %s\n actual text is: %s\n while expected text equals: %s\n", lazyEntity.getLocatorDescription(), currentText, text);
+        return String.format("text equals: %s", text);
     }
 
     public WebElement apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
-        currentText = element.getText();
+        String currentText = element.getText();
         if (!currentText.equals(text)) {
             return null;
         }
