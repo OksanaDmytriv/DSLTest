@@ -1,18 +1,19 @@
 package core;
 
-import conditions.CustomCondition;
+import core.conditions.CustomCondition;
+import core.conditions.collection.CustomCollectionConditions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.interactions.Actions;
-import wrappers.LazyEntity;
-import wrappers.forCollection.LazyCollection;
-import wrappers.forElement.LazyElement;
+import core.wrappers.LazyEntity;
+import core.wrappers.forCollection.LazyCollection;
+import core.wrappers.forElement.LazyElement;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static conditions.Helpers.getExceptionText;
 import static core.Configuration.pollingIntervalInMillis;
 
 public class ConciseAPI {
@@ -88,6 +89,13 @@ public class ConciseAPI {
         return results;
     }
 
+    public static String getExceptionText(LazyEntity lazyEntity, CustomCondition condition) {
+        return "\nFor " + ((condition instanceof CustomCollectionConditions) ? "elements" : "element") +
+                " located by " + lazyEntity.toString() + "\n" +
+                condition.toString() +
+                (condition.getActualValuesDescription() == "" ? "" : "\nwhile actual is: " + condition.getActualValuesDescription());
+    }
+
     public static <V> V waitForWithoutException(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
         V result = null;
         final long startTime = System.currentTimeMillis();
@@ -110,6 +118,12 @@ public class ConciseAPI {
             return null;
         } catch (IndexOutOfBoundsException e) {
             return null;
+        }
+    }
+
+    public static void executeJavaScript(String script) {
+        if (getDriver() instanceof JavascriptExecutor) {
+            ((JavascriptExecutor) getDriver()).executeScript(script);
         }
     }
 }

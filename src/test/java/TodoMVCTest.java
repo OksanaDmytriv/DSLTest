@@ -1,14 +1,15 @@
 import org.junit.Test;
-import testconfigs.ToDoMVC;
+import testconfigs.BaseTest;
 
-import static pages.ToDoMVC.*;
+import static pages.todomvc.ToDoMVC.TaskType.ACTIVE;
+import static pages.todomvc.ToDoMVC.TaskType.COMPLETED;
+import static pages.todomvc.ToDoMVC.*;
 
-public class TodoMVCTest extends ToDoMVC {
+public class TodoMVCTest extends BaseTest {
 
     @Test
     public void testEdit() {
-        //given
-        add("a");
+        givenAtAll(aTask("a", ACTIVE));
 
         startEditing("a", "a edited").pressEnter();
         assertTasks("a edited");
@@ -17,8 +18,7 @@ public class TodoMVCTest extends ToDoMVC {
 
     @Test
     public void testCancelEdit() {
-        //given
-        add("a");
+        givenAtAll(aTask("a", ACTIVE));
 
         startEditing("a", "a edited").pressEscape();
         assertTasks("a");
@@ -27,9 +27,7 @@ public class TodoMVCTest extends ToDoMVC {
 
     @Test
     public void testActivateAllOnCompletedFilter() {
-        //given - completed tasks
-        add("a", "b");
-        toggleAll();
+        givenAtAll(aTask("a", COMPLETED), aTask("b", COMPLETED));
         filterCompleted();
 
         toggleAll();
@@ -40,6 +38,7 @@ public class TodoMVCTest extends ToDoMVC {
     @Test
     public void testTasksCommonFlow() {
 
+        givenAtAll();
         add("a");
         assertVisibleTasks("a");
         toggleAll();

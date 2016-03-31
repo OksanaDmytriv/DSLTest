@@ -1,21 +1,26 @@
+import core.Configuration;
 import org.junit.Test;
-import pages.Mails;
-import pages.Menu;
-import testconfigs.Gmail;
+import pages.gmail.Mails;
+import pages.gmail.Menu;
+import testconfigs.BaseTest;
 import testdata.AccountData;
 
 import static core.Helpers.getUniqueText;
 
 
-public class GmailTest extends Gmail {
+public class GmailTest extends BaseTest {
+
+    static {
+        Configuration.timeout = 20000;
+    }
 
     @Test
     public void testGmailCommonFlow() {
 
         String subject = getUniqueText("test");
 
-        pages.Gmail.visit();
-        pages.Gmail.login(AccountData.email, AccountData.password);
+        pages.gmail.Gmail.visit();
+        pages.gmail.Gmail.login(AccountData.email, AccountData.password);
 
         Mails.send(AccountData.email, subject);
         Menu.refresh();
