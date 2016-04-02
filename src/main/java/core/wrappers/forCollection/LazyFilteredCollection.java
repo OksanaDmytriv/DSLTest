@@ -15,7 +15,6 @@ public class LazyFilteredCollection extends LazyCollection {
     private LazyCollection parentCollection;
 
     public LazyFilteredCollection(LazyCollection parentCollection, CustomElementConditions condition) {
-        super(null);
         this.parentCollection = parentCollection;
         this.condition = condition;
     }

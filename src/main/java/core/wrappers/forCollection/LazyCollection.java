@@ -2,36 +2,23 @@ package core.wrappers.forCollection;
 
 import core.conditions.collection.CustomCollectionConditions;
 import core.conditions.element.CustomElementConditions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import core.wrappers.LazyEntity;
 import core.wrappers.forElement.LazyCollectionElementByCondition;
 import core.wrappers.forElement.LazyCollectionElementByIndex;
+import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import static core.conditions.collection.Core.minimumSize;
-import static core.ConciseAPI.getDriver;
 import static core.ConciseAPI.waitFor;
 
-public class LazyCollection implements LazyEntity {
+public abstract class LazyCollection implements LazyEntity, Iterable<LazyCollection> {
 
-    protected By locator;
-
-    public LazyCollection(By locator){
-        this.locator=locator;
-    }
-
-    public String toString() {
-        return locator.toString();
-    }
-
-    public List<WebElement> getWrappedEntity() {
-        return getDriver().findElements(locator);
-    }
+    public abstract List<WebElement> getWrappedEntity();
 
     public LazyCollectionElementByIndex get(int index) {
-        waitFor(this, minimumSize(index + 1));
+
         return new LazyCollectionElementByIndex(this, index);
     }
 
@@ -55,6 +42,10 @@ public class LazyCollection implements LazyEntity {
     public LazyCollection shouldHave(CustomCollectionConditions... conditions) {
         return should(conditions);
     }
+
+    @Override
+    public Iterator<LazyCollection> iterator() {
+        List<LazyCollection> collections =new ArrayList<>();
+        return collections.iterator();
+    }
 }
-
-

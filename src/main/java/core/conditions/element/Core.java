@@ -17,4 +17,6 @@ public class Core {
     public static CustomElementConditions cssClass(final String cssClass) {
         return new CSSClass(cssClass);
     }
+
+    public static CustomElementConditions elementPresent(){return new ElementPresent();}
 }

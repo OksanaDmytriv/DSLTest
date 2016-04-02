@@ -1,8 +1,8 @@
 package core.wrappers.forElement;
 
 import core.conditions.element.CustomElementConditions;
-import org.openqa.selenium.WebElement;
 import core.wrappers.forCollection.LazyCollection;
+import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
@@ -14,7 +14,6 @@ public class LazyCollectionElementByCondition extends LazyElement {
     private CustomElementConditions condition;
 
     public LazyCollectionElementByCondition(LazyCollection parentCollection, CustomElementConditions condition) {
-        super(null);
         this.parentCollection = parentCollection;
         this.condition = condition;
     }
@@ -33,5 +32,4 @@ public class LazyCollectionElementByCondition extends LazyElement {
         }
         return elements.get(i);
     }
-
 }

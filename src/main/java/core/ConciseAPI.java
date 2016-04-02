@@ -2,14 +2,13 @@ package core;
 
 import core.conditions.CustomCondition;
 import core.conditions.collection.CustomCollectionConditions;
+import core.wrappers.LazyEntity;
+import core.wrappers.forElement.LazyElementByLocator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.interactions.Actions;
-import core.wrappers.LazyEntity;
-import core.wrappers.forCollection.LazyCollection;
-import core.wrappers.forElement.LazyElement;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,21 +27,21 @@ public class ConciseAPI {
         drivers.put(Thread.currentThread(), driver);
     }
 
-    public static LazyElement $(By locator) {
-        return new LazyElement(locator);
+    public static LazyElementByLocator $(By locator) {
+        return new LazyElementByLocator(locator);
     }
 
-    public static LazyElement $(String cssSelector) {
+    public static LazyElementByLocator $(String cssSelector) {
         return $(byCSS(cssSelector));
     }
 
-    public static LazyCollection $$(By locator) {
-        return new LazyCollection(locator);
+    /*public static LazyCollectionByLocator $$(By locator) {
+        return new LazyCollectionByLocator(this, locator);
     }
 
-    public static LazyCollection $$(String cssSelector) {
+    public static LazyCollectionByLocator $$(String cssSelector) {
         return $$(byCSS(cssSelector));
-    }
+    }*/
 
     public static By byText(String text) {
         return By.xpath("//*[text()[contains(.,'" + text + "')]]");
@@ -84,7 +83,7 @@ public class ConciseAPI {
     public static <V> V waitFor(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
         V results = waitForWithoutException(lazyEntity, condition, timeoutMs);
         if (results == null) {
-            throw new AssertionError(getExceptionText(lazyEntity, condition));
+            throw new TimeoutException(getExceptionText(lazyEntity, condition));
         }
         return results;
     }
@@ -114,9 +113,7 @@ public class ConciseAPI {
     public static <V> V conditionApplyWithExceptionsCatching(LazyEntity lazyEntity, CustomCondition<V> condition) {
         try {
             return condition.apply(lazyEntity);
-        } catch (WebDriverException e) {
-            return null;
-        } catch (IndexOutOfBoundsException e) {
+        } catch (WebDriverException | IndexOutOfBoundsException e) {
             return null;
         }
     }

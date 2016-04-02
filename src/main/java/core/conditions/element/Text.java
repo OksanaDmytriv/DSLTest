@@ -25,7 +25,7 @@ public class Text extends CustomElementConditions {
     public WebElement apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
-        String currentText = element.getText();
+        currentText = element.getText();
         if (!currentText.contains(text)) {
             return null;
         }

@@ -1,14 +1,14 @@
 package pages.gmail;
 
+import core.wrappers.forCollection.LazyCollectionByLocator;
 import org.openqa.selenium.By;
-import core.wrappers.forCollection.LazyCollection;
 
 import static core.conditions.collection.Core.*;
 import static core.ConciseAPI.*;
 
 public class Mails {
 
-    public static LazyCollection emails = $$("[role='main'] .zA");
+    public static LazyCollectionByLocator emails = $("[role='main']").findAll(".zA");
 
     public static void send(String email, String subject) {
         $(byText("COMPOSE")).click();

@@ -10,7 +10,6 @@ public class LazyWrappedWebElement extends LazyElement {
     private WebElement element;
 
     public LazyWrappedWebElement(LazyEntity parentElement, WebElement element) {
-        super(null);
         this.parentElement = parentElement;
         this.element = element;
     }

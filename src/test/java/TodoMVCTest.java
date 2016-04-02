@@ -65,6 +65,4 @@ public class TodoMVCTest extends BaseTest {
         delete("a");
         assertTasksEmpty();
     }
-
-
 }

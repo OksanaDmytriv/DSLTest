@@ -1,6 +1,6 @@
 package pages.todomvc;
 
-import core.wrappers.forCollection.LazyCollection;
+import core.wrappers.forCollection.LazyCollectionByLocator;
 import core.wrappers.forElement.LazyElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -12,7 +12,7 @@ import static pages.todomvc.ToDoMVC.TaskType.ACTIVE;
 
 public class ToDoMVC {
 
-    public static LazyCollection tasks = $$("#todo-list li");
+    public static LazyCollectionByLocator tasks = $("#todo-list").findAll("li");
 
     @Step
     public static void add(String... taskTexts) {

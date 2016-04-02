@@ -1,7 +1,7 @@
 package core.conditions.collection;
 
-import org.openqa.selenium.WebElement;
 import core.wrappers.LazyEntity;
+import org.openqa.selenium.WebElement;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +29,7 @@ public class Texts extends CustomCollectionConditions {
 
     @Override
     public String getActualValuesDescription() {
-        return currentTexts.toString();
+        return Arrays.toString(currentTexts.toArray());
     }
 
     @Override

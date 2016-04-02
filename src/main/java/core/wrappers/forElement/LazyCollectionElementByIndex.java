@@ -1,7 +1,7 @@
 package core.wrappers.forElement;
 
-import org.openqa.selenium.WebElement;
 import core.wrappers.forCollection.LazyCollection;
+import org.openqa.selenium.WebElement;
 
 public class LazyCollectionElementByIndex extends LazyElement {
 
@@ -9,7 +9,6 @@ public class LazyCollectionElementByIndex extends LazyElement {
     private LazyCollection parentCollection;
 
     public LazyCollectionElementByIndex(LazyCollection parentCollection, int index) {
-        super(null);
         this.parentCollection = parentCollection;
         this.index = index;
     }
@@ -19,6 +18,7 @@ public class LazyCollectionElementByIndex extends LazyElement {
     }
 
     public WebElement getWrappedEntity() {
+        //waitFor(this, minimumSize(index + 1));
         return parentCollection.getWrappedEntity().get(index);
     }
 

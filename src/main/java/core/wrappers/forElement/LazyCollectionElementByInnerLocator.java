@@ -9,7 +9,6 @@ public class LazyCollectionElementByInnerLocator extends LazyElement {
     private LazyElement parentElement;
 
     public LazyCollectionElementByInnerLocator(LazyElement parentElement, By innerLocator) {
-        super(null);
         this.parentElement=parentElement;
         this.innerLocator=innerLocator;
     }
@@ -19,6 +18,7 @@ public class LazyCollectionElementByInnerLocator extends LazyElement {
     }
 
     public WebElement getWrappedEntity() {
+        //waitFor(this, visible());
         return parentElement.getWrappedEntity().findElement(innerLocator);
     }
 
