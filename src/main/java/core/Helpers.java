@@ -19,9 +19,8 @@ public class Helpers {
         return currentTexts;
     }
 
-    public static List<WebElement> listHasTexts(final List<WebElement> elements, final String...
+    public static List<WebElement> listHasTexts(final List<WebElement> elements, final List<String> currentTexts, final String...
             expectedTexts) {
-        List<String> currentTexts = getTexts(elements);
         if (currentTexts.size() != expectedTexts.length) {
             return null;
         } else {
@@ -30,13 +29,12 @@ public class Helpers {
                     return null;
                 }
             }
-            return elements;
         }
+        return elements;
     }
 
-    public static List<WebElement>listHasExactTexts(final List<WebElement> elements, final String...
+    public static List<WebElement> listHasExactTexts(final List<WebElement> elements, List<String> currentTexts, final String...
             expectedTexts) {
-        List<String> currentTexts = getTexts(elements);
         if (currentTexts.size() != expectedTexts.length) {
             return null;
         } else {
@@ -45,8 +43,8 @@ public class Helpers {
                     return null;
                 }
             }
-            return elements;
         }
+        return elements;
     }
 
     public static List<WebElement> listOfVisibleElements(List<WebElement> elements) {

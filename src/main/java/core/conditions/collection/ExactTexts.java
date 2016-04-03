@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import java.util.Arrays;
 import java.util.List;
 
-import static core.Helpers.getTexts;
 import static core.Helpers.listHasExactTexts;
 
 public class ExactTexts extends Texts {
@@ -25,8 +24,7 @@ public class ExactTexts extends Texts {
     public List<WebElement> apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
-        List<String> currentTexts = getTexts(elements);
-        return listHasExactTexts(elements, texts);
+        return listHasExactTexts(elements, currentTexts, texts);
     }
 
 }

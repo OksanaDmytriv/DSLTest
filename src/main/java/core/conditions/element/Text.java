@@ -3,7 +3,7 @@ package core.conditions.element;
 import org.openqa.selenium.WebElement;
 import core.wrappers.LazyEntity;
 
-public class Text extends CustomElementConditions {
+public class Text extends CustomElementCondition {
 
     protected String currentText;
     protected final String text;

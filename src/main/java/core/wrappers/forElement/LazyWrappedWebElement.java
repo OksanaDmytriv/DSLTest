@@ -15,7 +15,7 @@ public class LazyWrappedWebElement extends LazyElement {
     }
 
     public String toString() {
-        return parentElement.toString();
+        return parentElement.toString() + element.toString();
     }
 
     public WebElement getWrappedEntity() {

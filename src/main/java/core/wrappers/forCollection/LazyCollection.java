@@ -1,19 +1,23 @@
 package core.wrappers.forCollection;
 
-import core.conditions.collection.CustomCollectionConditions;
-import core.conditions.element.CustomElementConditions;
+import core.conditions.collection.CustomCollectionCondition;
+import core.conditions.element.CustomElementCondition;
 import core.wrappers.LazyEntity;
 import core.wrappers.forElement.LazyCollectionElementByCondition;
 import core.wrappers.forElement.LazyCollectionElementByIndex;
+import core.wrappers.forElement.LazyElement;
+import core.wrappers.forElement.LazyWrappedWebElement;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static core.ConciseAPI.conditionApplyWithExceptionsCatching;
 import static core.ConciseAPI.waitFor;
+import static core.conditions.element.CustomElementConditions.visible;
 
-public abstract class LazyCollection implements LazyEntity, Iterable<LazyCollection> {
+public abstract class LazyCollection implements LazyEntity, Iterable<LazyElement> {
 
     public abstract List<WebElement> getWrappedEntity();
 
@@ -22,30 +26,35 @@ public abstract class LazyCollection implements LazyEntity, Iterable<LazyCollect
         return new LazyCollectionElementByIndex(this, index);
     }
 
-    public LazyFilteredCollection filter(CustomElementConditions condition) {
+    public LazyFilteredCollection filter(CustomElementCondition condition) {
         return new LazyFilteredCollection(this, condition);
     }
 
-    public LazyCollectionElementByCondition find(CustomElementConditions condition) {
+    public LazyCollectionElementByCondition find(CustomElementCondition condition) {
         return new LazyCollectionElementByCondition(this, condition);
     }
 
-    public LazyCollection should(CustomCollectionConditions... conditions) {
+    public LazyCollection should(CustomCollectionCondition... conditions) {
         waitFor(this, conditions);
         return this;
     }
 
-    public LazyCollection shouldBe(CustomCollectionConditions... conditions) {
+    public LazyCollection shouldBe(CustomCollectionCondition... conditions) {
         return should(conditions);
     }
 
-    public LazyCollection shouldHave(CustomCollectionConditions... conditions) {
+    public LazyCollection shouldHave(CustomCollectionCondition... conditions) {
         return should(conditions);
     }
 
     @Override
-    public Iterator<LazyCollection> iterator() {
-        List<LazyCollection> collections =new ArrayList<>();
-        return collections.iterator();
+    public Iterator<LazyElement> iterator() {
+        List<LazyElement> newList =new ArrayList<>();
+         for (LazyElement element:this) {
+            if (conditionApplyWithExceptionsCatching(new LazyWrappedWebElement(this, element), visible())!= null) {
+                newList.add(element);
+            }
+        }
+        return newList.iterator();
     }
 }

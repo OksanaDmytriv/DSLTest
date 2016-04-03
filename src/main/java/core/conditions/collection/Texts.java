@@ -9,7 +9,7 @@ import java.util.List;
 import static core.Helpers.getTexts;
 import static core.Helpers.listHasTexts;
 
-public class Texts extends CustomCollectionConditions {
+public class Texts extends CustomCollectionCondition {
 
     protected List<String> currentTexts;
     protected final String[] texts;
@@ -37,6 +37,6 @@ public class Texts extends CustomCollectionConditions {
         this.lazyEntity = lazyEntity;
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = getTexts(elements);
-        return listHasTexts(elements, texts);
+        return listHasTexts(elements, currentTexts, texts);
     }
 }

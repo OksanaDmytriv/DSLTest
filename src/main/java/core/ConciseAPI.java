@@ -1,8 +1,9 @@
 package core;
 
 import core.conditions.CustomCondition;
-import core.conditions.collection.CustomCollectionConditions;
+import core.conditions.collection.CustomCollectionCondition;
 import core.wrappers.LazyEntity;
+import core.wrappers.forCollection.LazyCollectionByLocator;
 import core.wrappers.forElement.LazyElementByLocator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -35,13 +36,13 @@ public class ConciseAPI {
         return $(byCSS(cssSelector));
     }
 
-    /*public static LazyCollectionByLocator $$(By locator) {
-        return new LazyCollectionByLocator(this, locator);
+    public static LazyCollectionByLocator $$(By locator) {
+        return new LazyCollectionByLocator(locator);
     }
 
     public static LazyCollectionByLocator $$(String cssSelector) {
         return $$(byCSS(cssSelector));
-    }*/
+    }
 
     public static By byText(String text) {
         return By.xpath("//*[text()[contains(.,'" + text + "')]]");
@@ -83,13 +84,16 @@ public class ConciseAPI {
     public static <V> V waitFor(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
         V results = waitForWithoutException(lazyEntity, condition, timeoutMs);
         if (results == null) {
-            throw new TimeoutException(getExceptionText(lazyEntity, condition));
+            throw new TimeoutException(lazyEntity, condition, "\nFor " + ((condition instanceof CustomCollectionCondition) ? "elements" : "element") +
+                    " located by " + lazyEntity.toString() + "\n" +
+                    condition.toString() +
+                    (condition.getActualValuesDescription() == "" ? "" : "\nwhile actual is: " + condition.getActualValuesDescription()));
         }
         return results;
     }
 
-    public static String getExceptionText(LazyEntity lazyEntity, CustomCondition condition) {
-        return "\nFor " + ((condition instanceof CustomCollectionConditions) ? "elements" : "element") +
+    private static String getExceptionText(LazyEntity lazyEntity, CustomCondition condition) {
+        return "\nFor " + ((condition instanceof CustomCollectionCondition) ? "elements" : "element") +
                 " located by " + lazyEntity.toString() + "\n" +
                 condition.toString() +
                 (condition.getActualValuesDescription() == "" ? "" : "\nwhile actual is: " + condition.getActualValuesDescription());

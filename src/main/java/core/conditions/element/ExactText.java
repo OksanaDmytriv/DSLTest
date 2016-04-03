@@ -16,7 +16,7 @@ public class ExactText extends Text {
     public WebElement apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
-        String currentText = element.getText();
+        currentText = element.getText();
         if (!currentText.equals(text)) {
             return null;
         }

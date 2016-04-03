@@ -5,7 +5,7 @@ import core.wrappers.LazyEntity;
 
 import java.util.List;
 
-public class ListNthElementHasText extends CustomCollectionConditions {
+public class ListNthElementHasText extends CustomCollectionCondition {
 
     private String currentText;
     protected final String text;

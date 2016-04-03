@@ -1,14 +1,16 @@
 package pages.gmail;
 
-import core.wrappers.forCollection.LazyCollectionByLocator;
+import core.wrappers.forCollection.LazyCollectionByElementLocator;
 import org.openqa.selenium.By;
 
-import static core.conditions.collection.Core.*;
-import static core.ConciseAPI.*;
+import static core.ConciseAPI.$;
+import static core.ConciseAPI.byText;
+import static core.conditions.collection.CustomCollectionConditions.listNthElementHasText;
+import static core.conditions.collection.CustomCollectionConditions.texts;
 
 public class Mails {
 
-    public static LazyCollectionByLocator emails = $("[role='main']").findAll(".zA");
+    public static LazyCollectionByElementLocator emails = $("[role='main']").findAll(".zA");
 
     public static void send(String email, String subject) {
         $(byText("COMPOSE")).click();

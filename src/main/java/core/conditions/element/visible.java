@@ -3,7 +3,7 @@ package core.conditions.element;
 import org.openqa.selenium.WebElement;
 import core.wrappers.LazyEntity;
 
-public class Visible extends CustomElementConditions {
+public class Visible extends CustomElementCondition {
 
     private LazyEntity lazyEntity;
 

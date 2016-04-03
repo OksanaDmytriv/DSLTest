@@ -4,10 +4,11 @@ package core.conditions.element;
 import org.openqa.selenium.WebElement;
 import core.wrappers.LazyEntity;
 
-public class CSSClass extends CustomElementConditions {
+public class CSSClass extends CustomElementCondition {
 
     private LazyEntity lazyEntity;
     private String cssClass;
+    private WebElement element;
 
     public CSSClass(String cssClass) {
         this.cssClass = cssClass;
@@ -20,13 +21,13 @@ public class CSSClass extends CustomElementConditions {
 
     @Override
     public String getActualValuesDescription() {
-        return "";
+        return element.getAttribute("class");
     }
 
     @Override
     public WebElement apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
-        WebElement element = (WebElement) lazyEntity.getWrappedEntity();
+        element = (WebElement) lazyEntity.getWrappedEntity();
         String[] classes = element.getAttribute("class").split(" ");
         for (int i = 0; i < classes.length; i++) {
             if (classes[i].equals(cssClass)) {

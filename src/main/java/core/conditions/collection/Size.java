@@ -5,7 +5,7 @@ import core.wrappers.LazyEntity;
 
 import java.util.List;
 
-public class Size extends CustomCollectionConditions {
+public class Size extends CustomCollectionCondition {
 
     private int listSize;
     protected final int expectedSize;

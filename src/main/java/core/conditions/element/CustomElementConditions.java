@@ -1,8 +1,22 @@
 package core.conditions.element;
 
-import core.conditions.CustomCondition;
-import org.openqa.selenium.WebElement;
+public class CustomElementConditions {
 
-public abstract class CustomElementConditions implements CustomCondition<WebElement> {
+    public static CustomElementCondition text(final String text) {
+        return new Text(text);
+    }
 
+    public static CustomElementCondition exactText(final String text) {
+        return new ExactText(text);
+    }
+
+    public static CustomElementCondition visible() {
+        return new Visible();
+    }
+
+    public static CustomElementCondition cssClass(final String cssClass) {
+        return new CSSClass(cssClass);
+    }
+
+    public static CustomElementCondition present(){return new Present();}
 }

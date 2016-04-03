@@ -1,15 +1,15 @@
 package core.wrappers.forElement;
 
-import core.conditions.element.CustomElementConditions;
+import core.conditions.element.CustomElementCondition;
 import core.wrappers.LazyEntity;
-import core.wrappers.forCollection.LazyCollectionByLocator;
+import core.wrappers.forCollection.LazyCollectionByElementLocator;
 import org.openqa.selenium.*;
 
 import java.util.List;
 
 import static core.ConciseAPI.*;
-import static core.conditions.element.Core.elementPresent;
-import static core.conditions.element.Core.visible;
+import static core.conditions.element.CustomElementConditions.present;
+import static core.conditions.element.CustomElementConditions.visible;
 
 public abstract class LazyElement implements LazyEntity, WebElement {
 
@@ -23,12 +23,12 @@ public abstract class LazyElement implements LazyEntity, WebElement {
         return find(byCSS(cssSelector));
     }
 
-    public LazyCollectionByLocator findAll(By locator) {
-        return new LazyCollectionByLocator(this, locator);
+    public LazyCollectionByElementLocator findAll(By locator) {
+        return new LazyCollectionByElementLocator(this, locator);
     }
 
-    public LazyCollectionByLocator findAll(String cssSelector) {
-        return new LazyCollectionByLocator(this, byCSS(cssSelector));
+    public LazyCollectionByElementLocator findAll(String cssSelector) {
+        return new LazyCollectionByElementLocator(this, byCSS(cssSelector));
     }
 
     public void clear() {
@@ -78,36 +78,36 @@ public abstract class LazyElement implements LazyEntity, WebElement {
         return this;
     }
 
-    public LazyElement should(CustomElementConditions... conditions) {
+    public LazyElement should(CustomElementCondition... conditions) {
         waitFor(this, conditions);
         return this;
     }
 
-    public LazyElement shouldBe(CustomElementConditions... conditions) {
+    public LazyElement shouldBe(CustomElementCondition... conditions) {
         return should(conditions);
     }
 
-    public LazyElement shouldHave(CustomElementConditions conditions) {
+    public LazyElement shouldHave(CustomElementCondition conditions) {
         return should(conditions);
     }
 
     public void submit() {
-        waitFor(this, elementPresent());
+        waitFor(this, visible());
         getWrappedEntity().submit();
     }
 
     public void sendKeys(CharSequence... charSequences) {
-        waitFor(this, elementPresent());
+        waitFor(this, visible());
         getWrappedEntity().sendKeys();
     }
 
     public String getTagName() {
-        waitFor(this, elementPresent());
+        waitFor(this, present());
         return getWrappedEntity().getTagName();
     }
 
     public String getAttribute(String s) {
-        waitFor(this, elementPresent());
+        waitFor(this, present());
         return getWrappedEntity().getAttribute(s);
     }
 
@@ -122,7 +122,7 @@ public abstract class LazyElement implements LazyEntity, WebElement {
     }
 
     public String getText() {
-        waitFor(this, elementPresent());
+        waitFor(this, present());
         return getWrappedEntity().getText();
     }
 
@@ -142,27 +142,27 @@ public abstract class LazyElement implements LazyEntity, WebElement {
     }
 
     public Point getLocation() {
-        waitFor(this, elementPresent());
+        waitFor(this, present());
         return getWrappedEntity().getLocation();
     }
 
     public Dimension getSize() {
-        waitFor(this, elementPresent());
+        waitFor(this, present());
         return getWrappedEntity().getSize();
     }
 
     public Rectangle getRect() {
-        waitFor(this, elementPresent());
+        waitFor(this, present());
         return getWrappedEntity().getRect();
     }
 
     public String getCssValue(String s) {
-        waitFor(this, elementPresent());
+        waitFor(this, present());
         return getWrappedEntity().getCssValue(s);
     }
 
     public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
-        waitFor(this, elementPresent());
+        waitFor(this, present());
         return getWrappedEntity().getScreenshotAs(outputType);
     }
 }

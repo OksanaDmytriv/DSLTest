@@ -1,10 +1,29 @@
 package core.conditions.collection;
 
-import core.conditions.CustomCondition;
-import org.openqa.selenium.WebElement;
+public class CustomCollectionConditions {
+    public static CustomCollectionCondition texts(final String... texts) {
+        return new Texts(texts);
+    }
 
-import java.util.List;
+    public static CustomCollectionCondition exactTexts(final String... texts) {
+        return new ExactTexts(texts);
+    }
 
-public abstract class CustomCollectionConditions implements CustomCondition<List<WebElement>> {
+    public static CustomCollectionCondition size(final int expectedSize) {
+        return new Size(expectedSize);
+    }
+
+    public static CustomCollectionCondition minimumSize(final int minimumSize) {
+        return new MinimumSize(minimumSize);
+    }
+
+    public static CustomCollectionCondition listNthElementHasText(
+            final int index, final String text) {
+        return new ListNthElementHasText(index, text);
+    }
+
+    public static CustomCollectionCondition empty() {
+        return new Size(0);
+    }
 
 }

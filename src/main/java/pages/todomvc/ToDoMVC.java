@@ -1,18 +1,17 @@
 package pages.todomvc;
 
-import core.wrappers.forCollection.LazyCollectionByLocator;
+import core.wrappers.forCollection.LazyCollectionByElementLocator;
 import core.wrappers.forElement.LazyElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static core.ConciseAPI.*;
-import static core.conditions.collection.Core.empty;
-import static core.conditions.collection.Core.exactTexts;
-import static core.conditions.element.Core.*;
+import static core.conditions.collection.CustomCollectionConditions.*;
+import static core.conditions.element.CustomElementConditions.*;
 import static pages.todomvc.ToDoMVC.TaskType.ACTIVE;
 
 public class ToDoMVC {
 
-    public static LazyCollectionByLocator tasks = $("#todo-list").findAll("li");
+    public static LazyCollectionByElementLocator tasks = $("#todo-list").findAll("li");
 
     @Step
     public static void add(String... taskTexts) {

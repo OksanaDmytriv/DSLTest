@@ -5,7 +5,7 @@ import core.wrappers.LazyEntity;
 
 import java.util.List;
 
-public class MinimumSize extends CustomCollectionConditions {
+public class MinimumSize extends CustomCollectionCondition {
 
     private int listSize;
     protected final int minimumSize;
