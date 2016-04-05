@@ -4,14 +4,14 @@ package core.conditions.element;
 import core.wrappers.LazyEntity;
 import org.openqa.selenium.WebElement;
 
-public class CSSClass extends CustomElementCondition {
+public class CSSClass1 extends CustomElementCondition {
 
     private LazyEntity lazyEntity;
     private String cssClass;
     private WebElement element;
     private String[] currentClasses;
 
-    public CSSClass(String cssClass) {
+    public CSSClass1(String cssClass) {
         this.cssClass = cssClass;
     }
 

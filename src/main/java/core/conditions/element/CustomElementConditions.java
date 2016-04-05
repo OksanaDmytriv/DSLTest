@@ -11,11 +11,11 @@ public class CustomElementConditions {
     }
 
     public static CustomElementCondition visible() {
-        return new Visible();
+        return new Visible1();
     }
 
     public static CustomElementCondition cssClass(final String cssClass) {
-        return new CSSClass(cssClass);
+        return new CSSClass1(cssClass);
     }
 
     public static CustomElementCondition present(){return new Present();}
