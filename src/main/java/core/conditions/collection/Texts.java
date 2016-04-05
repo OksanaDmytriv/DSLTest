@@ -13,7 +13,6 @@ public class Texts extends CustomCollectionCondition {
 
     protected List<String> currentTexts;
     protected final String[] texts;
-    protected LazyEntity lazyEntity;
 
     public Texts(String... texts) {
         if (texts.length == 0) {
@@ -27,12 +26,7 @@ public class Texts extends CustomCollectionCondition {
         this.lazyEntity = lazyEntity;
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = getTexts(elements);
-        return listHasTexts(currentTexts, texts) == true ? elements : null;
-    }
-
-    @Override
-    public String identity() {
-        return "elements";
+        return listHasTexts(currentTexts, texts) ? elements : null;
     }
 
     @Override

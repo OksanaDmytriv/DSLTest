@@ -9,15 +9,9 @@ public class Size extends CustomCollectionCondition {
 
     private int listSize;
     protected final int expectedSize;
-    private LazyEntity lazyEntity;
 
     public Size(int expectedSize) {
         this.expectedSize = expectedSize;
-    }
-
-    @Override
-    public Integer actual() {
-        return listSize;
     }
 
     @Override
@@ -29,13 +23,13 @@ public class Size extends CustomCollectionCondition {
     }
 
     @Override
-    public String identity() {
-        return "elements";
+    public String actual() {
+        return Integer.toString(listSize);
     }
 
     @Override
-    public Integer expected() {
-        return expectedSize;
+    public String expected() {
+        return Integer.toString(expectedSize);
     }
 
     @Override

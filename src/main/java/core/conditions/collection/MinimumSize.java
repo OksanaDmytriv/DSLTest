@@ -9,18 +9,12 @@ public class MinimumSize extends CustomCollectionCondition {
 
     private int listSize;
     protected final int minimumSize;
-    private LazyEntity lazyEntity;
 
     public MinimumSize(int minimumSize) {
         if (minimumSize == 0) {
             throw new IllegalArgumentException("Minimum size of for element's list is 0.");
         }
         this.minimumSize = minimumSize;
-    }
-
-    @Override
-    public Integer actual() {
-        return listSize;
     }
 
     @Override
@@ -32,17 +26,17 @@ public class MinimumSize extends CustomCollectionCondition {
     }
 
     @Override
-    public String identity() {
-        return "elements";
-    }
-
-    @Override
-    public Integer expected() {
-        return minimumSize;
+    public String expected() {
+        return Integer.toString(minimumSize);
     }
 
     @Override
     public LazyEntity entity() {
         return lazyEntity;
+    }
+
+    @Override
+    public String actual() {
+        return Integer.toString(listSize);
     }
 }

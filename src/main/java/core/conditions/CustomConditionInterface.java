@@ -6,11 +6,11 @@ public interface CustomConditionInterface<V> {
 
     <V> V apply(LazyEntity lazyEntity);
 
-    <V> V actual();
+    String actual();
 
     String identity();
 
-    <V> V expected();
+    String expected();
 
     LazyEntity entity();
 }

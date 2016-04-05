@@ -4,20 +4,15 @@ package core.conditions.element;
 import core.wrappers.LazyEntity;
 import org.openqa.selenium.WebElement;
 
-public class CSSClass1 extends CustomElementCondition {
+public class CSSClass extends CustomElementCondition {
 
     private LazyEntity lazyEntity;
     private String cssClass;
     private WebElement element;
     private String[] currentClasses;
 
-    public CSSClass1(String cssClass) {
+    public CSSClass(String cssClass) {
         this.cssClass = cssClass;
-    }
-
-    @Override
-    public String actual() {
-        return currentClasses.toString();
     }
 
     @Override
@@ -36,6 +31,11 @@ public class CSSClass1 extends CustomElementCondition {
     @Override
     public String identity() {
         return "element";
+    }
+
+    @Override
+    public String actual() {
+        return currentClasses.toString();
     }
 
     @Override

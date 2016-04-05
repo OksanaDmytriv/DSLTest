@@ -19,29 +19,27 @@ public class Helpers {
         return currentTexts;
     }
 
-    public static Boolean listHasTexts(final List<String> currentTexts, final String...
+    public static boolean listHasTexts(final List<String> currentTexts, final String...
             expectedTexts) {
         if (currentTexts.size() != expectedTexts.length) {
-            return null;
-        } else {
-            for (int i = 0; i < expectedTexts.length; ++i) {
-                if (!currentTexts.get(i).contains(expectedTexts[i])) {
-                    return false;
-                }
+            return false;
+        }
+        for (int i = 0; i < expectedTexts.length; ++i) {
+            if (!currentTexts.get(i).contains(expectedTexts[i])) {
+                return false;
             }
         }
         return true;
     }
 
-    public static Boolean listHasExactTexts(List<String> currentTexts, final String...
+    public static boolean listHasExactTexts(List<String> currentTexts, final String...
             expectedTexts) {
         if (currentTexts.size() != expectedTexts.length) {
-            return null;
-        } else {
-            for (int i = 0; i < expectedTexts.length; ++i) {
-                if (!currentTexts.get(i).equals(expectedTexts[i])) {
-                    return false;
-                }
+            return false;
+        }
+        for (int i = 0; i < expectedTexts.length; ++i) {
+            if (!currentTexts.get(i).equals(expectedTexts[i])) {
+                return false;
             }
         }
         return true;

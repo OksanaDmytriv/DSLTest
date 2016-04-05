@@ -7,15 +7,9 @@ public class Text extends CustomElementCondition {
 
     protected String currentText;
     protected final String text;
-    protected LazyEntity lazyEntity;
 
     public Text(String text) {
         this.text = text;
-    }
-
-    @Override
-    public String actual() {
-        return currentText;
     }
 
     public WebElement apply(LazyEntity lazyEntity) {
@@ -29,8 +23,8 @@ public class Text extends CustomElementCondition {
     }
 
     @Override
-    public String identity() {
-        return "element";
+    public String actual() {
+        return currentText;
     }
 
     @Override

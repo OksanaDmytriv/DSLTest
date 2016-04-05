@@ -3,14 +3,7 @@ package core.conditions.element;
 import org.openqa.selenium.WebElement;
 import core.wrappers.LazyEntity;
 
-public class Visible1 extends CustomElementCondition {
-
-    private LazyEntity lazyEntity;
-
-    @Override
-    public String actual() {
-        return "";
-    }
+public class Visible extends CustomElementCondition {
 
     @Override
     public WebElement apply(LazyEntity lazyEntity) {
@@ -20,8 +13,8 @@ public class Visible1 extends CustomElementCondition {
     }
 
     @Override
-    public String identity() {
-        return "element";
+    public String actual() {
+        return "";
     }
 
     @Override

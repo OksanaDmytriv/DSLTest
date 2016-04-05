@@ -20,7 +20,7 @@ public class ExactTexts extends Texts {
         this.lazyEntity = lazyEntity;
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = getTexts(elements);
-        return listHasExactTexts(currentTexts, texts) == true ? elements : null;
+        return listHasExactTexts(currentTexts, texts) ? elements : null;
     }
 
     @Override
