@@ -9,10 +9,6 @@ public class ExactText extends Text {
         super(text);
     }
 
-    public String toString() {
-        return String.format("text equals: %s", text);
-    }
-
     public WebElement apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
@@ -21,5 +17,10 @@ public class ExactText extends Text {
             return null;
         }
         return element;
+    }
+
+    @Override
+    public LazyEntity entity() {
+        return lazyEntity;
     }
 }

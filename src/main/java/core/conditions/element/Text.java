@@ -1,7 +1,7 @@
 package core.conditions.element;
 
-import org.openqa.selenium.WebElement;
 import core.wrappers.LazyEntity;
+import org.openqa.selenium.WebElement;
 
 public class Text extends CustomElementCondition {
 
@@ -13,12 +13,8 @@ public class Text extends CustomElementCondition {
         this.text = text;
     }
 
-    public String toString() {
-        return String.format("text contains: %s", text);
-    }
-
     @Override
-    public String getActualValuesDescription() {
+    public String actual() {
         return currentText;
     }
 
@@ -30,5 +26,20 @@ public class Text extends CustomElementCondition {
             return null;
         }
         return element;
+    }
+
+    @Override
+    public String identity() {
+        return "element";
+    }
+
+    @Override
+    public String expected() {
+        return text;
+    }
+
+    @Override
+    public LazyEntity entity() {
+        return lazyEntity;
     }
 }

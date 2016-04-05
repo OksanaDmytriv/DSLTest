@@ -1,4 +1,3 @@
-import core.wrappers.forElement.LazyElement;
 import org.junit.Test;
 import testconfigs.BaseTest;
 
@@ -8,22 +7,6 @@ import static pages.todomvc.ToDoMVC.*;
 
 public class TodoMVCTest extends BaseTest {
 
-    @Test
-    public void testExactTexts() {
-        givenAtAll(aTask("a", ACTIVE));
-
-        startEditing("a", "a edited").pressEnter();
-        assertTasks("b");
-    }
-
-    @Test
-    public void testIterator() {
-        givenAtAll(aTask("a", ACTIVE), aTask("b", ACTIVE));
-
-        for (LazyElement element : tasks) {
-            element.setValue("bbbb");
-        }
-    }
 
     @Test
     public void testEdit() {

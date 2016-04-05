@@ -19,12 +19,7 @@ public class MinimumSize extends CustomCollectionCondition {
     }
 
     @Override
-    public String toString() {
-        return String.format("minimum size contains: %s", minimumSize);
-    }
-
-    @Override
-    public Integer getActualValuesDescription() {
+    public Integer actual() {
         return listSize;
     }
 
@@ -34,5 +29,20 @@ public class MinimumSize extends CustomCollectionCondition {
         List<WebElement> results = (List<WebElement>) lazyEntity.getWrappedEntity();
         listSize = results.size();
         return (listSize >= minimumSize) ? results : null;
+    }
+
+    @Override
+    public String identity() {
+        return "elements";
+    }
+
+    @Override
+    public Integer expected() {
+        return minimumSize;
+    }
+
+    @Override
+    public LazyEntity entity() {
+        return lazyEntity;
     }
 }

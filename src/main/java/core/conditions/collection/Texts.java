@@ -23,20 +23,30 @@ public class Texts extends CustomCollectionCondition {
     }
 
     @Override
-    public String toString() {
-        return String.format("texts contains: %s", Arrays.toString(texts));
-    }
-
-    @Override
-    public String getActualValuesDescription() {
-        return Arrays.toString(currentTexts.toArray());
-    }
-
-    @Override
     public List<WebElement> apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = getTexts(elements);
-        return listHasTexts(elements, currentTexts, texts);
+        return listHasTexts(currentTexts, texts) == true ? elements : null;
+    }
+
+    @Override
+    public String identity() {
+        return "elements";
+    }
+
+    @Override
+    public String actual() {
+        return Arrays.toString(currentTexts.toArray());
+    }
+
+    @Override
+    public String expected() {
+        return Arrays.toString(texts);
+    }
+
+    @Override
+    public LazyEntity entity() {
+        return lazyEntity;
     }
 }

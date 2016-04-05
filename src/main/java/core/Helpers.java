@@ -19,32 +19,32 @@ public class Helpers {
         return currentTexts;
     }
 
-    public static List<WebElement> listHasTexts(final List<WebElement> elements, final List<String> currentTexts, final String...
+    public static Boolean listHasTexts(final List<String> currentTexts, final String...
             expectedTexts) {
         if (currentTexts.size() != expectedTexts.length) {
             return null;
         } else {
             for (int i = 0; i < expectedTexts.length; ++i) {
                 if (!currentTexts.get(i).contains(expectedTexts[i])) {
-                    return null;
+                    return false;
                 }
             }
         }
-        return elements;
+        return true;
     }
 
-    public static List<WebElement> listHasExactTexts(final List<WebElement> elements, List<String> currentTexts, final String...
+    public static Boolean listHasExactTexts(List<String> currentTexts, final String...
             expectedTexts) {
         if (currentTexts.size() != expectedTexts.length) {
             return null;
         } else {
             for (int i = 0; i < expectedTexts.length; ++i) {
                 if (!currentTexts.get(i).equals(expectedTexts[i])) {
-                    return null;
+                    return false;
                 }
             }
         }
-        return elements;
+        return true;
     }
 
     public static List<WebElement> listOfVisibleElements(List<WebElement> elements) {

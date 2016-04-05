@@ -1,39 +1,50 @@
 package core.conditions.element;
 
 
-import org.openqa.selenium.WebElement;
 import core.wrappers.LazyEntity;
+import org.openqa.selenium.WebElement;
 
 public class CSSClass extends CustomElementCondition {
 
     private LazyEntity lazyEntity;
     private String cssClass;
     private WebElement element;
+    private String[] currentClasses;
 
     public CSSClass(String cssClass) {
         this.cssClass = cssClass;
     }
 
     @Override
-    public String toString() {
-        return String.format("should be element with CSSClass", cssClass);
-    }
-
-    @Override
-    public String getActualValuesDescription() {
-        return element.getAttribute("class");
+    public String actual() {
+        return currentClasses.toString();
     }
 
     @Override
     public WebElement apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         element = (WebElement) lazyEntity.getWrappedEntity();
-        String[] classes = element.getAttribute("class").split(" ");
-        for (int i = 0; i < classes.length; i++) {
-            if (classes[i].equals(cssClass)) {
+        currentClasses = element.getAttribute("class").split(" ");
+        for (int i = 0; i < currentClasses.length; i++) {
+            if (currentClasses[i].equals(cssClass)) {
                 return element;
             }
         }
         return null;
+    }
+
+    @Override
+    public String identity() {
+        return "element";
+    }
+
+    @Override
+    public String expected() {
+        return cssClass;
+    }
+
+    @Override
+    public LazyEntity entity() {
+        return lazyEntity;
     }
 }

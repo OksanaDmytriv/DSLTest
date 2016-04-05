@@ -6,12 +6,15 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class LazyCollectionByElementLocator extends LazyCollection{
+import static core.ConciseAPI.waitFor;
+import static core.conditions.element.CustomElementConditions.present;
+
+public class LazyCollectionByInnerLocator extends LazyCollection{
 
     private By locator;
     private LazyElement parentElement;
 
-    public LazyCollectionByElementLocator(LazyElement parentElement, By locator) {
+    public LazyCollectionByInnerLocator(LazyElement parentElement, By locator) {
         this.parentElement=parentElement;
         this.locator = locator;
     }
@@ -21,6 +24,7 @@ public class LazyCollectionByElementLocator extends LazyCollection{
     }
 
     public List<WebElement> getWrappedEntity() {
+        waitFor(parentElement, present());
         return parentElement.getWrappedEntity().findElements(locator);
     }
 }

@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static core.ConciseAPI.conditionApplyWithExceptionsCatching;
 import static core.ConciseAPI.waitFor;
-import static core.conditions.element.CustomElementConditions.visible;
 
 public abstract class LazyCollection implements LazyEntity, Iterable<LazyElement> {
 
@@ -49,11 +47,10 @@ public abstract class LazyCollection implements LazyEntity, Iterable<LazyElement
 
     @Override
     public Iterator<LazyElement> iterator() {
-        List<LazyElement> newList =new ArrayList<>();
-         for (LazyElement element:this) {
-            if (conditionApplyWithExceptionsCatching(new LazyWrappedWebElement(this, element), visible())!= null) {
-                newList.add(element);
-            }
+        List<WebElement> elements = this.getWrappedEntity();
+        List<LazyElement> newList = new ArrayList<>();
+        for (WebElement element : elements) {
+            newList.add((new LazyWrappedWebElement(this, element)));
         }
         return newList.iterator();
     }

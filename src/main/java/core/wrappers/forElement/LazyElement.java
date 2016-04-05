@@ -2,7 +2,7 @@ package core.wrappers.forElement;
 
 import core.conditions.element.CustomElementCondition;
 import core.wrappers.LazyEntity;
-import core.wrappers.forCollection.LazyCollectionByElementLocator;
+import core.wrappers.forCollection.LazyCollectionByInnerLocator;
 import org.openqa.selenium.*;
 
 import java.util.List;
@@ -23,12 +23,12 @@ public abstract class LazyElement implements LazyEntity, WebElement {
         return find(byCSS(cssSelector));
     }
 
-    public LazyCollectionByElementLocator findAll(By locator) {
-        return new LazyCollectionByElementLocator(this, locator);
+    public LazyCollectionByInnerLocator findAll(By locator) {
+        return new LazyCollectionByInnerLocator(this, locator);
     }
 
-    public LazyCollectionByElementLocator findAll(String cssSelector) {
-        return new LazyCollectionByElementLocator(this, byCSS(cssSelector));
+    public LazyCollectionByInnerLocator findAll(String cssSelector) {
+        return new LazyCollectionByInnerLocator(this, byCSS(cssSelector));
     }
 
     public void clear() {
@@ -122,7 +122,7 @@ public abstract class LazyElement implements LazyEntity, WebElement {
     }
 
     public String getText() {
-        waitFor(this, present());
+        waitFor(this, visible());
         return getWrappedEntity().getText();
     }
 
@@ -142,17 +142,17 @@ public abstract class LazyElement implements LazyEntity, WebElement {
     }
 
     public Point getLocation() {
-        waitFor(this, present());
+        waitFor(this, visible());
         return getWrappedEntity().getLocation();
     }
 
     public Dimension getSize() {
-        waitFor(this, present());
+        waitFor(this, visible());
         return getWrappedEntity().getSize();
     }
 
     public Rectangle getRect() {
-        waitFor(this, present());
+        waitFor(this, visible());
         return getWrappedEntity().getRect();
     }
 
@@ -162,7 +162,7 @@ public abstract class LazyElement implements LazyEntity, WebElement {
     }
 
     public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
-        waitFor(this, present());
+        waitFor(this, visible());
         return getWrappedEntity().getScreenshotAs(outputType);
     }
 }

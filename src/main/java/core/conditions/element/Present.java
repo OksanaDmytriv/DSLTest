@@ -7,11 +7,7 @@ public class Present extends CustomElementCondition {
 
     private LazyEntity lazyEntity;
 
-    public String toString() {
-        return String.format("present");
-    }
-
-    public String getActualValuesDescription() {
+    public String actual() {
         return "";
     }
 
@@ -19,5 +15,20 @@ public class Present extends CustomElementCondition {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         return element;
+    }
+
+    @Override
+    public String identity() {
+        return "element";
+    }
+
+    @Override
+    public String expected() {
+        return "";
+    }
+
+    @Override
+    public LazyEntity entity() {
+        return lazyEntity;
     }
 }

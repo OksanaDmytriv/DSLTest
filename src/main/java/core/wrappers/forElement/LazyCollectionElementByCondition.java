@@ -25,7 +25,7 @@ public class LazyCollectionElementByCondition extends LazyElement {
     public WebElement getWrappedEntity() {
         List<WebElement> elements = parentCollection.getWrappedEntity();
         for (WebElement element:elements) {
-            if (conditionApplyWithExceptionsCatching(new LazyWrappedWebElement(parentCollection, element), condition)!= null) {
+            if (conditionApplyWithExceptionsCatching(new LazyWrappedWebElement(this, element), condition)!= null) {
                 return element;
             }
         }

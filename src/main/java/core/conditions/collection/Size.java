@@ -16,12 +16,7 @@ public class Size extends CustomCollectionCondition {
     }
 
     @Override
-    public String toString() {
-        return String.format("expected size contains: %s", expectedSize);
-    }
-
-    @Override
-    public Integer getActualValuesDescription() {
+    public Integer actual() {
         return listSize;
     }
 
@@ -31,5 +26,20 @@ public class Size extends CustomCollectionCondition {
         List<WebElement> results = (List<WebElement>) lazyEntity.getWrappedEntity();
         listSize = results.size();
         return (listSize == expectedSize) ? results : null;
+    }
+
+    @Override
+    public String identity() {
+        return "elements";
+    }
+
+    @Override
+    public Integer expected() {
+        return expectedSize;
+    }
+
+    @Override
+    public LazyEntity entity() {
+        return lazyEntity;
     }
 }

@@ -8,12 +8,7 @@ public class Visible extends CustomElementCondition {
     private LazyEntity lazyEntity;
 
     @Override
-    public String toString() {
-        return String.format("element should be Visible");
-    }
-
-    @Override
-    public String getActualValuesDescription() {
+    public String actual() {
         return "";
     }
 
@@ -22,5 +17,20 @@ public class Visible extends CustomElementCondition {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         return element.isDisplayed() ? element : null;
+    }
+
+    @Override
+    public String identity() {
+        return "element";
+    }
+
+    @Override
+    public String expected() {
+        return "";
+    }
+
+    @Override
+    public LazyEntity entity() {
+        return lazyEntity;
     }
 }

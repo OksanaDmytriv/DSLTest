@@ -1,15 +1,19 @@
 package core;
 
 import core.conditions.CustomCondition;
-import core.wrappers.LazyEntity;
 
 public class TimeoutException extends RuntimeException {
-    private LazyEntity lazyEntity;
-    private CustomCondition condition;
 
-    public TimeoutException(LazyEntity lazyEntity, CustomCondition condition, String text) {
-        super(text);
-        this.lazyEntity = lazyEntity;
-        this.condition = condition;
+    private CustomCondition condition;
+    private Integer timeoutMs;
+
+    public TimeoutException(CustomCondition condition, int timeoutMs){
+        this.condition=condition;
+        this.timeoutMs=timeoutMs;
+    }
+
+    public String toString(){
+        return "\nfailed while waiting " + timeoutMs / 1000 + " seconds" +
+                "\nto assert " + condition;
     }
 }

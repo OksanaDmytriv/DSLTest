@@ -18,12 +18,7 @@ public class ListNthElementHasText extends CustomCollectionCondition {
     }
 
     @Override
-    public String toString() {
-        return String.format("text contains: %s", text);
-    }
-
-    @Override
-    public String getActualValuesDescription() {
+    public String actual() {
         return currentText;
     }
 
@@ -34,5 +29,20 @@ public class ListNthElementHasText extends CustomCollectionCondition {
         WebElement element = elements.get(index);
         currentText = element.getText();
         return (currentText.contains(text)) ? element : null;
+    }
+
+    @Override
+    public String identity() {
+        return "elements";
+    }
+
+    @Override
+    public String expected() {
+        return text;
+    }
+
+    @Override
+    public LazyEntity entity() {
+        return lazyEntity;
     }
 }

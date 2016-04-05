@@ -3,7 +3,9 @@ package core;
 import core.conditions.CustomCondition;
 import core.conditions.collection.CustomCollectionCondition;
 import core.wrappers.LazyEntity;
+import core.wrappers.forCollection.LazyCollection;
 import core.wrappers.forCollection.LazyCollectionByLocator;
+import core.wrappers.forElement.LazyElement;
 import core.wrappers.forElement.LazyElementByLocator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -28,19 +30,19 @@ public class ConciseAPI {
         drivers.put(Thread.currentThread(), driver);
     }
 
-    public static LazyElementByLocator $(By locator) {
+    public static LazyElement $(By locator) {
         return new LazyElementByLocator(locator);
     }
 
-    public static LazyElementByLocator $(String cssSelector) {
+    public static LazyElement $(String cssSelector) {
         return $(byCSS(cssSelector));
     }
 
-    public static LazyCollectionByLocator $$(By locator) {
+    public static LazyCollection $$(By locator) {
         return new LazyCollectionByLocator(locator);
     }
 
-    public static LazyCollectionByLocator $$(String cssSelector) {
+    public static LazyCollection $$(String cssSelector) {
         return $$(byCSS(cssSelector));
     }
 
@@ -84,10 +86,7 @@ public class ConciseAPI {
     public static <V> V waitFor(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
         V results = waitForWithoutException(lazyEntity, condition, timeoutMs);
         if (results == null) {
-            throw new TimeoutException(lazyEntity, condition, "\nFor " + ((condition instanceof CustomCollectionCondition) ? "elements" : "element") +
-                    " located by " + lazyEntity.toString() + "\n" +
-                    condition.toString() +
-                    (condition.getActualValuesDescription() == "" ? "" : "\nwhile actual is: " + condition.getActualValuesDescription()));
+            throw new TimeoutException(condition, timeoutMs);
         }
         return results;
     }
@@ -96,7 +95,7 @@ public class ConciseAPI {
         return "\nFor " + ((condition instanceof CustomCollectionCondition) ? "elements" : "element") +
                 " located by " + lazyEntity.toString() + "\n" +
                 condition.toString() +
-                (condition.getActualValuesDescription() == "" ? "" : "\nwhile actual is: " + condition.getActualValuesDescription());
+                (condition.actual() == "" ? "" : "\nwhile actual is: " + condition.actual());
     }
 
     public static <V> V waitForWithoutException(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
