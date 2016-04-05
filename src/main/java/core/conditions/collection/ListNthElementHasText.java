@@ -26,6 +26,11 @@ public class ListNthElementHasText extends CustomCollectionCondition {
     }
 
     @Override
+    public String actual() {
+        return currentText;
+    }
+
+    @Override
     public String expected() {
         return text;
     }
@@ -33,10 +38,5 @@ public class ListNthElementHasText extends CustomCollectionCondition {
     @Override
     public LazyEntity entity() {
         return lazyEntity;
-    }
-
-    @Override
-    public String actual() {
-        return currentText;
     }
 }

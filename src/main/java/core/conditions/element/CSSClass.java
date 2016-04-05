@@ -29,11 +29,6 @@ public class CSSClass extends CustomElementCondition {
     }
 
     @Override
-    public String identity() {
-        return "element";
-    }
-
-    @Override
     public String actual() {
         return currentClasses.toString();
     }

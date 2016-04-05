@@ -26,6 +26,11 @@ public class MinimumSize extends CustomCollectionCondition {
     }
 
     @Override
+    public String actual() {
+        return Integer.toString(listSize);
+    }
+
+    @Override
     public String expected() {
         return Integer.toString(minimumSize);
     }
@@ -33,10 +38,5 @@ public class MinimumSize extends CustomCollectionCondition {
     @Override
     public LazyEntity entity() {
         return lazyEntity;
-    }
-
-    @Override
-    public String actual() {
-        return Integer.toString(listSize);
     }
 }
