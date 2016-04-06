@@ -1,22 +1,20 @@
 package core.conditions.element;
 
-import core.wrappers.LazyEntity;
 import org.openqa.selenium.WebElement;
 
-public class Present extends CustomElementCondition {
+public class Present extends ElementCondition {
 
-    protected WebElement check(LazyEntity lazyEntity) {
-        this.lazyEntity = lazyEntity;
+    protected WebElement check() {
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         return element;
     }
 
     public String actual() {
-        return "";
+        return "Absent";
     }
 
     @Override
     public String expected() {
-        return "";
+        return "Present";
     }
 }

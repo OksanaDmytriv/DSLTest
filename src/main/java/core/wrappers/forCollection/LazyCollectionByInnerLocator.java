@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 import static core.ConciseAPI.waitFor;
-import static core.conditions.element.CustomElementConditions.present;
+import static core.conditions.element.ElementConditions.present;
 
 public class LazyCollectionByInnerLocator extends LazyCollection{
 

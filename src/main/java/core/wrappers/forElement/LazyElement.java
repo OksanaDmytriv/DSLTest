@@ -1,6 +1,6 @@
 package core.wrappers.forElement;
 
-import core.conditions.element.CustomElementCondition;
+import core.conditions.element.ElementCondition;
 import core.wrappers.LazyEntity;
 import core.wrappers.forCollection.LazyCollectionByInnerLocator;
 import org.openqa.selenium.*;
@@ -8,8 +8,8 @@ import org.openqa.selenium.*;
 import java.util.List;
 
 import static core.ConciseAPI.*;
-import static core.conditions.element.CustomElementConditions.present;
-import static core.conditions.element.CustomElementConditions.visible;
+import static core.conditions.element.ElementConditions.present;
+import static core.conditions.element.ElementConditions.visible;
 
 public abstract class LazyElement implements LazyEntity, WebElement {
 
@@ -78,16 +78,16 @@ public abstract class LazyElement implements LazyEntity, WebElement {
         return this;
     }
 
-    public LazyElement should(CustomElementCondition... conditions) {
+    public LazyElement should(ElementCondition... conditions) {
         waitFor(this, conditions);
         return this;
     }
 
-    public LazyElement shouldBe(CustomElementCondition... conditions) {
+    public LazyElement shouldBe(ElementCondition... conditions) {
         return should(conditions);
     }
 
-    public LazyElement shouldHave(CustomElementCondition conditions) {
+    public LazyElement shouldHave(ElementCondition conditions) {
         return should(conditions);
     }
 

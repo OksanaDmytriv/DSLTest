@@ -1,6 +1,5 @@
 package core.conditions.collection;
 
-import core.wrappers.LazyEntity;
 import org.openqa.selenium.WebElement;
 
 import java.util.Arrays;
@@ -9,7 +8,7 @@ import java.util.List;
 import static core.Helpers.getTexts;
 import static core.Helpers.listHasTexts;
 
-public class Texts extends CustomCollectionCondition {
+public class Texts extends CollectionCondition {
 
     protected List<String> currentTexts;
     protected final String[] texts;
@@ -22,8 +21,7 @@ public class Texts extends CustomCollectionCondition {
     }
 
     @Override
-    protected List<WebElement> check(LazyEntity lazyEntity) {
-        this.lazyEntity = lazyEntity;
+    protected List<WebElement> check() {
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = getTexts(elements);
         return listHasTexts(currentTexts, texts) ? elements : null;

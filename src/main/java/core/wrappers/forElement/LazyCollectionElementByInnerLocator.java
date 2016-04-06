@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static core.ConciseAPI.waitFor;
-import static core.conditions.element.CustomElementConditions.present;
+import static core.conditions.element.ElementConditions.present;
 
 public class LazyCollectionElementByInnerLocator extends LazyElement {
 

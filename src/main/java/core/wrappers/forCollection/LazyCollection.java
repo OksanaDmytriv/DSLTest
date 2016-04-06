@@ -1,7 +1,7 @@
 package core.wrappers.forCollection;
 
-import core.conditions.collection.CustomCollectionCondition;
-import core.conditions.element.CustomElementCondition;
+import core.conditions.collection.CollectionCondition;
+import core.conditions.element.ElementCondition;
 import core.wrappers.LazyEntity;
 import core.wrappers.forElement.LazyCollectionElementByCondition;
 import core.wrappers.forElement.LazyCollectionElementByIndex;
@@ -24,24 +24,24 @@ public abstract class LazyCollection implements LazyEntity, Iterable<LazyElement
         return new LazyCollectionElementByIndex(this, index);
     }
 
-    public LazyFilteredCollection filter(CustomElementCondition condition) {
+    public LazyFilteredCollection filter(ElementCondition condition) {
         return new LazyFilteredCollection(this, condition);
     }
 
-    public LazyCollectionElementByCondition find(CustomElementCondition condition) {
+    public LazyCollectionElementByCondition find(ElementCondition condition) {
         return new LazyCollectionElementByCondition(this, condition);
     }
 
-    public LazyCollection should(CustomCollectionCondition... conditions) {
+    public LazyCollection should(CollectionCondition... conditions) {
         waitFor(this, conditions);
         return this;
     }
 
-    public LazyCollection shouldBe(CustomCollectionCondition... conditions) {
+    public LazyCollection shouldBe(CollectionCondition... conditions) {
         return should(conditions);
     }
 
-    public LazyCollection shouldHave(CustomCollectionCondition... conditions) {
+    public LazyCollection shouldHave(CollectionCondition... conditions) {
         return should(conditions);
     }
 

@@ -16,8 +16,7 @@ public class ExactTexts extends Texts {
     }
 
     @Override
-    protected List<WebElement> check(LazyEntity lazyEntity) {
-        this.lazyEntity = lazyEntity;
+    protected List<WebElement> check() {
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = getTexts(elements);
         return listHasExactTexts(currentTexts, texts) ? elements : null;

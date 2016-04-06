@@ -1,11 +1,10 @@
 package core.conditions.collection;
 
 import org.openqa.selenium.WebElement;
-import core.wrappers.LazyEntity;
 
 import java.util.List;
 
-public class ListNthElementHasText extends CustomCollectionCondition {
+public class ListNthElementHasText extends CollectionCondition {
 
     private String currentText;
     protected final String text;
@@ -17,8 +16,7 @@ public class ListNthElementHasText extends CustomCollectionCondition {
     }
 
     @Override
-    protected WebElement check(LazyEntity lazyEntity) {
-        this.lazyEntity = lazyEntity;
+    protected WebElement check() {
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         WebElement element = elements.get(index);
         currentText = element.getText();

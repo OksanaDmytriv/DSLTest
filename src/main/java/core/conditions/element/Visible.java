@@ -1,24 +1,22 @@
 package core.conditions.element;
 
 import org.openqa.selenium.WebElement;
-import core.wrappers.LazyEntity;
 
-public class Visible extends CustomElementCondition {
+public class Visible extends ElementCondition {
 
     @Override
-    protected WebElement check(LazyEntity lazyEntity) {
-        this.lazyEntity = lazyEntity;
+    protected WebElement check() {
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         return element.isDisplayed() ? element : null;
     }
 
     @Override
     public String actual() {
-        return "";
+        return "Not visible";
     }
 
     @Override
     public String expected() {
-        return "";
+        return "Visible";
     }
 }

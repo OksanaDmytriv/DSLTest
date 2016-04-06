@@ -1,9 +1,8 @@
 package core.conditions.element;
 
-import core.wrappers.LazyEntity;
 import org.openqa.selenium.WebElement;
 
-public class Text extends CustomElementCondition {
+public class Text extends ElementCondition {
 
     protected String currentText;
     protected final String text;
@@ -12,8 +11,7 @@ public class Text extends CustomElementCondition {
         this.text = text;
     }
 
-    protected WebElement check(LazyEntity lazyEntity) {
-        this.lazyEntity = lazyEntity;
+    protected WebElement check() {
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         currentText = element.getText();
         if (!currentText.contains(text)) {

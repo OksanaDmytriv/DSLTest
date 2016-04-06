@@ -1,12 +1,10 @@
 package core.conditions.element;
 
 
-import core.wrappers.LazyEntity;
 import org.openqa.selenium.WebElement;
 
-public class CSSClass extends CustomElementCondition {
+public class CSSClass extends ElementCondition {
 
-    private LazyEntity lazyEntity;
     private String cssClass;
     private WebElement element;
     private String[] currentClasses;
@@ -16,8 +14,7 @@ public class CSSClass extends CustomElementCondition {
     }
 
     @Override
-    protected WebElement check(LazyEntity lazyEntity) {
-        this.lazyEntity = lazyEntity;
+    protected WebElement check() {
         element = (WebElement) lazyEntity.getWrappedEntity();
         currentClasses = element.getAttribute("class").split(" ");
         for (int i = 0; i < currentClasses.length; i++) {

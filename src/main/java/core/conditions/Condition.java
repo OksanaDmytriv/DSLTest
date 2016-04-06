@@ -2,7 +2,7 @@ package core.conditions;
 
 import core.wrappers.LazyEntity;
 
-public interface CustomConditionInterface<V> {
+public interface Condition<V> {
 
     <V> V apply(LazyEntity lazyEntity);
 

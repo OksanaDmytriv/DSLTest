@@ -3,7 +3,7 @@ package core.conditions;
 import core.wrappers.LazyEntity;
 import org.openqa.selenium.WebDriverException;
 
-public abstract class CustomCondition<V> implements CustomConditionInterface<V> {
+public abstract class AbstractCondition<V> implements Condition<V> {
 
     protected LazyEntity lazyEntity;
 
@@ -20,12 +20,13 @@ public abstract class CustomCondition<V> implements CustomConditionInterface<V> 
     }
 
     public <V> V apply(LazyEntity lazyEntity) {
+        this.lazyEntity = lazyEntity;
         try {
-            return check(lazyEntity);
+            return check();
         } catch (WebDriverException | IndexOutOfBoundsException e) {
             return null;
         }
     }
 
-    protected abstract <V> V check(LazyEntity lazyEntity);
+    protected abstract <V> V check();
 }

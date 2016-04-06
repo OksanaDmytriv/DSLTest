@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 
 import static core.ConciseAPI.$;
 import static core.ConciseAPI.byText;
-import static core.conditions.collection.CustomCollectionConditions.listNthElementHasText;
-import static core.conditions.collection.CustomCollectionConditions.texts;
+import static core.conditions.collection.CollectionConditions.listNthElementHasText;
+import static core.conditions.collection.CollectionConditions.texts;
 
 public class Mails {
 

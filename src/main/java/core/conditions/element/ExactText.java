@@ -1,7 +1,6 @@
 package core.conditions.element;
 
 import org.openqa.selenium.WebElement;
-import core.wrappers.LazyEntity;
 
 public class ExactText extends Text {
 
@@ -9,8 +8,7 @@ public class ExactText extends Text {
         super(text);
     }
 
-    protected WebElement check(LazyEntity lazyEntity) {
-        this.lazyEntity = lazyEntity;
+    protected WebElement check() {
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         currentText = element.getText();
         if (!currentText.equals(text)) {

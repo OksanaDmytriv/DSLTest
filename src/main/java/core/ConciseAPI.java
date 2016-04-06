@@ -1,6 +1,6 @@
 package core;
 
-import core.conditions.CustomCondition;
+import core.conditions.AbstractCondition;
 import core.wrappers.LazyEntity;
 import core.wrappers.forCollection.LazyCollection;
 import core.wrappers.forCollection.LazyCollectionByLocator;
@@ -69,19 +69,19 @@ public class ConciseAPI {
         }
     }
 
-    public static <V> V waitFor(LazyEntity lazyEntity, CustomCondition<V> condition) {
+    public static <V> V waitFor(LazyEntity lazyEntity, AbstractCondition<V> condition) {
         return waitFor(lazyEntity, condition, Configuration.timeout);
     }
 
-    public static <V> V waitFor(LazyEntity lazyEntity, CustomCondition<V>... conditions) {
+    public static <V> V waitFor(LazyEntity lazyEntity, AbstractCondition<V>... conditions) {
         V result = null;
-        for (CustomCondition<V> condition : conditions) {
+        for (AbstractCondition<V> condition : conditions) {
             result = waitFor(lazyEntity, condition);
         }
         return result;
     }
 
-    public static <V> V waitFor(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
+    public static <V> V waitFor(LazyEntity lazyEntity, AbstractCondition<V> condition, int timeoutMs) {
         V results = waitForWithoutException(lazyEntity, condition, timeoutMs);
         if (results == null) {
             throw new TimeoutException(condition, timeoutMs);
@@ -89,7 +89,7 @@ public class ConciseAPI {
         return results;
     }
 
-    public static <V> V waitForWithoutException(LazyEntity lazyEntity, CustomCondition<V> condition, int timeoutMs) {
+    public static <V> V waitForWithoutException(LazyEntity lazyEntity, AbstractCondition<V> condition, int timeoutMs) {
         V result = null;
         final long startTime = System.currentTimeMillis();
         do {

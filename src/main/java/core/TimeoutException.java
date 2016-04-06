@@ -1,13 +1,13 @@
 package core;
 
-import core.conditions.CustomCondition;
+import core.conditions.AbstractCondition;
 
 public class TimeoutException extends RuntimeException {
 
-    private CustomCondition condition;
+    private AbstractCondition condition;
     private Integer timeoutMs;
 
-    public TimeoutException(CustomCondition condition, int timeoutMs){
+    public TimeoutException(AbstractCondition condition, int timeoutMs){
         this.condition=condition;
         this.timeoutMs=timeoutMs;
     }
