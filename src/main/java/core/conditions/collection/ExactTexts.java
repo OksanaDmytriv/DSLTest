@@ -16,15 +16,10 @@ public class ExactTexts extends Texts {
     }
 
     @Override
-    public List<WebElement> apply(LazyEntity lazyEntity) {
+    protected List<WebElement> check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = getTexts(elements);
         return listHasExactTexts(currentTexts, texts) ? elements : null;
-    }
-
-    @Override
-    public LazyEntity entity() {
-        return lazyEntity;
     }
 }

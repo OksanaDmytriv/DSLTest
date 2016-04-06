@@ -10,5 +10,4 @@ public abstract class CustomCollectionCondition extends CustomCondition<List<Web
     public String identity() {
         return "elements";
     }
-
 }

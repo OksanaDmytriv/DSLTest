@@ -22,7 +22,7 @@ public class Texts extends CustomCollectionCondition {
     }
 
     @Override
-    public List<WebElement> apply(LazyEntity lazyEntity) {
+    protected List<WebElement> check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         currentTexts = getTexts(elements);
@@ -37,10 +37,5 @@ public class Texts extends CustomCollectionCondition {
     @Override
     public String expected() {
         return Arrays.toString(texts);
-    }
-
-    @Override
-    public LazyEntity entity() {
-        return lazyEntity;
     }
 }

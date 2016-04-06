@@ -12,7 +12,7 @@ public class Text extends CustomElementCondition {
         this.text = text;
     }
 
-    public WebElement apply(LazyEntity lazyEntity) {
+    protected WebElement check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         currentText = element.getText();
@@ -30,10 +30,5 @@ public class Text extends CustomElementCondition {
     @Override
     public String expected() {
         return text;
-    }
-
-    @Override
-    public LazyEntity entity() {
-        return lazyEntity;
     }
 }

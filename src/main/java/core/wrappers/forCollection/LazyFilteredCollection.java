@@ -1,13 +1,11 @@
 package core.wrappers.forCollection;
 
 import core.conditions.element.CustomElementCondition;
-import org.openqa.selenium.WebElement;
 import core.wrappers.forElement.LazyWrappedWebElement;
+import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static core.ConciseAPI.conditionApplyWithExceptionsCatching;
 
 public class LazyFilteredCollection extends LazyCollection {
 
@@ -27,7 +25,7 @@ public class LazyFilteredCollection extends LazyCollection {
         List<WebElement> newList = new ArrayList<WebElement>();
         List<WebElement> elements = parentCollection.getWrappedEntity();
         for (WebElement element:elements) {
-            if (conditionApplyWithExceptionsCatching(new LazyWrappedWebElement(this, element), condition) != null) {
+            if (condition.apply(new LazyWrappedWebElement(this, element)) != null) {
                 newList.add(element);
             }
         }

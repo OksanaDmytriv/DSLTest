@@ -17,7 +17,7 @@ public class ListNthElementHasText extends CustomCollectionCondition {
     }
 
     @Override
-    public WebElement apply(LazyEntity lazyEntity) {
+    protected WebElement check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
         WebElement element = elements.get(index);
@@ -33,10 +33,5 @@ public class ListNthElementHasText extends CustomCollectionCondition {
     @Override
     public String expected() {
         return text;
-    }
-
-    @Override
-    public LazyEntity entity() {
-        return lazyEntity;
     }
 }

@@ -9,7 +9,7 @@ public class ExactText extends Text {
         super(text);
     }
 
-    public WebElement apply(LazyEntity lazyEntity) {
+    protected WebElement check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         WebElement element = (WebElement) lazyEntity.getWrappedEntity();
         currentText = element.getText();
@@ -17,10 +17,5 @@ public class ExactText extends Text {
             return null;
         }
         return element;
-    }
-
-    @Override
-    public LazyEntity entity() {
-        return lazyEntity;
     }
 }

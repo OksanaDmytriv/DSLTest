@@ -16,7 +16,7 @@ public class CSSClass extends CustomElementCondition {
     }
 
     @Override
-    public WebElement apply(LazyEntity lazyEntity) {
+    protected WebElement check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         element = (WebElement) lazyEntity.getWrappedEntity();
         currentClasses = element.getAttribute("class").split(" ");
@@ -36,10 +36,5 @@ public class CSSClass extends CustomElementCondition {
     @Override
     public String expected() {
         return cssClass;
-    }
-
-    @Override
-    public LazyEntity entity() {
-        return lazyEntity;
     }
 }

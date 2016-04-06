@@ -18,7 +18,7 @@ public class MinimumSize extends CustomCollectionCondition {
     }
 
     @Override
-    public List<WebElement> apply(LazyEntity lazyEntity) {
+    protected List<WebElement> check(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         List<WebElement> results = (List<WebElement>) lazyEntity.getWrappedEntity();
         listSize = results.size();
@@ -33,10 +33,5 @@ public class MinimumSize extends CustomCollectionCondition {
     @Override
     public String expected() {
         return Integer.toString(minimumSize);
-    }
-
-    @Override
-    public LazyEntity entity() {
-        return lazyEntity;
     }
 }

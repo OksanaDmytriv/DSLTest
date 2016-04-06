@@ -8,5 +8,4 @@ public abstract class CustomElementCondition extends CustomCondition<WebElement>
     public String identity() {
         return "element";
     }
-
 }

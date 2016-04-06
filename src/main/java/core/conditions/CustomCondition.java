@@ -1,6 +1,7 @@
 package core.conditions;
 
 import core.wrappers.LazyEntity;
+import org.openqa.selenium.WebDriverException;
 
 public abstract class CustomCondition<V> implements CustomConditionInterface<V> {
 
@@ -17,4 +18,14 @@ public abstract class CustomCondition<V> implements CustomConditionInterface<V> 
                 "expected: " + expected()+ "\n" +
                 "actual: " + actual();
     }
+
+    public <V> V apply(LazyEntity lazyEntity) {
+        try {
+            return check(lazyEntity);
+        } catch (WebDriverException | IndexOutOfBoundsException e) {
+            return null;
+        }
+    }
+
+    protected abstract <V> V check(LazyEntity lazyEntity);
 }
