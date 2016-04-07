@@ -4,7 +4,7 @@ package core.wrappers.forElement;
 import org.openqa.selenium.WebElement;
 import core.wrappers.LazyEntity;
 
-public class LazyWrappedWebElement extends LazyElement {
+public class LazyWrappedWebElement extends AbstractLazyElement {
 
     private LazyEntity parentElement;
     private WebElement element;

@@ -1,7 +1,7 @@
 package pages.todomvc;
 
-import core.wrappers.forCollection.LazyCollectionByInnerLocator;
-import core.wrappers.forElement.LazyElement;
+import core.wrappers.forCollection.LazyElementInnerCollection;
+import core.wrappers.forElement.AbstractLazyElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static core.ConciseAPI.*;
@@ -12,7 +12,7 @@ import static pages.todomvc.ToDoMVC.TaskType.ACTIVE;
 
 public class ToDoMVC {
 
-    public static LazyCollectionByInnerLocator tasks = $("#todo-list").findAll("li");
+    public static LazyElementInnerCollection tasks = $("#todo-list").findAll("li");
 
     @Step
     public static void add(String... taskTexts) {
@@ -42,7 +42,7 @@ public class ToDoMVC {
     }
 
     @Step
-    public static LazyElement startEditing(String oldText, String newText) {
+    public static AbstractLazyElement startEditing(String oldText, String newText) {
         tasks.find(exactText(oldText)).find("label").doubleClick();
         return tasks.find(cssClass("editing")).find(".edit").setValue(newText);
     }

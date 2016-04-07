@@ -4,15 +4,17 @@ import org.openqa.selenium.WebElement;
 
 public class Visible extends ElementCondition {
 
+    private WebElement element;
+
     @Override
     protected WebElement check() {
-        WebElement element = (WebElement) lazyEntity.getWrappedEntity();
+        element = (WebElement) lazyEntity.getWrappedEntity();
         return element.isDisplayed() ? element : null;
     }
 
     @Override
     public String actual() {
-        return "Not visible";
+        return "Element is visible:" + element.isDisplayed();
     }
 
     @Override

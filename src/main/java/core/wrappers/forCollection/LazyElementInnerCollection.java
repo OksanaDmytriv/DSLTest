@@ -1,6 +1,6 @@
 package core.wrappers.forCollection;
 
-import core.wrappers.forElement.LazyElement;
+import core.wrappers.forElement.AbstractLazyElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -9,12 +9,12 @@ import java.util.List;
 import static core.ConciseAPI.waitFor;
 import static core.conditions.element.ElementConditions.present;
 
-public class LazyCollectionByInnerLocator extends LazyCollection{
+public class LazyElementInnerCollection extends AbstractLazyCollection {
 
     private By locator;
-    private LazyElement parentElement;
+    private AbstractLazyElement parentElement;
 
-    public LazyCollectionByInnerLocator(LazyElement parentElement, By locator) {
+    public LazyElementInnerCollection(AbstractLazyElement parentElement, By locator) {
         this.parentElement=parentElement;
         this.locator = locator;
     }

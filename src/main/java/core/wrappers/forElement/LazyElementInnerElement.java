@@ -6,12 +6,12 @@ import org.openqa.selenium.WebElement;
 import static core.ConciseAPI.waitFor;
 import static core.conditions.element.ElementConditions.present;
 
-public class LazyCollectionElementByInnerLocator extends LazyElement {
+public class LazyElementInnerElement extends AbstractLazyElement {
 
     private By innerLocator;
-    private LazyElement parentElement;
+    private AbstractLazyElement parentElement;
 
-    public LazyCollectionElementByInnerLocator(LazyElement parentElement, By innerLocator) {
+    public LazyElementInnerElement(AbstractLazyElement parentElement, By innerLocator) {
         this.parentElement=parentElement;
         this.innerLocator=innerLocator;
     }

@@ -1,57 +1,27 @@
 package core.wrappers.forCollection;
 
-import core.conditions.collection.CollectionCondition;
-import core.conditions.element.ElementCondition;
-import core.wrappers.LazyEntity;
-import core.wrappers.forElement.LazyCollectionElementByCondition;
-import core.wrappers.forElement.LazyCollectionElementByIndex;
-import core.wrappers.forElement.LazyElement;
-import core.wrappers.forElement.LazyWrappedWebElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import static core.ConciseAPI.waitFor;
+import static core.ConciseAPI.getDriver;
 
-public abstract class LazyCollection implements LazyEntity, Iterable<LazyElement> {
+public class LazyCollection extends AbstractLazyCollection {
 
-    public abstract List<WebElement> getWrappedEntity();
+    private By locator;
 
-    public LazyCollectionElementByIndex get(int index) {
-
-        return new LazyCollectionElementByIndex(this, index);
+    public LazyCollection(By locator) {
+        this.locator = locator;
     }
 
-    public LazyFilteredCollection filter(ElementCondition condition) {
-        return new LazyFilteredCollection(this, condition);
+    public String toString() {
+        return locator.toString();
     }
 
-    public LazyCollectionElementByCondition find(ElementCondition condition) {
-        return new LazyCollectionElementByCondition(this, condition);
-    }
-
-    public LazyCollection should(CollectionCondition... conditions) {
-        waitFor(this, conditions);
-        return this;
-    }
-
-    public LazyCollection shouldBe(CollectionCondition... conditions) {
-        return should(conditions);
-    }
-
-    public LazyCollection shouldHave(CollectionCondition... conditions) {
-        return should(conditions);
-    }
-
-    @Override
-    public Iterator<LazyElement> iterator() {
-        List<WebElement> elements = this.getWrappedEntity();
-        List<LazyElement> newList = new ArrayList<>();
-        for (WebElement element : elements) {
-            newList.add((new LazyWrappedWebElement(this, element)));
-        }
-        return newList.iterator();
+    public List<WebElement> getWrappedEntity() {
+        return getDriver().findElements(locator);
     }
 }
+
+

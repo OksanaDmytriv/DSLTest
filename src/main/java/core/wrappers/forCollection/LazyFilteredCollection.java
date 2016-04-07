@@ -7,12 +7,12 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LazyFilteredCollection extends LazyCollection {
+public class LazyFilteredCollection extends AbstractLazyCollection {
 
     private ElementCondition condition;
-    private LazyCollection parentCollection;
+    private AbstractLazyCollection parentCollection;
 
-    public LazyFilteredCollection(LazyCollection parentCollection, ElementCondition condition) {
+    public LazyFilteredCollection(AbstractLazyCollection parentCollection, ElementCondition condition) {
         this.parentCollection = parentCollection;
         this.condition = condition;
     }
@@ -24,8 +24,8 @@ public class LazyFilteredCollection extends LazyCollection {
     public List<WebElement> getWrappedEntity() {
         List<WebElement> newList = new ArrayList<WebElement>();
         List<WebElement> elements = parentCollection.getWrappedEntity();
-        for (WebElement element:elements) {
-            if (condition.apply(new LazyWrappedWebElement(this, element)) != null) {
+        for (WebElement element : elements) {
+            if (new LazyWrappedWebElement(this, element).is(condition)) {
                 newList.add(element);
             }
         }

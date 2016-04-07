@@ -1,17 +1,17 @@
 package core.wrappers.forElement;
 
-import core.wrappers.forCollection.LazyCollection;
+import core.wrappers.forCollection.AbstractLazyCollection;
 import org.openqa.selenium.WebElement;
 
 import static core.ConciseAPI.waitFor;
 import static core.conditions.collection.CollectionConditions.minimumSize;
 
-public class LazyCollectionElementByIndex extends LazyElement {
+public class LazyCollectionNthElement extends AbstractLazyElement {
 
     private int index;
-    private LazyCollection parentCollection;
+    private AbstractLazyCollection parentCollection;
 
-    public LazyCollectionElementByIndex(LazyCollection parentCollection, int index) {
+    public LazyCollectionNthElement(AbstractLazyCollection parentCollection, int index) {
         this.parentCollection = parentCollection;
         this.index = index;
     }

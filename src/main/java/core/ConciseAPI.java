@@ -1,11 +1,9 @@
 package core;
 
-import core.conditions.AbstractCondition;
+import core.conditions.Condition;
 import core.wrappers.LazyEntity;
 import core.wrappers.forCollection.LazyCollection;
-import core.wrappers.forCollection.LazyCollectionByLocator;
 import core.wrappers.forElement.LazyElement;
-import core.wrappers.forElement.LazyElementByLocator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +27,7 @@ public class ConciseAPI {
     }
 
     public static LazyElement $(By locator) {
-        return new LazyElementByLocator(locator);
+        return new LazyElement(locator);
     }
 
     public static LazyElement $(String cssSelector) {
@@ -37,7 +35,7 @@ public class ConciseAPI {
     }
 
     public static LazyCollection $$(By locator) {
-        return new LazyCollectionByLocator(locator);
+        return new LazyCollection(locator);
     }
 
     public static LazyCollection $$(String cssSelector) {
@@ -69,28 +67,16 @@ public class ConciseAPI {
         }
     }
 
-    public static <V> V waitFor(LazyEntity lazyEntity, AbstractCondition<V> condition) {
-        return waitFor(lazyEntity, condition, Configuration.timeout);
-    }
-
-    public static <V> V waitFor(LazyEntity lazyEntity, AbstractCondition<V>... conditions) {
+    public static <V> V waitFor(LazyEntity lazyEntity, Condition<V>... conditions) {
         V result = null;
-        for (AbstractCondition<V> condition : conditions) {
-            result = waitFor(lazyEntity, condition);
+        for (Condition<V> condition : conditions) {
+            result = waitFor(lazyEntity, condition, Configuration.timeout);
         }
         return result;
     }
 
-    public static <V> V waitFor(LazyEntity lazyEntity, AbstractCondition<V> condition, int timeoutMs) {
-        V results = waitForWithoutException(lazyEntity, condition, timeoutMs);
-        if (results == null) {
-            throw new TimeoutException(condition, timeoutMs);
-        }
-        return results;
-    }
-
-    public static <V> V waitForWithoutException(LazyEntity lazyEntity, AbstractCondition<V> condition, int timeoutMs) {
-        V result = null;
+    public static <V> V waitFor(LazyEntity lazyEntity, Condition<V> condition, int timeoutMs) {
+        V result;
         final long startTime = System.currentTimeMillis();
         do {
             result = condition.apply(lazyEntity);
@@ -101,6 +87,9 @@ public class ConciseAPI {
             return result;
         }
         while (System.currentTimeMillis() - startTime < timeoutMs);
+        if (result == null) {
+            throw new TimeoutException("\nfailed while waiting " + timeoutMs / 1000 + " seconds \nto assert " + condition);
+        }
         return result;
     }
 
