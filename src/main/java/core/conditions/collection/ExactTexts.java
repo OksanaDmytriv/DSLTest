@@ -1,7 +1,6 @@
 package core.conditions.collection;
 
 
-import core.wrappers.LazyEntity;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -16,8 +15,7 @@ public class ExactTexts extends Texts {
     }
 
     @Override
-    protected List<WebElement> check() {
-        List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
+    protected List<WebElement> check(List<WebElement> elements) {
         currentTexts = getTexts(elements);
         return listHasExactTexts(currentTexts, texts) ? elements : null;
     }

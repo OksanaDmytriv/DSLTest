@@ -3,30 +3,26 @@ package core.conditions;
 import core.wrappers.LazyEntity;
 import org.openqa.selenium.WebDriverException;
 
-public abstract class AbstractCondition<V> implements Condition<V> {
+public abstract class AbstractEntityCondition<T> implements EntityCondition<T>, DescribesResult {
 
     protected LazyEntity lazyEntity;
-
-    public LazyEntity entity(){
-        return lazyEntity;
-    }
 
     public String toString(){
         return "\n" + this.getClass() + "\n" +
                 "for " + identity() + "\n" +
-                "found by: " + entity() + "\n" +
+                "found by: " + lazyEntity + "\n" +
                 "expected: " + expected()+ "\n" +
                 "actual: " + actual();
     }
 
-    public <V> V apply(LazyEntity lazyEntity) {
+    public T apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         try {
-            return check();
+            return check((T) lazyEntity.getWrappedEntity());
         } catch (WebDriverException | IndexOutOfBoundsException e) {
             return null;
         }
     }
 
-    protected abstract <V> V check();
+    protected abstract T check(T entity);
 }

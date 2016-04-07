@@ -8,8 +8,7 @@ public class ExactText extends Text {
         super(text);
     }
 
-    protected WebElement check() {
-        WebElement element = (WebElement) lazyEntity.getWrappedEntity();
+    protected WebElement check(WebElement element) {
         currentText = element.getText();
         if (!currentText.equals(text)) {
             return null;

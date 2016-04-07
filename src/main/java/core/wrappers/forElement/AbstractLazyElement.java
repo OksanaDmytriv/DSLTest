@@ -15,14 +15,6 @@ public abstract class AbstractLazyElement implements LazyEntity, WebElement {
 
     public abstract WebElement getWrappedEntity();
 
-    public boolean is(ElementCondition condition) {
-        return condition.apply(this) != null ? true : false;
-    }
-
-    public boolean has(ElementCondition condition) {
-        return is(condition);
-    }
-
     public LazyElementInnerElement find(By innerLocator) {
         return new LazyElementInnerElement(this, innerLocator);
     }
@@ -84,6 +76,14 @@ public abstract class AbstractLazyElement implements LazyEntity, WebElement {
         waitFor(this, visible());
         actions().doubleClick(getWrappedEntity()).perform();
         return this;
+    }
+
+    public boolean is(ElementCondition condition) {
+        return condition.apply(this) != null ? true : false;
+    }
+
+    public boolean has(ElementCondition condition) {
+        return is(condition);
     }
 
     public AbstractLazyElement should(ElementCondition... conditions) {

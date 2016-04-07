@@ -14,10 +14,9 @@ public class Size extends CollectionCondition {
     }
 
     @Override
-    protected List<WebElement> check() {
-        List<WebElement> results = (List<WebElement>) lazyEntity.getWrappedEntity();
-        listSize = results.size();
-        return (listSize == expectedSize) ? results : null;
+    protected List<WebElement> check(List<WebElement> elements) {
+        listSize = elements.size();
+        return (listSize == expectedSize) ? elements : null;
     }
 
     @Override

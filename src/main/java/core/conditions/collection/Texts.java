@@ -21,8 +21,7 @@ public class Texts extends CollectionCondition {
     }
 
     @Override
-    protected List<WebElement> check() {
-        List<WebElement> elements = (List<WebElement>) lazyEntity.getWrappedEntity();
+    protected List<WebElement> check(List<WebElement> elements) {
         currentTexts = getTexts(elements);
         return listHasTexts(currentTexts, texts) ? elements : null;
     }

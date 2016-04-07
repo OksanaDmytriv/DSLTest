@@ -11,8 +11,7 @@ public class Text extends ElementCondition {
         this.text = text;
     }
 
-    protected WebElement check() {
-        WebElement element = (WebElement) lazyEntity.getWrappedEntity();
+    protected WebElement check(WebElement element) {
         currentText = element.getText();
         if (!currentText.contains(text)) {
             return null;

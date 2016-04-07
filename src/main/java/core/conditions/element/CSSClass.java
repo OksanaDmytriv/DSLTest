@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 public class CSSClass extends ElementCondition {
 
     private String cssClass;
-    private WebElement element;
     private String[] currentClasses;
 
     public CSSClass(String cssClass) {
@@ -14,8 +13,7 @@ public class CSSClass extends ElementCondition {
     }
 
     @Override
-    protected WebElement check() {
-        element = (WebElement) lazyEntity.getWrappedEntity();
+    protected WebElement check(WebElement element) {
         currentClasses = element.getAttribute("class").split(" ");
         for (int i = 0; i < currentClasses.length; i++) {
             if (currentClasses[i].equals(cssClass)) {

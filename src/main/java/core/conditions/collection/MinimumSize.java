@@ -17,10 +17,9 @@ public class MinimumSize extends CollectionCondition {
     }
 
     @Override
-    protected List<WebElement> check() {
-        List<WebElement> results = (List<WebElement>) lazyEntity.getWrappedEntity();
-        listSize = results.size();
-        return (listSize >= minimumSize) ? results : null;
+    protected List<WebElement> check(List<WebElement> elements) {
+        listSize = elements.size();
+        return (listSize >= minimumSize) ? elements : null;
     }
 
     @Override

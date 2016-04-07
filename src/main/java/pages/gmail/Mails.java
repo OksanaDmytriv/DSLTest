@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 
 import static core.ConciseAPI.$;
 import static core.ConciseAPI.byText;
-import static core.conditions.collection.CollectionConditions.listNthElementHasText;
 import static core.conditions.collection.CollectionConditions.texts;
+import static core.conditions.element.ElementConditions.text;
 
 public class Mails {
 
@@ -24,6 +24,6 @@ public class Mails {
     }
 
     public static void assertMail(int index, String subject) {
-        emails.shouldHave(listNthElementHasText(index, subject));
+        emails.get(index).shouldHave(text(subject));
     }
 }

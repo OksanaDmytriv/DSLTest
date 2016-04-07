@@ -1,11 +1,12 @@
 package core;
 
-import core.conditions.Condition;
+import core.conditions.EntityCondition;
 import core.wrappers.LazyEntity;
 import core.wrappers.forCollection.LazyCollection;
 import core.wrappers.forElement.LazyElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
@@ -67,16 +68,16 @@ public class ConciseAPI {
         }
     }
 
-    public static <V> V waitFor(LazyEntity lazyEntity, Condition<V>... conditions) {
-        V result = null;
-        for (Condition<V> condition : conditions) {
+    public static <T> T waitFor(LazyEntity lazyEntity, EntityCondition<T>... conditions) {
+        T result = null;
+        for (EntityCondition<T> condition : conditions) {
             result = waitFor(lazyEntity, condition, Configuration.timeout);
         }
         return result;
     }
 
-    public static <V> V waitFor(LazyEntity lazyEntity, Condition<V> condition, int timeoutMs) {
-        V result;
+    public static <T> T waitFor(LazyEntity lazyEntity, EntityCondition<T> condition, int timeoutMs) {
+        T result;
         final long startTime = System.currentTimeMillis();
         do {
             result = condition.apply(lazyEntity);

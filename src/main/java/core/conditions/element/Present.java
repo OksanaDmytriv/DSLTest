@@ -4,15 +4,15 @@ import org.openqa.selenium.WebElement;
 
 public class Present extends ElementCondition {
 
-    private WebElement element;
+    private Boolean currentState;
 
-    protected WebElement check() {
-        element = (WebElement) lazyEntity.getWrappedEntity();
+    protected WebElement check(WebElement element) {
+        currentState = (element!=null);
         return element;
     }
 
     public String actual() {
-        return "Element is present:" + element.isDisplayed();
+        return currentState.toString();
     }
 
     @Override
