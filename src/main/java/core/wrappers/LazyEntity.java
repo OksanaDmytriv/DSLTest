@@ -1,6 +1,6 @@
 package core.wrappers;
 
-public interface LazyEntity<TypeOfWrappedEntity> {
+public interface LazyEntity<T> {
 
-    <TypeOfWrappedEntity> TypeOfWrappedEntity getWrappedEntity();
+    T getWrappedEntity();
 }
