@@ -12,7 +12,7 @@ import static pages.todomvc.ToDoMVC.TaskType.ACTIVE;
 
 public class ToDoMVC {
 
-    public static LazyElementInnerCollection tasks = $("#todo-list").findAll("li");
+    private static LazyElementInnerCollection tasks = $("#todo-list").findAll("li");
 
     @Step
     public static void add(String... taskTexts) {

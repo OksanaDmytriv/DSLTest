@@ -10,7 +10,7 @@ import static core.conditions.element.ElementConditions.text;
 
 public class Mails {
 
-    public static LazyElementInnerCollection emails = $("[role='main']").findAll(".zA");
+    private static LazyElementInnerCollection emails = $("[role='main']").findAll(".zA");
 
     public static void send(String email, String subject) {
         $(byText("COMPOSE")).click();
