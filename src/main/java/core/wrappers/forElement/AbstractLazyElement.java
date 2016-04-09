@@ -83,20 +83,20 @@ public abstract class AbstractLazyElement implements LazyEntity, WebElement {
         return this;
     }
 
-    public boolean is(ElementCondition condition) {
-        return condition.apply(this) != null ? true : false;
-    }
-
-    public boolean has(ElementCondition condition) {
-        return is(condition);
-    }
-
     public AbstractLazyElement shouldBe(ElementCondition... conditions) {
         return should(conditions);
     }
 
     public AbstractLazyElement shouldHave(ElementCondition conditions) {
         return should(conditions);
+    }
+
+    public boolean is(ElementCondition condition) {
+        return condition.apply(this) != null;
+    }
+
+    public boolean has(ElementCondition condition) {
+        return is(condition);
     }
 
     public void submit() {

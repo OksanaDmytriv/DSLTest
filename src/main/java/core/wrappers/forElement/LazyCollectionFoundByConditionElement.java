@@ -17,7 +17,7 @@ public class LazyCollectionFoundByConditionElement extends AbstractLazyElement {
     }
 
     public String toString() {
-        return parentCollection.toString() + " find(" + condition + ")";
+        return parentCollection.toString() + " find(" + condition.getClass() + ")";
     }
 
     public WebElement getWrappedEntity() {

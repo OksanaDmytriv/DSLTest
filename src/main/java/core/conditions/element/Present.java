@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 
 public class Present extends ElementCondition {
 
-    private Boolean currentState;
+    private boolean currentState;
 
     public WebElement check(WebElement element) {
         currentState = (element!=null);
@@ -12,7 +12,7 @@ public class Present extends ElementCondition {
     }
 
     public String actual() {
-        return currentState.toString();
+        return String.valueOf(currentState);
     }
 
     @Override

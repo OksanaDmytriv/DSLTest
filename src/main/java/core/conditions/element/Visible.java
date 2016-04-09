@@ -4,17 +4,17 @@ import org.openqa.selenium.WebElement;
 
 public class Visible extends ElementCondition {
 
-    private Boolean currentState;
+    private boolean currentState;
 
     @Override
     public WebElement check(WebElement element) {
         currentState = element.isDisplayed();
-        return currentState ? element : null;
+        return element.isDisplayed() ? element : null;
     }
 
     @Override
     public String actual() {
-        return currentState.toString();
+        return String.valueOf(currentState);
     }
 
     @Override

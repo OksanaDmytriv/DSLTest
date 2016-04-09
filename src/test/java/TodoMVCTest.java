@@ -7,7 +7,6 @@ import static pages.todomvc.ToDoMVC.*;
 
 public class TodoMVCTest extends BaseTest {
 
-
     @Test
     public void testEdit() {
         givenAtAll(aTask("a", ACTIVE));

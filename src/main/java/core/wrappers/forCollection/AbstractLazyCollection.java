@@ -20,7 +20,6 @@ public abstract class AbstractLazyCollection implements LazyEntity, Iterable<Abs
     public abstract List<WebElement> getWrappedEntity();
 
     public LazyCollectionNthElement get(int index) {
-
         return new LazyCollectionNthElement(this, index);
     }
 
