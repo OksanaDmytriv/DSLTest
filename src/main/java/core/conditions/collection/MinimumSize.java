@@ -7,7 +7,7 @@ import java.util.List;
 public class MinimumSize extends CollectionCondition {
 
     private int listSize;
-    protected final int minimumSize;
+    private final int minimumSize;
 
     public MinimumSize(int minimumSize) {
         if (minimumSize == 0) {
@@ -17,7 +17,7 @@ public class MinimumSize extends CollectionCondition {
     }
 
     @Override
-    protected List<WebElement> check(List<WebElement> elements) {
+    public List<WebElement> check(List<WebElement> elements) {
         listSize = elements.size();
         return (listSize >= minimumSize) ? elements : null;
     }

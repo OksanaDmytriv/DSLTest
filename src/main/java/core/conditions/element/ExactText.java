@@ -8,7 +8,7 @@ public class ExactText extends Text {
         super(text);
     }
 
-    protected WebElement check(WebElement element) {
+    public WebElement check(WebElement element) {
         currentText = element.getText();
         if (!currentText.equals(text)) {
             return null;

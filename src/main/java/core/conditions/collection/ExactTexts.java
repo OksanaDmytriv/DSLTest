@@ -15,7 +15,7 @@ public class ExactTexts extends Texts {
     }
 
     @Override
-    protected List<WebElement> check(List<WebElement> elements) {
+    public List<WebElement> check(List<WebElement> elements) {
         currentTexts = getTexts(elements);
         return listHasExactTexts(currentTexts, texts) ? elements : null;
     }

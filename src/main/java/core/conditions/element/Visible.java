@@ -7,7 +7,7 @@ public class Visible extends ElementCondition {
     private Boolean currentState;
 
     @Override
-    protected WebElement check(WebElement element) {
+    public WebElement check(WebElement element) {
         currentState = element.isDisplayed();
         return currentState ? element : null;
     }

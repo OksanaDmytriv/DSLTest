@@ -13,7 +13,7 @@ public class CSSClass extends ElementCondition {
     }
 
     @Override
-    protected WebElement check(WebElement element) {
+    public WebElement check(WebElement element) {
         currentClasses = element.getAttribute("class").split(" ");
         for (int i = 0; i < currentClasses.length; i++) {
             if (currentClasses[i].equals(cssClass)) {

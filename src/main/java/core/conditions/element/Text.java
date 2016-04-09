@@ -4,14 +4,14 @@ import org.openqa.selenium.WebElement;
 
 public class Text extends ElementCondition {
 
-    protected String currentText;
-    protected final String text;
+    public String currentText;
+    public final String text;
 
     public Text(String text) {
         this.text = text;
     }
 
-    protected WebElement check(WebElement element) {
+    public WebElement check(WebElement element) {
         currentText = element.getText();
         if (!currentText.contains(text)) {
             return null;

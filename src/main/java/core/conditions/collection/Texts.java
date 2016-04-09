@@ -10,8 +10,8 @@ import static core.Helpers.listHasTexts;
 
 public class Texts extends CollectionCondition {
 
-    protected List<String> currentTexts;
-    protected final String[] texts;
+    public List<String> currentTexts;
+    public final String[] texts;
 
     public Texts(String... texts) {
         if (texts.length == 0) {
@@ -21,7 +21,7 @@ public class Texts extends CollectionCondition {
     }
 
     @Override
-    protected List<WebElement> check(List<WebElement> elements) {
+    public List<WebElement> check(List<WebElement> elements) {
         currentTexts = getTexts(elements);
         return listHasTexts(currentTexts, texts) ? elements : null;
     }

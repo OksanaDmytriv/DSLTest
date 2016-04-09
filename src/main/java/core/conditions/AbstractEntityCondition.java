@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriverException;
 
 public abstract class AbstractEntityCondition<T> implements EntityCondition<T>, DescribesResult {
 
-    protected LazyEntity lazyEntity;
+    private LazyEntity lazyEntity;
 
     public String toString(){
         return "\n" + this.getClass() + "\n" +
@@ -24,5 +24,5 @@ public abstract class AbstractEntityCondition<T> implements EntityCondition<T>, 
         }
     }
 
-    protected abstract T check(T entity);
+    public abstract T check(T entity);
 }

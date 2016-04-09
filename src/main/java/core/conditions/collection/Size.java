@@ -7,14 +7,14 @@ import java.util.List;
 public class Size extends CollectionCondition {
 
     private int listSize;
-    protected final int expectedSize;
+    private final int expectedSize;
 
     public Size(int expectedSize) {
         this.expectedSize = expectedSize;
     }
 
     @Override
-    protected List<WebElement> check(List<WebElement> elements) {
+    public List<WebElement> check(List<WebElement> elements) {
         listSize = elements.size();
         return (listSize == expectedSize) ? elements : null;
     }

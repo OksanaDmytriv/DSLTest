@@ -6,7 +6,7 @@ public class Present extends ElementCondition {
 
     private Boolean currentState;
 
-    protected WebElement check(WebElement element) {
+    public WebElement check(WebElement element) {
         currentState = (element!=null);
         return element;
     }
