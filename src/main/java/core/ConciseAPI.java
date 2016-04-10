@@ -1,19 +1,16 @@
 package core;
 
-import core.conditions.EntityCondition;
-import core.wrappers.LazyEntity;
 import core.wrappers.forCollection.LazyCollection;
+import core.wrappers.forCollection.LazyWebDriverCollection;
 import core.wrappers.forElement.LazyElement;
+import core.wrappers.forElement.LazyWebDriverElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static core.Configuration.pollingIntervalInMillis;
 
 public class ConciseAPI {
 
@@ -28,7 +25,7 @@ public class ConciseAPI {
     }
 
     public static LazyElement $(By locator) {
-        return new LazyElement(locator);
+        return new LazyWebDriverElement(locator);
     }
 
     public static LazyElement $(String cssSelector) {
@@ -36,7 +33,7 @@ public class ConciseAPI {
     }
 
     public static LazyCollection $$(By locator) {
-        return new LazyCollection(locator);
+        return new LazyWebDriverCollection(locator);
     }
 
     public static LazyCollection $$(String cssSelector) {
@@ -57,41 +54,6 @@ public class ConciseAPI {
 
     public static Actions actions() {
         return new Actions(getDriver());
-    }
-
-    public static void sleep(int milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static <T> T waitFor(LazyEntity lazyEntity, EntityCondition<T>... conditions) {
-        T result = null;
-        for (EntityCondition<T> condition : conditions) {
-            result = waitFor(lazyEntity, condition, Configuration.timeout);
-        }
-        return result;
-    }
-
-    public static <T> T waitFor(LazyEntity lazyEntity, EntityCondition<T> condition, int timeoutMs) {
-        T result;
-        final long startTime = System.currentTimeMillis();
-        do {
-            result = condition.apply(lazyEntity);
-            if (result == null) {
-                sleep(pollingIntervalInMillis);
-                continue;
-            }
-            return result;
-        }
-        while (System.currentTimeMillis() - startTime < timeoutMs);
-        if (result == null) {
-            throw new TimeoutException("\nfailed while waiting " + timeoutMs / 1000 + " seconds \nto assert " + condition);
-        }
-        return result;
     }
 
     public static void executeJavaScript(String script) {

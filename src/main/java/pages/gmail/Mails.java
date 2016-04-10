@@ -1,6 +1,6 @@
 package pages.gmail;
 
-import core.wrappers.forCollection.LazyElementInnerCollection;
+import core.wrappers.forCollection.LazyCollection;
 import org.openqa.selenium.By;
 
 import static core.ConciseAPI.$;
@@ -10,7 +10,7 @@ import static core.conditions.element.ElementConditions.text;
 
 public class Mails {
 
-    private static LazyElementInnerCollection emails = $("[role='main']").findAll(".zA");
+    private static LazyCollection emails = $("[role='main']").findAll(".zA");
 
     public static void send(String email, String subject) {
         $(byText("COMPOSE")).click();

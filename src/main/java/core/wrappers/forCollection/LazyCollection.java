@@ -1,27 +1,24 @@
 package core.wrappers.forCollection;
 
-import org.openqa.selenium.By;
+import core.conditions.collection.CollectionCondition;
+import core.conditions.element.ElementCondition;
+import core.wrappers.LazyEntity;
+import core.wrappers.forElement.LazyElement;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static core.ConciseAPI.getDriver;
+public interface LazyCollection extends LazyEntity<List<WebElement>>, Iterable<LazyElement> {
 
-public class LazyCollection extends AbstractLazyCollection {
+    LazyElement get(int index);
 
-    private By locator;
+    LazyCollection filter(ElementCondition condition);
 
-    public LazyCollection(By locator) {
-        this.locator = locator;
-    }
+    LazyElement find(ElementCondition condition);
 
-    public String toString() {
-        return locator.toString();
-    }
+    LazyCollection should(CollectionCondition... conditions);
 
-    public List<WebElement> getWrappedEntity() {
-        return getDriver().findElements(locator);
-    }
+    LazyCollection shouldBe(CollectionCondition... conditions);
+
+    LazyCollection shouldHave(CollectionCondition... conditions);
 }
-
-

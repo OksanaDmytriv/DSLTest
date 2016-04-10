@@ -1,6 +1,8 @@
 package core;
 
 public class Configuration {
+    //used for until() methods, in millis
     public static int timeout = 4000;
-    public static int pollingIntervalInMillis = 100;
+    //used for sleep() method, in millis
+    public static int pollingInterval = 100;
 }

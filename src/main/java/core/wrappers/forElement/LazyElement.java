@@ -1,23 +1,40 @@
 package core.wrappers.forElement;
 
+import core.conditions.element.ElementCondition;
+import core.wrappers.LazyEntity;
+import core.wrappers.forCollection.LazyCollection;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static core.ConciseAPI.getDriver;
+public interface LazyElement extends LazyEntity<WebElement>, WebElement {
 
-public class LazyElement extends AbstractLazyElement {
+    LazyElement setValue(String text);
 
-    private By locator;
+    LazyElement sendKeys(String text);
 
-    public LazyElement(By locator) {
-        this.locator = locator;
-    }
+    LazyElement pressEnter();
 
-    public String toString() {
-        return locator.toString();
-    }
+    LazyElement pressEscape();
 
-    public WebElement getWrappedEntity() {
-        return getDriver().findElement(locator);
-    }
+    LazyElement hover();
+
+    LazyElement doubleClick();
+
+    LazyElement should(ElementCondition... conditions);
+
+    LazyElement shouldBe(ElementCondition... conditions);
+
+    LazyElement shouldHave(ElementCondition conditions);
+
+    boolean is(ElementCondition condition);
+
+    boolean has(ElementCondition condition);
+
+    LazyElement find(By innerLocator);
+
+    LazyElement find(String cssSelector);
+
+    LazyCollection findAll(By locator);
+
+    LazyCollection findAll(String cssSelector);
 }

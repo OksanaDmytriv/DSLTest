@@ -18,7 +18,7 @@ public class LazyFilteredCollection extends AbstractLazyCollection {
     }
 
     public String toString() {
-        return parentCollection.toString() + " filter(" + condition + ')';
+        return parentCollection.toString() + " filter(" + condition.getClass() + ')';
     }
 
     public List<WebElement> getWrappedEntity() {
