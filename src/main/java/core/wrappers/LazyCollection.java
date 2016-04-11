@@ -1,9 +1,7 @@
-package core.wrappers.forCollection;
+package core.wrappers;
 
 import core.conditions.collection.CollectionCondition;
 import core.conditions.element.ElementCondition;
-import core.wrappers.LazyEntity;
-import core.wrappers.forElement.LazyElement;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;

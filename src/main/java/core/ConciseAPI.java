@@ -1,8 +1,8 @@
 package core;
 
-import core.wrappers.forCollection.LazyCollection;
+import core.wrappers.LazyCollection;
 import core.wrappers.forCollection.LazyWebDriverCollection;
-import core.wrappers.forElement.LazyElement;
+import core.wrappers.LazyElement;
 import core.wrappers.forElement.LazyWebDriverElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

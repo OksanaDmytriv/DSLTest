@@ -1,7 +1,7 @@
 package pages.todomvc;
 
-import core.wrappers.forCollection.LazyCollection;
-import core.wrappers.forElement.LazyElement;
+import core.wrappers.LazyCollection;
+import core.wrappers.LazyElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static core.ConciseAPI.*;

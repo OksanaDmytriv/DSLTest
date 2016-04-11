@@ -1,8 +1,6 @@
-package core.wrappers.forElement;
+package core.wrappers;
 
 import core.conditions.element.ElementCondition;
-import core.wrappers.LazyEntity;
-import core.wrappers.forCollection.LazyCollection;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

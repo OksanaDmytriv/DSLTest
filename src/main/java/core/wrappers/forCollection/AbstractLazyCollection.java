@@ -3,6 +3,8 @@ package core.wrappers.forCollection;
 import core.WaitFor;
 import core.conditions.collection.CollectionCondition;
 import core.conditions.element.ElementCondition;
+import core.wrappers.LazyCollection;
+import core.wrappers.LazyElement;
 import core.wrappers.forElement.*;
 import org.openqa.selenium.WebElement;
 
