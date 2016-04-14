@@ -12,7 +12,7 @@ public class TodoMVCTest extends BaseTest {
         givenAtAll(aTask("a", ACTIVE));
 
         startEditing("a", "a edited").pressEnter();
-        assertTasks("a edited2");
+        assertTasks("a edited");
         assertItemsLeft(1);
     }
 
