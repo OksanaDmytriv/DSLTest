@@ -5,9 +5,9 @@ import core.wrappers.LazyElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static core.ConciseAPI.*;
-import static core.conditions.collection.CollectionConditions.empty;
-import static core.conditions.collection.CollectionConditions.exactTexts;
-import static core.conditions.element.ElementConditions.*;
+import static core.conditions.CollectionConditions.empty;
+import static core.conditions.CollectionConditions.exactTexts;
+import static core.conditions.ElementConditions.*;
 import static pages.todomvc.ToDoMVC.TaskType.ACTIVE;
 
 public class ToDoMVC {

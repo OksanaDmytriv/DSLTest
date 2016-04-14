@@ -1,7 +1,7 @@
 package core.wrappers.forElement;
 
 import core.WaitFor;
-import core.conditions.element.ElementCondition;
+import core.conditions.ElementCondition;
 import core.wrappers.LazyCollection;
 import core.wrappers.LazyElement;
 import core.wrappers.forCollection.LazyElementInnerCollection;
@@ -11,8 +11,8 @@ import java.util.List;
 
 import static core.ConciseAPI.actions;
 import static core.ConciseAPI.byCSS;
-import static core.conditions.element.ElementConditions.present;
-import static core.conditions.element.ElementConditions.visible;
+import static core.conditions.ElementConditions.present;
+import static core.conditions.ElementConditions.visible;
 
 public abstract class AbstractLazyElement implements LazyElement {
 
@@ -47,12 +47,6 @@ public abstract class AbstractLazyElement implements LazyElement {
     public LazyElement setValue(String text) {
         WaitFor.until(this, visible());
         getWrappedEntity().clear();
-        getWrappedEntity().sendKeys(text);
-        return this;
-    }
-
-    public LazyElement sendKeys(String text) {
-        WaitFor.until(this, visible());
         getWrappedEntity().sendKeys(text);
         return this;
     }

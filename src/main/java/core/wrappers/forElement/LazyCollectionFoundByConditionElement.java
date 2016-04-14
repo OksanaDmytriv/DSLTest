@@ -1,17 +1,17 @@
 package core.wrappers.forElement;
 
-import core.conditions.element.ElementCondition;
-import core.wrappers.forCollection.AbstractLazyCollection;
+import core.conditions.ElementCondition;
+import core.wrappers.LazyCollection;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
 public class LazyCollectionFoundByConditionElement extends AbstractLazyElement {
 
-    private AbstractLazyCollection parentCollection;
+    private LazyCollection parentCollection;
     private ElementCondition condition;
 
-    public LazyCollectionFoundByConditionElement(AbstractLazyCollection parentCollection, ElementCondition condition) {
+    public LazyCollectionFoundByConditionElement(LazyCollection parentCollection, ElementCondition condition) {
         this.parentCollection = parentCollection;
         this.condition = condition;
     }

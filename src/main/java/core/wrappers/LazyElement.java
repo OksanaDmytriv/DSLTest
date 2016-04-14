@@ -1,14 +1,12 @@
 package core.wrappers;
 
-import core.conditions.element.ElementCondition;
+import core.conditions.ElementCondition;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public interface LazyElement extends LazyEntity<WebElement>, WebElement {
 
     LazyElement setValue(String text);
-
-    LazyElement sendKeys(String text);
 
     LazyElement pressEnter();
 

@@ -1,4 +1,9 @@
-package core.conditions.collection;
+package core.conditions;
+
+import core.conditions.collection.ExactTexts;
+import core.conditions.collection.MinimumSize;
+import core.conditions.collection.Size;
+import core.conditions.collection.Texts;
 
 public class CollectionConditions {
     public static CollectionCondition texts(final String... texts) {

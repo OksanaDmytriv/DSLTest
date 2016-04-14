@@ -1,5 +1,6 @@
 package core.conditions.element;
 
+import core.conditions.ElementCondition;
 import org.openqa.selenium.WebElement;
 
 public class Present extends ElementCondition {
@@ -7,12 +8,12 @@ public class Present extends ElementCondition {
     private boolean currentState;
 
     public WebElement check(WebElement element) {
-        currentState = (element!=null);
+        currentState = (element != null);
         return element;
     }
 
     public String actual() {
-        return String.valueOf(currentState);
+        return currentState ? "Present" : "Not present";
     }
 
     @Override

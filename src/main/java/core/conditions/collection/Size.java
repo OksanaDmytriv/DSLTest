@@ -1,13 +1,14 @@
 package core.conditions.collection;
 
+import core.conditions.CollectionCondition;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
 public class Size extends CollectionCondition {
 
-    private int listSize;
-    private final int expectedSize;
+    public int listSize;
+    public int expectedSize;
 
     public Size(int expectedSize) {
         this.expectedSize = expectedSize;
@@ -16,7 +17,11 @@ public class Size extends CollectionCondition {
     @Override
     public List<WebElement> check(List<WebElement> elements) {
         listSize = elements.size();
-        return (listSize == expectedSize) ? elements : null;
+        return checkList() ? elements : null;
+    }
+
+    public boolean checkList() {
+        return listSize == expectedSize;
     }
 
     @Override

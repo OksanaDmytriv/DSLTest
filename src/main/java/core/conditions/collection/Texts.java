@@ -1,5 +1,6 @@
 package core.conditions.collection;
 
+import core.conditions.CollectionCondition;
 import org.openqa.selenium.WebElement;
 
 import java.util.Arrays;

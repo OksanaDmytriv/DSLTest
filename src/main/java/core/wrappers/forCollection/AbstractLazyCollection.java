@@ -1,8 +1,8 @@
 package core.wrappers.forCollection;
 
 import core.WaitFor;
-import core.conditions.collection.CollectionCondition;
-import core.conditions.element.ElementCondition;
+import core.conditions.CollectionCondition;
+import core.conditions.ElementCondition;
 import core.wrappers.LazyCollection;
 import core.wrappers.LazyElement;
 import core.wrappers.forElement.*;

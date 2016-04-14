@@ -1,4 +1,6 @@
-package core.conditions.element;
+package core.conditions;
+
+import core.conditions.element.*;
 
 public class ElementConditions {
 

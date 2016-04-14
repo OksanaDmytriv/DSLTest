@@ -1,17 +1,15 @@
 package core.wrappers.forElement;
 
-import core.WaitFor;
+import core.wrappers.LazyElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import static core.conditions.element.ElementConditions.present;
 
 public class LazyElementInnerElement extends AbstractLazyElement {
 
     private By innerLocator;
-    private AbstractLazyElement parentElement;
+    private LazyElement parentElement;
 
-    public LazyElementInnerElement(AbstractLazyElement parentElement, By innerLocator) {
+    public LazyElementInnerElement(LazyElement parentElement, By innerLocator) {
         this.parentElement=parentElement;
         this.innerLocator=innerLocator;
     }
@@ -21,7 +19,6 @@ public class LazyElementInnerElement extends AbstractLazyElement {
     }
 
     public WebElement getWrappedEntity() {
-        WaitFor.until(parentElement, present());
         return parentElement.getWrappedEntity().findElement(innerLocator);
     }
 

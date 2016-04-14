@@ -1,7 +1,7 @@
 package core.wrappers;
 
-import core.conditions.collection.CollectionCondition;
-import core.conditions.element.ElementCondition;
+import core.conditions.CollectionCondition;
+import core.conditions.ElementCondition;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
