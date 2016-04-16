@@ -19,7 +19,7 @@ public class LazyWebDriverCollection extends AbstractLazyCollection {
         return locator.toString();
     }
 
-    public List<WebElement> getWrappedEntity() {
+    public List<WebElement> fetchWrappedEntity() {
         return getDriver().findElements(locator);
     }
 }

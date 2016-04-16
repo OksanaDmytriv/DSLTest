@@ -13,15 +13,15 @@ public class Text extends ElementCondition {
         this.text = text;
     }
 
-    public WebElement check(WebElement element) {
+    public boolean check(WebElement element) {
         currentText = element.getText();
-        if (!checkList()) {
-            return null;
+        if (!checkElement()) {
+            return false;
         }
-        return element;
+        return true;
     }
 
-    public boolean checkList() {
+    public boolean checkElement() {
         return currentText.contains(text);
     }
 

@@ -44,14 +44,4 @@ public class Helpers {
         }
         return true;
     }
-
-    public static List<WebElement> listOfVisibleElements(List<WebElement> elements) {
-        List<WebElement> visibleElements = new ArrayList<WebElement>();
-        for (WebElement element : elements) {
-            if (element.isDisplayed()) {
-                visibleElements.add(element);
-            }
-        }
-        return visibleElements;
-    }
 }

@@ -2,7 +2,6 @@ package core.wrappers.forCollection;
 
 import core.conditions.ElementCondition;
 import core.wrappers.LazyCollection;
-import core.wrappers.forElement.LazyWrappedWebElement;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -22,11 +21,11 @@ public class LazyFilteredCollection extends AbstractLazyCollection {
         return parentCollection.toString() + " filter(" + condition.getClass() + ')';
     }
 
-    public List<WebElement> getWrappedEntity() {
+    public List<WebElement> fetchWrappedEntity() {
         List<WebElement> newList = new ArrayList<WebElement>();
         List<WebElement> elements = parentCollection.getWrappedEntity();
         for (WebElement element : elements) {
-            if (new LazyWrappedWebElement(this, element).is(condition)) {
+            if (condition.check(element)) {
                 newList.add(element);
             }
         }

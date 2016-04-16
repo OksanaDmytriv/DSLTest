@@ -20,10 +20,10 @@ public class LazyCollectionFoundByConditionElement extends AbstractLazyElement {
         return parentCollection.toString() + " find(" + condition.getClass() + ")";
     }
 
-    public WebElement getWrappedEntity() {
+    public WebElement fetchWrappedEntity() {
         List<WebElement> elements = parentCollection.getWrappedEntity();
         for (WebElement element : elements) {
-            if (new LazyWrappedWebElement(this, element).is(condition)) {
+            if (condition.check(element)) {
                 return element;
             }
         }

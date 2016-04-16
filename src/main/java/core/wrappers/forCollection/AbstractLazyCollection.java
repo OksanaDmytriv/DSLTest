@@ -5,7 +5,9 @@ import core.conditions.CollectionCondition;
 import core.conditions.ElementCondition;
 import core.wrappers.LazyCollection;
 import core.wrappers.LazyElement;
-import core.wrappers.forElement.*;
+import core.wrappers.forElement.LazyCollectionFoundByConditionElement;
+import core.wrappers.forElement.LazyCollectionNthElement;
+import core.wrappers.forElement.LazyWrappedWebElement;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -14,7 +16,11 @@ import java.util.List;
 
 public abstract class AbstractLazyCollection implements LazyCollection {
 
-    public abstract List<WebElement> getWrappedEntity();
+    public List<WebElement> getWrappedEntity() {
+        return fetchWrappedEntity();
+    }
+
+    public abstract List<WebElement> fetchWrappedEntity();
 
     public LazyElement get(int index) {
         return new LazyCollectionNthElement(this, index);
@@ -43,7 +49,7 @@ public abstract class AbstractLazyCollection implements LazyCollection {
 
     @Override
     public Iterator<LazyElement> iterator() {
-        List<WebElement> elements = this.getWrappedEntity();
+        List<WebElement> elements = this.fetchWrappedEntity();
         List<LazyElement> newList = new ArrayList<>();
         for (WebElement element : elements) {
             newList.add((new LazyWrappedWebElement(this, element)));

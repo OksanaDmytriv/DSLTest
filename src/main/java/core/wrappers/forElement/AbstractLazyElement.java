@@ -2,6 +2,8 @@ package core.wrappers.forElement;
 
 import core.WaitFor;
 import core.conditions.ElementCondition;
+import core.exceptions.ElementNotFoundException;
+import core.exceptions.WebDriverAssertionException;
 import core.wrappers.LazyCollection;
 import core.wrappers.LazyElement;
 import core.wrappers.forCollection.LazyElementInnerCollection;
@@ -16,7 +18,15 @@ import static core.conditions.ElementConditions.visible;
 
 public abstract class AbstractLazyElement implements LazyElement {
 
-    public abstract WebElement getWrappedEntity();
+    public WebElement getWrappedEntity() {
+        if (fetchWrappedEntity() == null) {
+            throw new ElementNotFoundException();
+        } else {
+            return fetchWrappedEntity();
+        }
+    }
+
+    public abstract WebElement fetchWrappedEntity();
 
     public LazyElement find(By innerLocator) {
         return new LazyElementInnerElement(this, innerLocator);
@@ -89,7 +99,12 @@ public abstract class AbstractLazyElement implements LazyElement {
     }
 
     public boolean is(ElementCondition condition) {
-        return condition.apply(this) != null;
+        try {
+            return condition.apply(this);
+        } catch (WebDriverAssertionException e) {
+            return false;
+        }
+        //return condition.apply(this) != false;;
     }
 
     public boolean has(ElementCondition condition) {

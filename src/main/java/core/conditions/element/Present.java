@@ -7,9 +7,9 @@ public class Present extends ElementCondition {
 
     private boolean currentState;
 
-    public WebElement check(WebElement element) {
+    public boolean check(WebElement element) {
         currentState = (element != null);
-        return element;
+        return true;
     }
 
     public String actual() {
