@@ -19,10 +19,11 @@ import static core.conditions.ElementConditions.visible;
 public abstract class AbstractLazyElement implements LazyElement {
 
     public WebElement getWrappedEntity() {
-        if (fetchWrappedEntity() == null) {
-            throw new ElementNotFoundException();
+        WebElement result = fetchWrappedEntity();
+        if (result == null) {
+            throw new ElementNotFoundException(this.toString());
         } else {
-            return fetchWrappedEntity();
+            return result;
         }
     }
 
@@ -100,11 +101,11 @@ public abstract class AbstractLazyElement implements LazyElement {
 
     public boolean is(ElementCondition condition) {
         try {
-            return condition.apply(this);
+            condition.apply(this);
         } catch (WebDriverAssertionException e) {
-            return false;
+            throw new WebDriverException(this.toString());
         }
-        //return condition.apply(this) != false;;
+        return true;
     }
 
     public boolean has(ElementCondition condition) {

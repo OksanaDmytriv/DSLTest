@@ -22,7 +22,7 @@ public class LazyCollectionNthElement extends AbstractLazyElement {
         try {
             return parentCollection.getWrappedEntity().get(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new LazyСollectionIndexOutOfBoundsException();
+            throw new LazyСollectionIndexOutOfBoundsException(this.toString());
         }
     }
 }

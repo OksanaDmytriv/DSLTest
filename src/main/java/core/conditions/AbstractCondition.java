@@ -3,7 +3,7 @@ package core.conditions;
 import core.exceptions.WebDriverAssertionException;
 import core.wrappers.LazyEntity;
 
-public abstract class AbstractCondition<T> implements Condition<Boolean>, DescribesResult {
+public abstract class AbstractCondition<T> implements Condition<T>, DescribesResult {
 
     private LazyEntity lazyEntity;
 
@@ -15,12 +15,12 @@ public abstract class AbstractCondition<T> implements Condition<Boolean>, Descri
                 "actual: " + actual();
     }
 
-    public Boolean apply(LazyEntity lazyEntity) {
+    public T apply(LazyEntity lazyEntity) {
         this.lazyEntity = lazyEntity;
         if (!check((T) lazyEntity.getWrappedEntity())) {
-            throw new WebDriverAssertionException();
+            throw new WebDriverAssertionException(this.toString());
         }
-        return check((T) lazyEntity.getWrappedEntity());
+        return (T) lazyEntity.getWrappedEntity();
     }
 
     public abstract boolean check(T entity);

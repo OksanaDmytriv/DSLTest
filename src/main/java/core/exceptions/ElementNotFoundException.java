@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriverException;
 
 public class ElementNotFoundException extends WebDriverException {
 
-    public ElementNotFoundException() {
+    private String text;
+
+    public ElementNotFoundException(String text) {
+        this.text = text;
     }
 }

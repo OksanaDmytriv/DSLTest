@@ -1,13 +1,9 @@
 package core;
 
 import core.conditions.Condition;
-import core.exceptions.ElementNotFoundException;
-import core.exceptions.LazyСollectionIndexOutOfBoundsException;
-import core.exceptions.WebDriverAssertionException;
 import core.wrappers.LazyEntity;
 import org.openqa.selenium.TimeoutException;
-
-import static core.Configuration.pollingInterval;
+import org.openqa.selenium.WebDriverException;
 
 public class WaitFor {
 
@@ -20,18 +16,12 @@ public class WaitFor {
     }
 
     public static <T> T until(LazyEntity lazyEntity, Condition<T> condition, int timeoutMs) {
-        T result;
-        Exception cause = null;
+        Exception cause;
         final long startTime = System.currentTimeMillis();
         do {
             try {
-                result = condition.apply(lazyEntity);
-                if (result == null) {
-                    sleep(pollingInterval);
-                    continue;
-                }
-                return result;
-            } catch (WebDriverAssertionException|ElementNotFoundException|LazyСollectionIndexOutOfBoundsException e) {
+                return condition.apply(lazyEntity);
+            } catch (WebDriverException e) {
                 cause = e;
             }
         }
