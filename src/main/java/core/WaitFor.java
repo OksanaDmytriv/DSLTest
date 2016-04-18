@@ -18,17 +18,15 @@ public class WaitFor {
     }
 
     public static <T> T until(LazyEntity lazyEntity, Condition<T> condition, int timeoutMs) {
-        T result;
         Exception cause;
         final long startTime = System.currentTimeMillis();
         do {
             try {
-                result = condition.apply(lazyEntity);
-                sleep(pollingInterval);
-                return result;
+                return condition.apply(lazyEntity);
             } catch (WebDriverException e) {
                 cause = e;
             }
+            sleep(pollingInterval);
         }
         while (System.currentTimeMillis() - startTime < timeoutMs);
         throw new TimeoutException("\nfailed while waiting " + timeoutMs / 1000 + " seconds \nto assert " + condition, cause);
