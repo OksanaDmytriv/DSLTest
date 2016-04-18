@@ -1,6 +1,7 @@
 package core.wrappers.forElement;
 
 import core.conditions.ElementCondition;
+import core.exceptions.ElementNotFoundException;
 import core.wrappers.LazyCollection;
 import org.openqa.selenium.WebElement;
 
@@ -27,6 +28,6 @@ public class LazyCollectionFoundByConditionElement extends AbstractLazyElement {
                 return element;
             }
         }
-        return null;
+        throw new ElementNotFoundException(this.toString());
     }
 }

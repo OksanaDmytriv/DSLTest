@@ -17,6 +17,6 @@ public class ExactTexts extends Texts {
     @Override
     public boolean check(List<WebElement> elements) {
         currentTexts = getTexts(elements);
-        return listHasExactTexts(currentTexts, texts) ? true : false;
+        return listHasExactTexts(currentTexts, texts);
     }
 }

@@ -15,10 +15,7 @@ public class Text extends ElementCondition {
 
     public boolean check(WebElement element) {
         currentText = element.getText();
-        if (!checkElement()) {
-            return false;
-        }
-        return true;
+        return checkElement();
     }
 
     public boolean checkElement() {

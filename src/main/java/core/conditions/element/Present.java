@@ -9,7 +9,7 @@ public class Present extends ElementCondition {
 
     public boolean check(WebElement element) {
         currentState = (element != null);
-        return true;
+        return currentState;
     }
 
     public String actual() {

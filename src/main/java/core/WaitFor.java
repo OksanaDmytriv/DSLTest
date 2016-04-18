@@ -5,6 +5,8 @@ import core.wrappers.LazyEntity;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriverException;
 
+import static core.Configuration.pollingInterval;
+
 public class WaitFor {
 
     public static <T> T until(LazyEntity lazyEntity, Condition<T>... conditions) {
@@ -16,11 +18,14 @@ public class WaitFor {
     }
 
     public static <T> T until(LazyEntity lazyEntity, Condition<T> condition, int timeoutMs) {
+        T result;
         Exception cause;
         final long startTime = System.currentTimeMillis();
         do {
             try {
-                return condition.apply(lazyEntity);
+                result = condition.apply(lazyEntity);
+                sleep(pollingInterval);
+                return result;
             } catch (WebDriverException e) {
                 cause = e;
             }

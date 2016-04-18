@@ -24,7 +24,7 @@ public class Texts extends CollectionCondition {
     @Override
     public boolean check(List<WebElement> elements) {
         currentTexts = getTexts(elements);
-        return listHasTexts(currentTexts, texts) ? true : false;
+        return listHasTexts(currentTexts, texts);
     }
 
     @Override

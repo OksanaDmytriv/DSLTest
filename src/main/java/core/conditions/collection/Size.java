@@ -17,7 +17,7 @@ public class Size extends CollectionCondition {
     @Override
     public boolean check(List<WebElement> elements) {
         listSize = elements.size();
-        return checkList() ? true : false;
+        return checkList();
     }
 
     public boolean checkList() {
